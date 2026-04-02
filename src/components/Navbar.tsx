@@ -74,7 +74,7 @@ export const Navbar = () => {
           <span>Event</span>
         </Link>
         <ul className="nav-links">
-          <li><Link to="/">Om mig</Link></li>
+          <li><Link to="/">Forside</Link></li>
           <li><Link to="/loesninger">Løsninger</Link></li>
           <li><Link to="/galleri">Galleri</Link></li>
           <li><Link to="/kontakt">Kontakt</Link></li>
