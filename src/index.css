@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Cormorant Garamond – self-hosted via fontsource */
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/300-italic.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+
+/* Outfit – self-hosted via fontsource */
+@import "@fontsource/outfit/200.css";
+@import "@fontsource/outfit/300.css";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+
 @theme {
   --font-head: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Outfit', sans-serif;

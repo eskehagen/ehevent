@@ -80,7 +80,7 @@ export const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <Link to="/" onClick={closeMenu}>Om mig</Link>
+            <Link to="/" onClick={closeMenu}>Forside</Link>
             <Link to="/loesninger" onClick={closeMenu}>Løsninger</Link>
             <Link to="/galleri" onClick={closeMenu}>Galleri</Link>
             <Link to="/kontakt" onClick={closeMenu}>Kontakt</Link>
