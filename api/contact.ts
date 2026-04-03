@@ -1,5 +1,11 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { IncomingMessage, ServerResponse } from 'http';
 import nodemailer from 'nodemailer';
+
+type VercelRequest = IncomingMessage & { body?: Record<string, unknown> };
+type VercelResponse = ServerResponse & {
+  status: (code: number) => VercelResponse;
+  json: (data: unknown) => void;
+};
 
 const OWNER_EMAIL = process.env.OWNER_EMAIL ?? '';
 const GMAIL_USER = process.env.GMAIL_USER ?? '';
