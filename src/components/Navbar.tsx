@@ -39,39 +39,23 @@ export const Navbar = () => {
     <>
       <nav className={`${isScrolled ? 'scrolled' : ''}`}>
         <Link to="/" className="nav-logo">
-          <svg width="56" height="56" viewBox="0 0 100 100" className="inline-block mr-2 align-middle">
+          <svg width="44" height="44" viewBox="0 0 100 100" className="inline-block mr-2 align-middle">
             <defs>
               <radialGradient id="navLogoGradient" cx="50%" cy="50%" r="50%" fx="35%" fy="35%">
                 <stop offset="0%" stopColor="#ff8a4d" />
                 <stop offset="100%" stopColor="#E8621A" />
               </radialGradient>
             </defs>
-            <circle cx="50" cy="50" r="48" fill="#0f0e0c" />
-            <g opacity="0.2">
-              {[46, 44, 42].map(r => (
-                <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="#1c1a13" strokeWidth="0.5" />
-              ))}
-            </g>
-            <circle cx="50" cy="50" r="38" fill="url(#navLogoGradient)" />
-            
-            {/* Vinyl-like subtle rings */}
-            <g opacity="0.1">
-              {[15, 20, 25, 30, 35].map(r => (
-                <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="white" strokeWidth="0.3" />
-              ))}
-            </g>
-
-            {/* Custom Geometric EH Monogram - Thinner version */}
+            <circle cx="50" cy="50" r="50" fill="url(#navLogoGradient)" />
+            {/* EH Monogram */}
             <g fill="white">
               {/* E */}
               <path d="M28 35 H47 V38.5 H31.5 V48 H44 V51 H31.5 V61 H47 V64.5 H28 Z" />
               {/* H */}
               <path d="M52 35 H55.5 V48 H68.5 V35 H72 V64.5 H68.5 V51 H55.5 V64.5 H52 Z" />
             </g>
-            
-            <path d="M30 30 A28 28 0 0 1 70 30" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.15" />
           </svg>
-          <span>Event</span>
+          <span>Events</span>
         </Link>
         <ul className="nav-links">
           <li><Link to="/">Forside</Link></li>

@@ -94,7 +94,7 @@ export const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            Eske Hagen<br /><em>Event</em>
+            Eske Hagen<br /><em>Events</em>
           </motion.h1>
         </div>
       </section>

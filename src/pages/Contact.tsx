@@ -1,25 +1,127 @@
-import React, { useState } from 'react';
-import { Mail, Phone } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Mail, Phone, ChevronDown } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 
+const TimeSelect = ({
+  id, value, options, onChange
+}: {
+  id: string;
+  value: string;
+  options: string[];
+  onChange: (val: string) => void;
+}) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (open && listRef.current) {
+      const active = listRef.current.querySelector('[data-active="true"]') as HTMLElement;
+      if (active) active.scrollIntoView({ block: 'center' });
+    }
+  }, [open]);
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        id={id}
+        onClick={() => setOpen(o => !o)}
+        className="w-full bg-[#141414] border border-[rgba(232,98,26,0.18)] p-3 text-white text-left flex justify-between items-center focus:outline-none focus:border-[#e8621a] transition-colors"
+      >
+        <span>{value}</span>
+        <ChevronDown
+          size={16}
+          className="text-[#b0a59d] transition-transform duration-200"
+          style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        />
+      </button>
+      {open && (
+        <div
+          ref={listRef}
+          className="absolute z-50 w-full border border-[rgba(232,98,26,0.35)] overflow-y-auto"
+          style={{ background: '#1c1c1c', maxHeight: '200px', top: '100%' }}
+        >
+          {options.map(t => (
+            <button
+              key={t}
+              type="button"
+              data-active={t === value ? 'true' : 'false'}
+              onClick={() => { onChange(t); setOpen(false); }}
+              className="w-full px-4 py-2 text-left text-sm transition-colors"
+              style={{
+                color: t === value ? '#e8621a' : '#ffffff',
+                background: t === value ? 'rgba(232,98,26,0.12)' : 'transparent',
+              }}
+              onMouseEnter={e => { if (t !== value) (e.currentTarget as HTMLElement).style.background = 'rgba(232,98,26,0.08)'; }}
+              onMouseLeave={e => { if (t !== value) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export const Contact = () => {
+  const times = Array.from({ length: 48 }, (_, i) => {
+    const h = Math.floor(i / 2).toString().padStart(2, '0');
+    const m = i % 2 === 0 ? '00' : '30';
+    return `${h}:${m}`;
+  });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     date: '',
     event: '',
+    address: '',
+    startTime: '22:00',
+    endTime: '02:00',
     message: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would send this data to a server
-    setSubmitted(true);
-    setFormData({ name: '', email: '', phone: '', date: '', event: '', message: '' });
-    setTimeout(() => setSubmitted(false), 5000);
+    setSending(true);
+    setSendError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? 'Ukendt fejl');
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', date: '', event: '', address: '', startTime: '22:00', endTime: '02:00', message: '' });
+      setTimeout(() => setSubmitted(false), 8000);
+    } catch (err: unknown) {
+      setSendError(err instanceof Error ? err.message : 'Mailen kunne ikke sendes. Prøv igen eller kontakt mig direkte.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -53,7 +155,8 @@ export const Contact = () => {
 
             <Reveal delay={0.3}>
               <div className="contact-form-container">
-                <h3 className="text-2xl font-head mb-8">Send en besked</h3>
+                <h3 className="text-2xl font-head mb-3">Send en besked</h3>
+                <p className="text-sm text-muted mb-8">Udfyld de felter du kan på nuværende tidspunkt – det vigtigste er dine kontaktoplysninger samt dato og sted for eventet. Resten finder vi ud af i en personlig samtale.</p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="form-group">
                     <label htmlFor="name" className="block text-xs uppercase tracking-wider mb-2 text-muted">Navn</label>
@@ -113,7 +216,7 @@ export const Contact = () => {
                       <input 
                         type="text" 
                         id="event" 
-                        placeholder="F.eks. Bryllup"
+                        placeholder="Fx Bryllup"
                         className="w-full bg-bg3 border border-line p-3 text-cream focus:outline-none focus:border-gold transition-colors"
                         value={formData.event}
                         onChange={(e) => setFormData({...formData, event: e.target.value})}
@@ -121,9 +224,40 @@ export const Contact = () => {
                     </div>
                   </div>
                   <div className="form-group">
+                    <label htmlFor="address" className="block text-xs uppercase tracking-wider mb-2 text-muted">Adresse for event</label>
+                    <input
+                      type="text"
+                      id="address"
+                      className="w-full bg-bg3 border border-line p-3 text-cream focus:outline-none focus:border-gold transition-colors"
+                      value={formData.address}
+                      onChange={(e) => setFormData({...formData, address: e.target.value})}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="form-group">
+                      <label htmlFor="startTime" className="block text-xs uppercase tracking-wider mb-2 text-muted">Starttidspunkt</label>
+                      <TimeSelect
+                        id="startTime"
+                        value={formData.startTime}
+                        options={times}
+                        onChange={(val) => setFormData({...formData, startTime: val})}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="endTime" className="block text-xs uppercase tracking-wider mb-2 text-muted">Sluttidspunkt</label>
+                      <TimeSelect
+                        id="endTime"
+                        value={formData.endTime}
+                        options={times}
+                        onChange={(val) => setFormData({...formData, endTime: val})}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
                     <label htmlFor="message" className="block text-xs uppercase tracking-wider mb-2 text-muted">Besked</label>
                     <textarea 
                       id="message" 
+                      placeholder="Beskriv dine ønsker for dit event..."
                       rows={5}
                       required
                       className="w-full bg-bg3 border border-line p-3 text-cream focus:outline-none focus:border-gold transition-colors resize-none"
@@ -133,10 +267,17 @@ export const Contact = () => {
                   </div>
                   {submitted && (
                     <div className="bg-green-500/10 border border-green-500/50 text-green-500 p-4 text-sm text-center">
-                      Tak for din besked! Jeg vender tilbage hurtigst muligt.
+                      Tak for din besked! En bekræftelse er sendt til din email, og jeg vender tilbage hurtigst muligt.
                     </div>
                   )}
-                  <button type="submit" className="btn-primary w-full mt-4">Send besked</button>
+                  {sendError && (
+                    <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-4 text-sm text-center">
+                      {sendError}
+                    </div>
+                  )}
+                  <button type="submit" className="btn-primary w-full mt-4" disabled={sending}>
+                    {sending ? 'Sender...' : 'Send besked'}
+                  </button>
                 </form>
               </div>
             </Reveal>

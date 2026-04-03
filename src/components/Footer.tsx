@@ -37,9 +37,9 @@ export const Footer = () => {
           
           <path d="M30 30 A28 28 0 0 1 70 30" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.15" />
         </svg>
-        <span>Event</span>
+        <span>EH Events</span>
       </Link>
-      <div className="footer-copy">2026 Eske Hagen Event - Aarhus</div>
+      <div className="footer-copy">2026 Eske Hagen Events - Aarhus</div>
       <div className="footer-showgear"></div>
     </footer>
   );
