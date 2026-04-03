@@ -3,8 +3,13 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, Music, PartyPopper, Zap } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
+import { useSEO } from '../hooks/useSEO';
 
 export const Home = () => {
+  useSEO(
+    'Eske Hagen Events – DJ til Bryllup, Firmafest & Events i Aarhus',
+    'Professionel DJ og eventspecialist i Aarhus med over 22 års erfaring. Musik, lys og special effekter til bryllupper, firmafester og private events. Book din DJ i dag.'
+  );
   return (
     <div className="home-page">
       {/* ─── HERO ─── */}

@@ -1,7 +1,12 @@
 import React from 'react';
 import { Reveal } from '../components/Reveal';
+import { useSEO } from '../hooks/useSEO';
 
 export const Privatlivspolitik = () => {
+  useSEO(
+    'Privatlivspolitik – Eske Hagen Events',
+    'Læs om hvordan Eske Hagen Events behandler dine personoplysninger i henhold til GDPR.'
+  );
   return (
     <div className="contact-page pt-32 pb-24">
       <section>

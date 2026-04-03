@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Music, Zap, PartyPopper } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { GalleryModal } from '../components/GalleryModal';
-import { caption } from 'motion/react-client';
+import { useSEO } from '../hooks/useSEO';
 
 const EFFECTS_DATA = [
   { 
@@ -86,6 +86,10 @@ const EFFECTS_DATA = [
 ];
 
 export const Solutions = () => {
+  useSEO(
+    'Løsninger & Effekter – Eske Hagen Events | DJ Aarhus',
+    'Se alle DJ- og eventydelser fra Eske Hagen Events: konfetti, gnistmaskine (cold spark), røg, snø, skærmbobler og professionelt lys til bryllup, firmafest og events i Aarhus.'
+  );
   const [selectedEffect, setSelectedEffect] = useState<{title: string, gallery: {src: string; caption?: string}[], description: string} | null>(null);
 
   return (

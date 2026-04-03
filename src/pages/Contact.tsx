@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
+import { useSEO } from '../hooks/useSEO';
 
 const TimeSelect = ({
   id, value, options, onChange
@@ -81,6 +82,10 @@ const TimeSelect = ({
 };
 
 export const Contact = () => {
+  useSEO(
+    'Book DJ – Kontakt Eske Hagen Events i Aarhus',
+    'Kontakt Eske Hagen Events for at booke en professionel DJ til dit bryllup, firmafest eller event i Aarhus og omegn. Få et uforpligtende tilbud i dag.'
+  );
   const times = Array.from({ length: 48 }, (_, i) => {
     const h = Math.floor(i / 2).toString().padStart(2, '0');
     const m = i % 2 === 0 ? '00' : '30';

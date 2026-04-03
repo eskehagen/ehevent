@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Reveal } from '../components/Reveal';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 
 // Her definerer du stien til dine egne billeder. 
 // Læg dine billeder i 'public/images/' mappen i VS Code, og skriv stien herunder.
@@ -28,6 +29,10 @@ const GALLERY_IMAGES = [
 ];
 
 export const Gallery = () => {
+  useSEO(
+    'Galleri – Eske Hagen Events | DJ Aarhus',
+    'Se billeder fra tidligere events med Eske Hagen Events. DJ og lyssætning til bryllupper, firmafester og private fejringer i Aarhus og omegn.'
+  );
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   // Håndter tastatur (Escape for at lukke, pile for at skifte)

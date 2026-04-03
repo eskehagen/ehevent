@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
+import { useSEO } from '../hooks/useSEO';
 
 export const Handelsbetingelser = () => {
+  useSEO(
+    'Handelsbetingelser – Eske Hagen Events',
+    'Læs Eske Hagen Events handelsbetingelser for booking af DJ og eventydelser.'
+  );
   return (
     <div className="contact-page pt-32 pb-24">
       <section>
