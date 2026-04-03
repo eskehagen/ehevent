@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Music, PartyPopper, Zap } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 
 export const Home = () => {
@@ -166,24 +166,29 @@ export const Home = () => {
           </p>
         </Reveal>
 
+        <div className="services-section-wrap mt-16">
         <div className="gear-grid">
           {[
-            { num: "01", name: "Konfetti", desc: "Konfetti der løfter festens højdepunkter. Perfekt til brudepar-indgangen, den store fødselsdagssang eller ekstra energi på dansegulvet." },
-            { num: "02", name: "Special Effekter", desc: "Røg, CO2, gnister, bobler, sne og skum. Jeg tilbyder alle former for special effekter til dit event. Jeg har altid en løsning til dine ønsker." },
-            { num: "03", name: "Lysopsætning", desc: "Professionel opsætning og afvikling af eventlys. Fra diskrete ambiente lys til fuldt showlys med bevægende effekter og farver der passer til stilen." },
+            { num: "01", name: "Konfetti", desc: "Konfetti der løfter festens højdepunkter. Perfekt til brudepar-indgangen, den store fødselsdagssang eller ekstra energi på dansegulvet.", icon: <Music className="gear-icon" /> },
+            { num: "02", name: "Special Effekter", desc: "Røg, CO2, gnister, bobler, sne og skum. Jeg tilbyder alle former for special effekter til dit event. Jeg har altid en løsning til dine ønsker.", icon: <PartyPopper className="gear-icon" /> },
+            { num: "03", name: "Lysopsætning", desc: "Professionel opsætning og afvikling af eventlys. Fra diskrete ambiente lys til fuldt showlys med bevægende effekter og farver der passer til stilen.", icon: <Zap className="gear-icon" /> },
           ].map((item, i) => (
             <div key={i}>
               <Reveal delay={i * 0.1}>
                 <Link to="/loesninger" className="gear-item-link no-underline">
                   <div className="gear-item">
+                    <div className="gear-icon-wrap">{item.icon}</div>
                     <div className="gear-num">{item.num}</div>
                     <div className="gear-name">{item.name}</div>
+                    <div className="gear-divider" />
                     <p className="gear-desc">{item.desc}</p>
+                    <span className="gear-ghost-num">{item.num}</span>
                   </div>
                 </Link>
               </Reveal>
             </div>
           ))}
+        </div>
         </div>
       </section>
 

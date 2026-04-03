@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 
 const TimeSelect = ({
@@ -169,7 +170,14 @@ export const Contact = () => {
             <Reveal delay={0.3}>
               <div className="contact-form-container">
                 <h3 className="text-2xl font-head mb-3">Send en besked</h3>
-                <p className="text-sm text-muted mb-8">Udfyld de felter du kan på nuværende tidspunkt – det vigtigste er dine kontaktoplysninger samt dato og sted for eventet. Resten finder vi ud af i en personlig samtale.</p>
+                <p className="text-sm text-muted mb-3">Udfyld de felter du kan på nuværende tidspunkt – det vigtigste er dine kontaktoplysninger samt dato og sted for eventet. Resten finder vi ud af i en personlig samtale.</p>
+                <p className="text-sm text-muted mb-8">
+                  Ved at sende beskeden accepterer du {' '}
+                  <Link to="/privatlivspolitik" className="text-gold hover:underline">privatlivspolitiken</Link>.
+                  <br />
+                  Læs også mine generelle {' '}
+                  <Link to="/handelsbetingelser" className="text-gold hover:underline">handelsbetingelser</Link>{' '}.
+                </p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="form-group">
                     <label htmlFor="name" className="block text-xs uppercase tracking-wider mb-2 text-muted">Navn</label>

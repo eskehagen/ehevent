@@ -98,11 +98,14 @@ export const Solutions = () => {
           
         </Reveal>
 
-        <div className="services-grid mt-16">
+        <div className="services-section-wrap mt-16">
+        <div className="services-grid">
           <Reveal delay={0.1}>
             <div className="service-card">
-              <Music className="service-icon" />
+              <div className="service-icon-wrap"><Music className="service-icon" /></div>
+              <div className="service-eyebrow">01</div>
               <div className="service-title">DJ &amp; Musik</div>
+              <div className="service-divider" />
               <p className="service-desc">Jeg spiller til alle typer fester, med speciale i bryllupper, firma- og voksenfester. Jeg tilpasser altid musikken til stemningen og jeres ønsker. 
               <br /> <br />
               Lyd er ikke bare volumen. Det handler om klarhed og balance. Jeg medbringer altid udstyr fra anerkendte mærker, der sikrer at både taler kan høres tydeligt, og at dansegulvet har det rigtige tryk uden at det bliver ubehageligt.</p>
@@ -114,13 +117,16 @@ export const Solutions = () => {
                   <li>Personligt planlægningsmøde før eventet</li>
                 </ul>
               </div>
+              <span className="service-num">01</span>
             </div>
           </Reveal>
 
           <Reveal delay={0.3}>
             <div className="service-card">
-              <PartyPopper className="service-icon" />
+              <div className="service-icon-wrap"><PartyPopper className="service-icon" /></div>
+              <div className="service-eyebrow">02</div>
               <div className="service-title">Special Effekter</div>
+              <div className="service-divider" />
               <p className="service-desc">Drømmer du om noget ekstraordinært til dit event. Jeg tilbyder næsten alle former for special effekter og konfetti løsninger.
               <br /> <br />
               I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a> tilbyder jeg markedets bedste og største udvalg af special effekter og maskiner. Alt fra konfetti til indendørs fyrværkeri. Alt sammen til fordelagtige priser. Jeg rådgiver altid om bedste løsninger specifikt til dit event.</p>
@@ -135,13 +141,16 @@ export const Solutions = () => {
                   <li>Rådgivning om teknisk setup</li>
                 </ul>
               </div>
+              <span className="service-num">02</span>
             </div>
           </Reveal>
           
           <Reveal delay={0.2}>
             <div className="service-card">
-              <Zap className="service-icon" />
+              <div className="service-icon-wrap"><Zap className="service-icon" /></div>
+              <div className="service-eyebrow">03</div>
               <div className="service-title">Lysopsætning</div>
+              <div className="service-divider" />
               <p className="service-desc">Professionel lysopsætning og -afvikling der forvandler et hvilket som helst rum. Fra ambient lys til fuldt showlys med bevægende effekter.
               <br /> <br />
               Med mange års erfaring med lyssætning og -design finder jeg altid den bedste og flotteste opsætning for dit event.</p>
@@ -155,19 +164,31 @@ export const Solutions = () => {
                   <li>Professionel opsætning</li>
                 </ul>
               </div>
+              <span className="service-num">03</span>
             </div>
           </Reveal>
+        </div>
         </div>
 
         <div className="mt-32">
           <Reveal>
             <div className="section-label">Ekspertise</div>
             <h2 className="section-title mb-6">Special <em>Effekter</em></h2>
-            <p className="max-w-3xl text-muted mb-12 leading-relaxed">
+            <p className="max-w-3xl text-muted leading-relaxed">
               Se nærmere på alle de special effekter, som jeg tilbyder til alle typer events. I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a> sikrer jeg topprofessionelt udstyr og et kæmpe udvalg af muligheder. 
               <br />
               Alt fra konfetti til indendørs fyrværkeri.
             </p>
+            <div className="mt-8 mb-12 showgear-logo-wrap">
+              <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" style={{ position: 'relative', display: 'block' }}>
+                <div className="showgear-eyebrow">I samarbejde med</div>
+                <img
+                  src="/images/showgear-logo.jpg"
+                  alt="Showgear.dk"
+                  style={{ height: '120px', width: 'auto', display: 'block' }}
+                />
+              </a>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {EFFECTS_DATA.map((effect, i) => (
                 <div key={i}>

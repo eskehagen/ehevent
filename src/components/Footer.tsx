@@ -39,7 +39,13 @@ export const Footer = () => {
         </svg>
         <span>EH Events</span>
       </Link>
-      <div className="footer-copy">2026 Eske Hagen Events - Aarhus</div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="footer-copy">&copy; 2026 Eske Hagen Events - Aarhus</div>
+        <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.78rem' }}>
+          <Link to="/handelsbetingelser" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Handelsbetingelser</Link>
+          <Link to="/privatlivspolitik" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Privatlivspolitik</Link>
+        </div>
+      </div>
       <div className="footer-showgear"></div>
     </footer>
   );

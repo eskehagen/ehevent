@@ -10,6 +10,8 @@ import { Home } from './pages/Home';
 import { Gallery } from './pages/Gallery';
 import { Solutions } from './pages/Solutions';
 import { Contact } from './pages/Contact';
+import { Privatlivspolitik } from './pages/Privatlivspolitik';
+import { Handelsbetingelser } from './pages/Handelsbetingelser';
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
           <Route path="galleri" element={<Gallery />} />
           <Route path="loesninger" element={<Solutions />} />
           <Route path="kontakt" element={<Contact />} />
+          <Route path="privatlivspolitik" element={<Privatlivspolitik />} />
+          <Route path="handelsbetingelser" element={<Handelsbetingelser />} />
         </Route>
       </Routes>
     </BrowserRouter>
