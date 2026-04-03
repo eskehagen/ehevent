@@ -136,6 +136,20 @@ export const Home = () => {
             <Reveal delay={0.4}>
               <blockquote className="about-quote">"Special effekter - sætter prikken over i'et."</blockquote>
             </Reveal>
+            <Reveal delay={0.6}>
+              <div className="mt-10" style={{
+                border: '2px solid #e8621a',
+                boxShadow: '6px 6px 0px #e8621a',
+                display: 'inline-block',
+                lineHeight: 0,
+              }}>
+                <img
+                  src="/images/eske1.jpg"
+                  alt="Eske Hagen"
+                  style={{ display: 'block', width: '100%', maxWidth: '360px' }}
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

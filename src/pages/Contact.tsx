@@ -150,6 +150,19 @@ export const Contact = () => {
                     +45 50935952
                   </a>
                 </div>
+
+                <div className="mt-10" style={{
+                  border: '2px solid #e8621a',
+                  boxShadow: '6px 6px 0px #e8621a',
+                  display: 'inline-block',
+                  lineHeight: 0,
+                }}>
+                  <img
+                    src="/images/eske1.jpg"
+                    alt="Eske Hagen"
+                    style={{ display: 'block', width: '100%', maxWidth: '360px' }}
+                  />
+                </div>
               </div>
             </Reveal>
 
