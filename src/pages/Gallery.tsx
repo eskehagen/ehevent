@@ -19,6 +19,7 @@ const GALLERY_IMAGES = [
   { id: 8, src: "/images/events/park13-welness2.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
   { id: 8, src: "/images/events/rockchok1.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
   { id: 8, src: "/images/events/rockchok2.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { id: 8, src: "/images/events/rockchok4.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
   { id: 8, src: "/images/events/havefest1.jpg", alt: "Havefest / Studentergilde. Aarhus" },
   { id: 8, src: "/images/events/havefest2.jpg", alt: "Mellem størrelse setup. Studentergilde. Aarhus" },
   { id: 8, src: "/images/events/rockchok3.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
