@@ -35,6 +35,7 @@ export const Handelsbetingelser = () => {
                 <p style={{ marginTop: '0.75rem', paddingLeft: '1rem', borderLeft: '2px solid var(--line)' }}>
                   <strong>Eske Hagen Events</strong><br />
                   Aarhus, Danmark<br />
+                  CVR: 46389344<br />
                   E-mail: <a href="mailto:eskehagen@gmail.com" style={{ color: 'var(--gold)' }}>eskehagen@gmail.com</a><br />
                   Telefon: <a href="tel:+4550935952" style={{ color: 'var(--gold)' }}>+45 50 93 59 52</a>
                 </p>
