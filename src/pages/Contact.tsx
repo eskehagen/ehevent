@@ -81,6 +81,9 @@ const TimeSelect = ({
   );
 };
 
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9_bv9HVIWb-VWaZzFeaMtuC16mgpsAHSvjWEDCP0Yxge2hg7U-FmvkMRNFWB7X8xs/exec';
+const SECURITY_TOKEN = 'EH-7291-SECURE-634';
+
 export const Contact = () => {
   useSEO(
     'Book DJ – Kontakt Eske Hagen Events i Aarhus',
@@ -101,7 +104,8 @@ export const Contact = () => {
     address: '',
     startTime: '22:00',
     endTime: '02:00',
-    message: ''
+    message: '',
+    botField: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -113,15 +117,16 @@ export const Contact = () => {
     setSending(true);
     setSendError('');
     try {
-      const res = await fetch('/api/contact', {
+      const payload = { ...formData, token: SECURITY_TOKEN };
+      const res = await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Ukendt fejl');
+      if (!data.success) throw new Error(data.error ?? 'Ukendt fejl');
       setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', date: '', event: '', address: '', startTime: '22:00', endTime: '02:00', message: '' });
+      setFormData({ name: '', email: '', phone: '', date: '', event: '', address: '', startTime: '22:00', endTime: '02:00', message: '', botField: '' });
       setTimeout(() => setSubmitted(false), 8000);
     } catch (err: unknown) {
       setSendError(err instanceof Error ? err.message : 'Mailen kunne ikke sendes. Prøv igen eller kontakt mig direkte.');
@@ -184,6 +189,15 @@ export const Contact = () => {
                   <Link to="/handelsbetingelser" className="text-gold hover:underline">handelsbetingelser</Link>{' '}.
                 </p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <div style={{ display: 'none' }} aria-hidden="true">
+                    <input
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.botField}
+                      onChange={(e) => setFormData({...formData, botField: e.target.value})}
+                    />
+                  </div>
                   <div className="form-group">
                     <label htmlFor="name" className="block text-xs uppercase tracking-wider mb-2 text-muted">Navn</label>
                     <input 
