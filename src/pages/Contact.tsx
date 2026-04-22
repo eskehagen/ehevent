@@ -81,7 +81,7 @@ const TimeSelect = ({
   );
 };
 
-const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjINisym4_VwUIei3KbTYPdrLrBll9A55QJhyv931iY1bkjPDogLkFugFQ6SBTd-O5/exec';
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-KGUiCn6__yqYbht5EpMTdYqOM3wX8TQGBBvSbd8aaAQMhupa6kPoxRprjgnBMDt9/exec';
 const SECURITY_TOKEN = 'EH-7291-SECURE-634';
 
 export const Contact = () => {

@@ -253,9 +253,11 @@ function sendToCustomer(d) {
               <tr>
                 <td>
                   <span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#ffffff;">EH</span><span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#e8621a;"> Events</span>
+                  <br>
+                  <a href="https://eskehagenevents.dk" style="font-family:'Segoe UI',Arial,sans-serif;font-size:11px;color:#e8621a;text-decoration:none;letter-spacing:0.06em;">eskehagenevents.dk</a>
                 </td>
-                <td align="right">
-                  <span style="font-family:'Segoe UI',Arial,sans-serif;font-size:11px;color:#b0a59d;letter-spacing:0.08em;">Aarhus &middot; Danmark</span>
+                <td align="right" style="vertical-align:bottom;">
+                  <span style="font-family:'Segoe UI',Arial,sans-serif;font-size:11px;color:#b0a59d;letter-spacing:0.08em;">Aarhus &middot; CVR: 46389344</span>
                 </td>
               </tr>
             </table>
