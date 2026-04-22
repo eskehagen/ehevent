@@ -130,32 +130,158 @@ function sendToOwner(d) {
 function sendToCustomer(d) {
   const subject = 'Tak for din besked – EH Events';
 
+  const dateDisplay = s(d.date) ? formatDate(s(d.date)) : null;
+  const timeDisplay = (s(d.startTime) && s(d.endTime)) ? s(d.startTime) + ' – ' + s(d.endTime) : null;
+
+  const detailRows = [
+    d.event    ? ['Eventtype', s(d.event)]   : null,
+    dateDisplay ? ['Dato',      dateDisplay]   : null,
+    timeDisplay ? ['Tidspunkt', timeDisplay]   : null,
+    d.address  ? ['Adresse',   s(d.address)]  : null,
+  ].filter(Boolean);
+
+  const detailsHtml = detailRows.length > 0 ? `
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0 0;">
+      ${detailRows.map(([label, val]) => `
+      <tr>
+        <td style="padding:10px 0;border-bottom:1px solid rgba(232,98,26,0.12);width:110px;vertical-align:top;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#b0a59d;font-family:'Segoe UI',Arial,sans-serif;">${label}</span>
+        </td>
+        <td style="padding:10px 0 10px 16px;border-bottom:1px solid rgba(232,98,26,0.12);vertical-align:top;">
+          <span style="font-size:14px;color:#ffffff;font-family:'Segoe UI',Arial,sans-serif;">${val}</span>
+        </td>
+      </tr>`).join('')}
+    </table>` : '';
+
   const html = `<!DOCTYPE html>
 <html lang="da">
-<head><meta charset="UTF-8"><style>
-  body{font-family:Arial,sans-serif;background:#080808;color:#fff;margin:0;padding:0}
-  .wrap{max-width:600px;margin:40px auto;background:#141414;border:1px solid rgba(232,98,26,.25)}
-  .hd{background:#e8621a;padding:28px 32px}
-  .hd h1{margin:0;font-size:22px;color:#fff;letter-spacing:1px}
-  .bd{padding:32px;font-size:15px;line-height:1.7;color:#e0d8d0}
-  .hl{color:#e8621a;font-weight:600}
-  .ft{padding:16px 32px;border-top:1px solid rgba(232,98,26,.15);font-size:12px;color:#b0a59d}
-</style></head>
-<body>
-<div class="wrap">
-  <div class="hd"><h1>Tak for din henvendelse!</h1></div>
-  <div class="bd">
-    <p>Hej ${s(d.name)},</p>
-    <p>Tak fordi du har skrevet til <span class="hl">EH Events</span>. Din besked er modtaget og jeg vender tilbage hurtigst muligt – typisk inden for 24 timer.</p>
-    <p>Har du behov for hurtig kontakt, er du altid velkommen til at ringe eller skrive en SMS direkte til mig på <span class="hl">+45 50 93 59 52</span>.</p>
-    <p>Glæder mig til at høre mere om dit event!</p>
-    <p>Med venlig hilsen,<br><strong>Eske Hagen</strong><br>EH Events</p>
-  </div>
-  <div class="ft">EH Events · Aarhus · eskehagen@gmail.com · +45 50 93 59 52</div>
-</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="margin:0;padding:0;background-color:#080808;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#080808;">
+  <tr>
+    <td align="center" style="padding:40px 16px;">
+
+      <!-- Card -->
+      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#0f0f0f;border:1px solid rgba(232,98,26,0.2);">
+
+        <!-- Orange top bar -->
+        <tr>
+          <td style="height:3px;background:linear-gradient(90deg,#e8621a 0%,#f07d35 50%,rgba(232,98,26,0.1) 100%);font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+
+        <!-- Header -->
+        <tr>
+          <td style="padding:48px 48px 40px;border-bottom:1px solid rgba(232,98,26,0.12);">
+            <!-- Eyebrow label -->
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="width:28px;height:1px;background:#e8621a;vertical-align:middle;">&nbsp;</td>
+                <td style="padding-left:10px;font-family:'Segoe UI',Arial,sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#e8621a;vertical-align:middle;">Bekræftelse</td>
+              </tr>
+            </table>
+            <!-- Main heading -->
+            <div style="margin-top:20px;">
+              <span style="font-family:Georgia,'Times New Roman',serif;font-size:42px;font-weight:400;font-style:italic;color:#ffffff;line-height:1.1;display:block;">Tak for din</span>
+              <span style="font-family:Georgia,'Times New Roman',serif;font-size:42px;font-weight:400;font-style:italic;color:#e8621a;line-height:1.1;display:block;">henvendelse</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:40px 48px;">
+            <!-- Greeting -->
+            <p style="margin:0 0 24px;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:400;color:#ffffff;">Hej ${s(d.name)},</p>
+            <p style="margin:0 0 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.75;color:#b0a59d;">Din besked er modtaget og jeg vender tilbage hurtigst muligt &ndash; typisk inden for 24 timer.</p>
+            <p style="margin:0;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.75;color:#b0a59d;">Glæder mig til at høre mere om dit event og finde den helt rigtige løsning til dig.</p>
+
+            <!-- Detail rows (only shown if any fields were filled) -->
+            ${detailsHtml}
+
+            <!-- Divider -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:36px 0;">
+              <tr>
+                <td style="height:1px;background:rgba(232,98,26,0.15);font-size:0;line-height:0;">&nbsp;</td>
+              </tr>
+            </table>
+
+            <!-- Quote / highlight block -->
+            <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+              <tr>
+                <td style="width:3px;background:#e8621a;">&nbsp;</td>
+                <td style="padding:4px 0 4px 20px;">
+                  <span style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-style:italic;font-weight:400;color:#ffffff;line-height:1.5;">Har du brug for hurtig kontakt, er du altid velkommen til at ringe eller skrive en SMS til mig direkte.</span>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Contact links -->
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;">
+              <tr>
+                <td style="padding-bottom:10px;">
+                  <a href="tel:+4550935952" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#e8621a;text-decoration:none;letter-spacing:0.05em;">&#9742;&nbsp; +45 50 93 59 52</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="mailto:eskehagen@gmail.com" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#e8621a;text-decoration:none;letter-spacing:0.05em;">&#9993;&nbsp; eskehagen@gmail.com</a>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Divider -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:36px 0 32px;">
+              <tr>
+                <td style="height:1px;background:rgba(232,98,26,0.15);font-size:0;line-height:0;">&nbsp;</td>
+              </tr>
+            </table>
+
+            <!-- Signature -->
+            <p style="margin:0;font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#b0a59d;line-height:1.6;">Med venlig hilsen,</p>
+            <p style="margin:6px 0 2px;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:400;color:#ffffff;">Eske Hagen</p>
+            <p style="margin:0;font-family:'Segoe UI',Arial,sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#e8621a;">EH Events</p>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:20px 48px;border-top:1px solid rgba(232,98,26,0.12);">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+                  <span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#ffffff;">EH</span><span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#e8621a;"> Events</span>
+                </td>
+                <td align="right">
+                  <span style="font-family:'Segoe UI',Arial,sans-serif;font-size:11px;color:#b0a59d;letter-spacing:0.08em;">Aarhus &middot; Danmark</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+      <!-- end card -->
+
+    </td>
+  </tr>
+</table>
 </body></html>`;
 
   GmailApp.sendEmail(s(d.email), subject, '', {
     htmlBody: html
   });
+}
+
+function formatDate(iso) {
+  try {
+    const parts = iso.split('-');
+    if (parts.length !== 3) return iso;
+    const months = ['januar','februar','marts','april','maj','juni','juli','august','september','oktober','november','december'];
+    return parseInt(parts[2]) + '. ' + months[parseInt(parts[1]) - 1] + ' ' + parts[0];
+  } catch(e) {
+    return iso;
+  }
 }
