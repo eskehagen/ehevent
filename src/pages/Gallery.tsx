@@ -9,29 +9,35 @@ import { useSEO } from '../hooks/useSEO';
 // `src` er det komprimerede fuldstørrelsesbillede (vises i lightbox), `thumb` er det
 // lille, hurtige thumbnail der vises i gitteret. Begge genereres ud fra samme originalfoto.
 const GALLERY_IMAGES = [
-  { src: "/images/events/anker1.jpg", thumb: "/images/events/thumbs/anker1.jpg", alt: "Mellem størrelse setup. Resturant Anker, Aarhus" },
-  { src: "/images/events/martino1.jpg", thumb: "/images/events/thumbs/martino1.jpg", alt: "Lille størrelse setup. Restaurant Martino, Aarhus" },
-  { src: "/images/events/martino-nytaar.jpg", thumb: "/images/events/thumbs/martino-nytaar.jpg", alt: "Lounge og dansegulv. Restaurant Martino, Aarhus" },
-  { src: "/images/events/park13-glassal1.jpg", thumb: "/images/events/thumbs/park13-glassal1.jpg", alt: "Stor bryllupsfest. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-glassal2.jpg", thumb: "/images/events/thumbs/park13-glassal2.jpg", alt: "Stor størrelse setup. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-glassal3.jpg", thumb: "/images/events/thumbs/park13-glassal3.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-glassal4.jpg", thumb: "/images/events/thumbs/park13-glassal4.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-jul.jpg", thumb: "/images/events/thumbs/park13-jul.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-jul2.jpg", thumb: "/images/events/thumbs/park13-jul2.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-welness1.jpg", thumb: "/images/events/thumbs/park13-welness1.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
-  { src: "/images/events/park13-welness2.jpg", thumb: "/images/events/thumbs/park13-welness2.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
-  { src: "/images/events/rockchok1.jpg", thumb: "/images/events/thumbs/rockchok1.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { src: "/images/events/rockchok2.jpg", thumb: "/images/events/thumbs/rockchok2.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { src: "/images/events/rockchok4.jpg", thumb: "/images/events/thumbs/rockchok4.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { src: "/images/events/havefest1.jpg", thumb: "/images/events/thumbs/havefest1.jpg", alt: "Havefest / Studentergilde. Aarhus" },
-  { src: "/images/events/havefest2.jpg", thumb: "/images/events/thumbs/havefest2.jpg", alt: "Mellem størrelse setup. Studentergilde. Aarhus" },
-  { src: "/images/events/rockchok3.jpg", thumb: "/images/events/thumbs/rockchok3.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { src: "/images/events/revy1.jpg", thumb: "/images/events/thumbs/revy1.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
-  { src: "/images/events/revy2.jpg", thumb: "/images/events/thumbs/revy2.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
-  { src: "/images/events/park13-080826.jpg", thumb: "/images/events/thumbs/park13-080826.jpg", alt: "Dansegulv med lyssætning og DJ-booth. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-150826.jpg", thumb: "/images/events/thumbs/park13-150826.jpg", alt: "Middagsopdækning med DJ-scene i baggrunden. Park13 Glassal, Aarhus" },
-  { src: "/images/events/park13-visitkort.jpg", thumb: "/images/events/thumbs/park13-visitkort.jpg", alt: "DJ-udstyr med visitkort fra DJ Eske Hagen. Park13 Glassal, Aarhus" },
-];
+  { src: "/images/events/anker1.jpg", alt: "Mellem størrelse setup. Resturant Anker, Aarhus" },
+  { src: "/images/events/martino1.jpg", alt: "Lille størrelse setup. Restaurant Martino, Aarhus" },
+  { src: "/images/events/martino-nytaar.jpg", alt: "Lounge og dansegulv. Restaurant Martino, Aarhus" },
+  { src: "/images/events/park13-glassal1.jpg", alt: "Stor bryllupsfest. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-glassal2.jpg", alt: "Stor størrelse setup. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-glassal3.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-glassal4.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-jul.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-jul2.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-welness1.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
+  { src: "/images/events/park13-welness2.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
+  { src: "/images/events/rockchok1.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/rockchok2.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/rockchok4.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/havefest1.jpg", alt: "Havefest / Studentergilde. Aarhus" },
+  { src: "/images/events/havefest2.jpg", alt: "Mellem størrelse setup. Studentergilde. Aarhus" },
+  { src: "/images/events/rockchok3.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/revy1.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
+  { src: "/images/events/revy2.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
+  { src: "/images/events/park13-080826.jpg", alt: "Dansegulv med lyssætning og DJ-booth. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-150826.jpg", alt: "Middagsopdækning med DJ-scene i baggrunden. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-visitkort.jpg", alt: "DJ-udstyr med visitkort fra DJ Eske Hagen. Park13 Glassal, Aarhus" },
+].map((img) => {
+  const filename = img.src.split('/').pop() ?? img.src;
+  return {
+    ...img,
+    thumb: `/images/events/thumbs/${filename}`,
+  };
+});
 
 export const Gallery = () => {
   useSEO(
