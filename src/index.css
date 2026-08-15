@@ -13,20 +13,129 @@
 @import "@fontsource/outfit/400.css";
 @import "@fontsource/outfit/500.css";
 
+/* Gør `light:` tilgængelig som Tailwind-variant i JSX */
+@custom-variant light ([data-theme="light"] &);
+
 @theme {
   --font-head: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Outfit', sans-serif;
 }
 
+/* ─── TEMA-TOKENS ───────────────────────────────────────────────
+   Navnene stammer fra det oprindelige mørke design og er bevaret,
+   fordi ~400 steder i denne fil allerede bruger dem. Læs dem som:
+     --bg      = sidefladen        (ikke "sort")
+     --cream   = primær tekstfarve (ikke "creme")
+     --gold    = accent som FLADE  (background, border, fill, shadow)
+     --gold-ink= accent som TEKST  (splittet, se nedenfor)
+   `--gold` (#e8621a) giver kun 3,1:1 på lys baggrund og dumper WCAG
+   AA for tekst. Derfor bruges `--gold-ink` overalt hvor accenten er
+   tekst. I mørkt tema er de to identiske, så mørkt tema er uændret.
+   ───────────────────────────────────────────────────────────── */
+
 :root {
+  color-scheme: dark;
+
   --bg: #080808;
   --bg2: #0f0f0f;
   --bg3: #141414;
+  --surface-raised: #1c1c1c;
+
   --cream: #ffffff;
-  --gold: #e8621a;
-  --gold-lt: #f07d35;
   --muted: #b0a59d;
+
+  --gold: #e8621a;
+  --gold-ink: #e8621a;
+  --gold-lt: #f07d35;
   --line: rgba(232, 98, 26, 0.18);
+  --accent-rgb: 232, 98, 26;
+
+  /* Forgrund PÅ en orange flade. Må ALDRIG være var(--bg): i lyst tema
+     ville det give næsten-hvid på orange = 3,4:1 og dumpe AA på sitets
+     primære CTA. #080808 giver 5,9:1 på #e8621a i begge temaer. */
+  --on-gold: #080808;
+  --btn-hover-bg: #f07d35;
+  --on-btn-hover: #080808;
+
+  /* Afledte flader */
+  --nav-bg: rgba(8, 8, 8, 0.9);
+  --menu-bg: rgba(8, 8, 8, 0.98);
+  --hero-grad-a: #0e0c0a;
+  --hero-grad-b: #080808;
+  --grid-line: rgba(232, 98, 26, 0.03);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --photo-opacity: 0.8;
+  --partner-plate: transparent;
+  --partner-pad: 0;
+
+  /* Hero-vinyl + footer-logo */
+  --vinyl-face: #0f0e0c;
+  --vinyl-groove-a: #1c1a13;
+  --vinyl-groove-b: #181611;
+  --vinyl-spindle: #0a0907;
+  --vinyl-arc: #d0c8b8;
+  --logo-disc: #0f0e0c;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #faf7f4;
+  --bg2: #ffffff;
+  --bg3: #f2ece6;
+  --surface-raised: #ffffff;
+
+  --cream: #1a1512; /* 17,0:1 mod --bg → AAA */
+  --muted: #6b5f56; /*  5,8:1 mod --bg → AA  */
+
+  --gold: #e8621a; /* accent som flade — uændret orange */
+  --gold-ink: #b4470e; /*  5,1:1 mod --bg → AA  */
+  --gold-lt: #8f3708; /* hover: mørkere, ikke lysere */
+  --line: rgba(180, 71, 14, 0.2);
+  --accent-rgb: 232, 98, 26;
+
+  --on-gold: #080808; /* 5,9:1 på #e8621a */
+  /* Knappen skal mørkne på hover her — en lysere orange ville falde til
+     2,6:1 mod den lyse side. #b4470e giver 5,1:1 mod siden og 5,1:1 tekst. */
+  --btn-hover-bg: #b4470e;
+  --on-btn-hover: #faf7f4;
+
+  --nav-bg: rgba(250, 247, 244, 0.85);
+  --menu-bg: rgba(250, 247, 244, 0.98);
+  --hero-grad-a: #fffdfb;
+  --hero-grad-b: #f5efe8;
+  --grid-line: rgba(180, 71, 14, 0.07); /* boostet — 0.03 er usynligt på lys */
+  --shadow: rgba(26, 21, 18, 0.12);
+  --photo-opacity: 1;
+  --partner-plate: #121212;
+  --partner-pad: 0.7rem 0.9rem;
+
+  --vinyl-face: #efe7dd;
+  --vinyl-groove-a: #d6cabc;
+  --vinyl-groove-b: #ded3c6;
+  --vinyl-spindle: #b3a596;
+  --vinyl-arc: #8a7f70;
+  --logo-disc: #f2ece6;
+}
+
+/* Mapper paletten ind i Tailwinds --color-* navnerum.
+   `inline` er påkrævet: uden det udsender Tailwind --color-bg som en
+   fast værdi på :root, og [data-theme="light"]-overridet ville aldrig
+   slå igennem i utilities. Med `inline` bliver .bg-bg kompileret til
+   background-color: var(--bg), som følger scope-overridet.
+   Sidegevinst: text-gold / bg-bg3 / border-line / text-cream / text-muted
+   blev brugt i JSX men genererede ingen CSS før nu. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-surface-raised: var(--surface-raised);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-lt: var(--gold-lt);
+  --color-line: var(--line);
 }
 
 html {
@@ -41,6 +150,27 @@ body {
   font-size: 17px;
   line-height: 1.7;
   overflow-x: hidden;
+}
+
+/* ─── TEMASKIFT ───
+   Klassen sættes af ThemeProvider i ~360 ms omkring et temaskift og
+   fjernes igen. En permanent global transition ville forstyrre timingen
+   i de eksisterende hover-animationer, derfor den midlertidige variant. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition:
+      background-color 320ms ease,
+      background-image 320ms ease,
+      border-color 320ms ease,
+      color 320ms ease,
+      fill 320ms ease,
+      stroke 320ms ease,
+      box-shadow 320ms ease !important;
+    transition-delay: 0s !important;
+  }
 }
 
 /* ─── SCROLLBAR ─── */
@@ -58,12 +188,12 @@ body {
 /* ─── SELECTION ─── */
 ::selection {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
 }
 
 /* ─── SHOWGEAR LINK ─── */
 .showgear-link {
-  color: var(--gold);
+  color: var(--gold-ink);
   text-decoration: none;
   position: relative;
   display: inline-block;
@@ -95,7 +225,7 @@ body {
 
 /* ─── NAV ─── */
 nav.scrolled {
-  background: rgba(8, 8, 8, 0.9);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
@@ -104,8 +234,8 @@ nav.scrolled {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(232, 98, 26, 0.06) 0%, transparent 70%),
-    linear-gradient(170deg, #0e0c0a 0%, #080808 100%);
+  background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(var(--accent-rgb),0.06) 0%, transparent 70%),
+    linear-gradient(170deg, var(--hero-grad-a) 0%, var(--hero-grad-b) 100%);
   z-index: 0;
 }
 
@@ -113,8 +243,8 @@ nav.scrolled {
 .hero-grid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(232, 98, 26, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 98, 26, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
   z-index: 0;
 }
@@ -193,7 +323,7 @@ nav.scrolled {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(232, 98, 26, 0.08);
+  background: rgba(var(--accent-rgb),0.08);
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -250,7 +380,7 @@ nav {
   text-decoration: none;
 }
 .nav-logo span {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .nav-links {
@@ -268,7 +398,104 @@ nav {
   transition: color 0.3s;
 }
 .nav-links a:hover {
-  color: var(--gold);
+  color: var(--gold-ink);
+}
+
+/* ─── TEMA-KNAP ─── */
+.theme-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* kuglen til venstre = mørkt tema */
+  flex: none;
+  width: 56px;
+  height: 28px;
+  padding: 0 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+.theme-toggle.is-light {
+  justify-content: flex-end; /* kuglen til højre = lyst tema */
+}
+.theme-toggle:hover {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+}
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.theme-toggle-icons {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.theme-toggle-icons > * {
+  transition: opacity 0.25s ease;
+}
+/* Kuglen dækker det aktive ikon — det synlige ikon er dét du er på vej til */
+.theme-toggle .theme-toggle-icons > :first-child {
+  opacity: 0;
+}
+.theme-toggle.is-light .theme-toggle-icons > :first-child {
+  opacity: 1;
+}
+.theme-toggle.is-light .theme-toggle-icons > :last-child {
+  opacity: 0;
+}
+.theme-toggle:hover .theme-toggle-icons {
+  color: var(--gold-ink);
+}
+
+.theme-toggle-knob {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: transform 0.3s ease;
+}
+.theme-toggle:hover .theme-toggle-knob {
+  transform: scale(1.06);
+}
+
+/* Placering i desktop-nav: adskilt fra menupunkterne med en hårfin streg */
+.nav-links .nav-toggle-li {
+  display: flex;
+  align-items: center;
+  margin-left: -1.2rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--line);
+}
+
+/* Placering i mobilmenuen */
+.mobile-menu-theme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+.mobile-menu-theme-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-weight: 500;
 }
 
 /* Hamburger */
@@ -302,7 +529,8 @@ nav {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(8, 8, 8, 0.98);
+  background: var(--menu-bg);
+  backdrop-filter: blur(8px);
   z-index: 99;
   flex-direction: column;
   align-items: center;
@@ -321,7 +549,7 @@ nav {
   transition: color 0.3s;
 }
 .mobile-menu a:hover {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 /* ─── HERO ─── */
@@ -349,7 +577,7 @@ nav {
   font-size: 0.72rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-ink);
   font-weight: 400;
   margin-bottom: 1.6rem;
 }
@@ -371,7 +599,7 @@ nav {
 }
 .hero-name em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .hero-tagline {
@@ -403,14 +631,53 @@ nav {
   width: 100%;
   max-width: 560px;
   height: auto;
-  filter: drop-shadow(0 0 60px rgba(232, 98, 26, 0.12));
+  filter: drop-shadow(0 0 60px rgba(var(--accent-rgb), 0.12));
+}
+/* På lys baggrund fungerer en orange glød ikke — pladen skal i stedet
+   se ud som et objekt der hviler på papiret. */
+[data-theme='light'] .hero-visual svg {
+  filter: drop-shadow(0 22px 44px var(--shadow));
+}
+
+/* ─── HERO-VINYL ───
+   SVG'en er tegnet som en mørk illustration direkte i JSX. Farverne styres
+   herfra i stedet for via fill/stroke-attributter, fordi `fill="var(--x)"`
+   som præsentationsattribut ikke er pålideligt understøttet (bl.a. Safari).
+   CSS slår præsentationsattributter i kaskaden, så de oprindelige hex-værdier
+   bliver stående i JSX som fallback.
+   Hovedtelefonerne og den orange label forbliver mørke/orange i begge temaer
+   — mørke hovedtelefoner læses fint som grafisk element på lys baggrund. */
+#logo-svg .v-face {
+  fill: var(--vinyl-face);
+}
+#logo-svg .v-groove-a {
+  stroke: var(--vinyl-groove-a);
+}
+#logo-svg .v-groove-b {
+  stroke: var(--vinyl-groove-b);
+}
+#logo-svg .v-spindle {
+  fill: var(--vinyl-spindle);
+}
+#logo-svg .v-arc {
+  stroke: var(--vinyl-arc);
+}
+
+/* Footer-logoets bagplade: i modsætning til hero-vinylen er det en smal ring
+   rundt om den orange skive, og en mørk ring ville se ud som en tung glorie
+   på en lys footer. Derfor går denne LYS i lyst tema. */
+.footer-logo svg .f-halo {
+  fill: var(--logo-disc);
+}
+.footer-logo svg .f-halo-ring {
+  stroke: var(--vinyl-groove-a);
 }
 
 .btn-primary {
   display: inline-block;
   padding: 0.85rem 2.2rem;
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
@@ -420,7 +687,8 @@ nav {
   transition: background 0.3s, transform 0.2s;
 }
 .btn-primary:hover {
-  background: var(--gold-lt);
+  background: var(--btn-hover-bg);
+  color: var(--on-btn-hover);
   transform: translateY(-2px);
 }
 
@@ -439,7 +707,7 @@ nav {
 }
 .btn-ghost:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-ink);
   transform: translateY(-2px);
 }
 
@@ -455,7 +723,7 @@ section {
   font-size: 0.68rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-ink);
   font-weight: 400;
   margin-bottom: 1rem;
 }
@@ -476,7 +744,7 @@ section {
 }
 .section-title em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 /* ─── DIVIDER ─── */
@@ -500,7 +768,7 @@ section {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232, 98, 26, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb),0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -544,7 +812,7 @@ section {
   font-family: var(--font-head);
   font-size: 3.5rem;
   font-weight: 400;
-  color: var(--gold);
+  color: var(--gold-ink);
   line-height: 1;
 }
 .about-stat-label {
@@ -625,7 +893,7 @@ section {
 }
 .service-card:hover {
   background: var(--bg3);
-  box-shadow: inset 0 0 60px rgba(232, 98, 26, 0.04);
+  box-shadow: inset 0 0 60px rgba(var(--accent-rgb),0.04);
   z-index: 10;
 }
 .service-card:hover::before {
@@ -656,7 +924,7 @@ section {
   justify-content: center;
   width: 52px;
   height: 52px;
-  border: 1px solid rgba(232, 98, 26, 0.35);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
   margin-bottom: 2rem;
   position: relative;
   transition: border-color 0.3s;
@@ -665,7 +933,7 @@ section {
   content: '';
   position: absolute;
   inset: 4px;
-  background: rgba(232, 98, 26, 0.06);
+  background: rgba(var(--accent-rgb),0.06);
 }
 .service-card:hover .service-icon-wrap {
   border-color: var(--gold);
@@ -674,7 +942,7 @@ section {
 .service-icon {
   width: 22px;
   height: 22px;
-  color: var(--gold);
+  color: var(--gold-ink);
   position: relative;
   z-index: 1;
 }
@@ -692,7 +960,7 @@ section {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-ink);
   margin-bottom: 1.25rem;
   opacity: 0.8;
 }
@@ -733,7 +1001,7 @@ section {
   content: '—';
   position: absolute;
   left: 0;
-  color: var(--gold);
+  color: var(--gold-ink);
   font-size: 0.75rem;
 }
 
@@ -800,7 +1068,7 @@ section {
   width: 36px;
   height: 36px;
   opacity: 0.2;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 .gitem-ph-text {
   font-size: 0.62rem;
@@ -879,7 +1147,7 @@ section {
   transition: color 0.3s;
 }
 .event-item:hover .event-name {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .event-right {
@@ -896,7 +1164,7 @@ section {
 }
 
 .event-arrow {
-  color: var(--gold);
+  color: var(--gold-ink);
   opacity: 0;
   transform: translateX(-10px);
   transition: all 0.3s;
@@ -922,8 +1190,8 @@ section {
 
 .tech-card-icon {
   flex-shrink: 0;
-  color: var(--gold);
-  background: rgba(232, 98, 26, 0.05);
+  color: var(--gold-ink);
+  background: rgba(var(--accent-rgb),0.05);
   width: 64px;
   height: 64px;
   display: flex;
@@ -962,17 +1230,23 @@ section {
   transition: all 0.4s ease;
 }
 
+/* showgear-logo.jpg har hvid+rød tekst bagt på næsten-sort baggrund og kan
+   ikke temasættes. Den får derfor en bevidst mørk plade i BEGGE temaer:
+   i mørkt tema er det visuelt uændret, i lyst tema læses det som et
+   designet partner-felt frem for en tilfældig sort firkant. */
 .showgear-logo-wrap {
   display: inline-block;
   line-height: 0;
   border: 2px solid var(--line);
+  background: var(--partner-plate);
+  padding: var(--partner-pad);
   box-shadow: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
 }
 .showgear-logo-wrap:hover {
-  border-color: #e8621a;
-  box-shadow: 6px 6px 0px #e8621a;
+  border-color: var(--gold);
+  box-shadow: 6px 6px 0px var(--gold);
   transform: translateY(-3px);
 }
 
@@ -985,8 +1259,10 @@ section {
   font-size: 0.62rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
+  /* Undtagelse fra --gold-ink-reglen: denne label ligger ALTID på den
+     mørke partner-plade, ikke på sidefladen. */
   color: var(--gold);
-  background: linear-gradient(to bottom, rgba(8,8,8,0.85) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(8, 8, 8, 0.85) 0%, transparent 100%);
   padding: 0.45rem 0.75rem 0.8rem;
   line-height: 1;
   font-family: var(--font-body);
@@ -1008,7 +1284,8 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
+  /* 0.8 er tunet til mørk baggrund; på lys udvasker det billedet */
+  opacity: var(--photo-opacity);
   transition: transform 0.6s ease, opacity 0.4s ease;
 }
 
@@ -1081,7 +1358,7 @@ section {
   justify-content: center;
   width: 52px;
   height: 52px;
-  border: 1px solid rgba(232, 98, 26, 0.35);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
   margin-bottom: 2rem;
   position: relative;
   transition: border-color 0.3s;
@@ -1090,7 +1367,7 @@ section {
   content: '';
   position: absolute;
   inset: 4px;
-  background: rgba(232, 98, 26, 0.06);
+  background: rgba(var(--accent-rgb),0.06);
 }
 .gear-item-link:hover .gear-icon-wrap {
   border-color: var(--gold);
@@ -1098,7 +1375,7 @@ section {
 .gear-icon {
   width: 22px;
   height: 22px;
-  color: var(--gold);
+  color: var(--gold-ink);
   position: relative;
   z-index: 1;
 }
@@ -1107,7 +1384,7 @@ section {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-ink);
   margin-bottom: 1.25rem;
   opacity: 0.8;
 }
@@ -1169,7 +1446,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(232, 98, 26, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(var(--accent-rgb),0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -1191,7 +1468,7 @@ section {
 }
 .contact-title em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .contact-sub {
@@ -1218,12 +1495,12 @@ section {
   transition: color 0.3s;
 }
 .contact-link:hover {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 .contact-link svg {
   width: 18px;
   height: 18px;
-  color: var(--gold);
+  color: var(--gold-ink);
   flex-shrink: 0;
 }
 
@@ -1232,7 +1509,7 @@ section {
   border-radius: 4px;
 }
 .form-group input:focus, .form-group textarea:focus {
-  box-shadow: 0 0 0 2px rgba(232, 98, 26, 0.1);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb),0.1);
 }
 
 /* ─── PAGES ─── */
@@ -1257,7 +1534,7 @@ footer {
   color: var(--cream);
 }
 .footer-logo span {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .footer-copy {
@@ -1271,7 +1548,7 @@ footer {
   color: var(--muted);
 }
 .footer-showgear a {
-  color: var(--gold);
+  color: var(--gold-ink);
   text-decoration: none;
 }
 .footer-showgear a:hover {
@@ -1462,5 +1739,230 @@ footer {
   footer {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* ─── ANMELDELSER (FORSIDE-PREVIEW) ─── */
+#anmeldelser {
+  position: relative;
+  overflow: hidden;
+}
+#anmeldelser::before {
+  content: '';
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.reviews-cta-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+}
+
+.reviews-marquee-wrap {
+  position: relative;
+  z-index: 1;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.reviews-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee-left 50s linear infinite;
+}
+.reviews-track.reverse {
+  animation-name: marquee-right;
+  animation-duration: 60s;
+}
+.reviews-marquee-wrap:hover .reviews-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track {
+    animation: none;
+  }
+}
+
+.review-chip {
+  flex: 0 0 340px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 2rem;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.review-chip:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.review-chip-icon {
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+.review-chip-stars {
+  display: flex;
+  gap: 0.2rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.review-chip-text {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.review-chip-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.review-chip-name {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  color: var(--cream);
+}
+.review-chip-event {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+/* ─── ANMELDELSER (SIDE) ─── */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.review-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 2.5rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 100%;
+  box-sizing: border-box;
+}
+.review-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  background: var(--bg3);
+}
+.review-card-icon {
+  color: var(--gold);
+  opacity: 0.4;
+  margin-bottom: 1.2rem;
+}
+.review-card-stars {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.review-card-text {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.review-card-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.review-card-name {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  color: var(--cream);
+}
+.review-card-event {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin-top: 0.2rem;
+}
+.review-card-date {
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.reviews-cta-block {
+  text-align: center;
+  margin-top: 8rem;
+  padding: 5rem 3rem;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.reviews-cta-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(var(--accent-rgb), 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.reviews-cta-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--cream);
+  margin-top: 1rem;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  .review-chip {
+    flex-basis: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .review-chip {
+    flex-basis: 240px;
+    padding: 1.5rem;
+  }
+  .reviews-cta-block {
+    padding: 3rem 1.5rem;
   }
 }

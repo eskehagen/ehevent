@@ -114,7 +114,7 @@ export const Solutions = () => {
               <br /> <br />
               Lyd er ikke bare volumen. Det handler om klarhed og balance. Jeg medbringer altid udstyr fra anerkendte mærker, der sikrer at både taler kan høres tydeligt, og at dansegulvet har det rigtige tryk uden at det bliver ubehageligt.</p>
               <div className="mt-6">
-                <h4 className="text-gold text-sm uppercase tracking-wider mb-3">Hvad er inkluderet:</h4>
+                <h4 className="text-gold-ink text-sm uppercase tracking-wider mb-3">Hvad er inkluderet:</h4>
                 <ul className="service-list">
                   <li>Professionelt lyd- og lysanlæg (tilpasset lokalestørrelse)</li>
                   <li>Musikgenre tilpasset jeres gæster og ønsker</li>
@@ -135,7 +135,7 @@ export const Solutions = () => {
               <br /> <br />
               I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a> tilbyder jeg markedets bedste og største udvalg af special effekter og maskiner. Alt fra konfetti til indendørs fyrværkeri. Alt sammen til fordelagtige priser. Jeg rådgiver altid om bedste løsninger specifikt til dit event.</p>
               <div className="mt-6">
-                <h4 className="text-gold text-sm uppercase tracking-wider mb-3">I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a>:</h4>
+                <h4 className="text-gold-ink text-sm uppercase tracking-wider mb-3">I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a>:</h4>
                 <ul className="service-list">
                   <li>Konfetti</li>
                   <li>Røg og CO2</li>
@@ -159,7 +159,7 @@ export const Solutions = () => {
               <br /> <br />
               Med mange års erfaring med lyssætning og -design finder jeg altid den bedste og flotteste opsætning for dit event.</p>
               <div className="mt-6">
-                <h4 className="text-gold text-sm uppercase tracking-wider mb-3">Muligheder:</h4>
+                <h4 className="text-gold-ink text-sm uppercase tracking-wider mb-3">Muligheder:</h4>
                 <ul className="service-list">
                   <li>Bevægeligt lys</li>
                   <li>Spotlights</li>

@@ -22,14 +22,24 @@ const ReviewChip = ({ review }: { review: (typeof REVIEWS)[number] }) => (
   </div>
 );
 
-export const ReviewsMarquee = () => {
-  // Duplicate reviews multiple times to ensure seamless infinite loop
-  const duplicatedReviews = Array.from({ length: 4 }, () => REVIEWS).flat();
+interface ReviewsMarqueeProps {
+  reverseSecondRow?: boolean;
+}
+
+export const ReviewsMarquee = ({ reverseSecondRow = true }: ReviewsMarqueeProps) => {
+  const half = Math.ceil(REVIEWS.length / 2);
+  const rowA = REVIEWS.length > 1 ? REVIEWS.slice(0, half) : REVIEWS;
+  const rowB = REVIEWS.length > 1 ? REVIEWS.slice(half) : REVIEWS;
 
   return (
     <div className="reviews-marquee-wrap">
       <div className="reviews-track">
-        {duplicatedReviews.map((review, i) => (
+        {[...rowA, ...rowA].map((review, i) => (
+          <ReviewChip key={i} review={review} />
+        ))}
+      </div>
+      <div className={`reviews-track ${reverseSecondRow ? 'reverse' : ''}`}>
+        {[...rowB, ...rowB].map((review, i) => (
           <ReviewChip key={i} review={review} />
         ))}
       </div>
