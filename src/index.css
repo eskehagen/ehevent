@@ -1532,6 +1532,20 @@ section {
 .partners-title em {
   color: var(--gold-ink);
 }
+.partners-heading {
+  max-width: 580px;
+  text-align: right;
+}
+
+.partners-description {
+  max-width: 520px;
+  margin: 1.25rem 0 0 auto;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
 
 .partners-grid {
   display: grid;
@@ -1626,6 +1640,25 @@ section {
 .partner-card:hover .partner-name {
   color: var(--gold-ink);
 }
+.partner-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.partner-description {
+  max-width: 31rem;
+  font-size: 0.86rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.partner-card:hover .partner-description {
+  color: var(--cream);
+}
+
 
 
 /* ─── FORM ─── */
@@ -1864,6 +1897,16 @@ footer {
     margin-top: 1.25rem;
     text-align: left;
   }
+  .partners-heading {
+    max-width: none;
+    text-align: left;
+  }
+  .partners-description {
+    margin-left: 0;
+    font-size: 0.88rem;
+    text-align: left;
+  }
+
   .partners-grid {
     grid-template-columns: 1fr;
   }

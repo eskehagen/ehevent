@@ -250,7 +250,10 @@ export const Home = () => {
         <Reveal>
           <div className="partners-intro">
             <div className="section-label">Samarbejde</div>
-            <h2 id="partners-title" className="partners-title">Vores <em>samarbejdspartnere</em></h2>
+            <div className="partners-heading">
+              <h2 id="partners-title" className="partners-title">Vores <em>samarbejdspartnere</em></h2>
+              <p className="partners-description">Jeg arbejder tæt sammen med nøje udvalgte partnere – uanset om dit event kalder på særligt udstyr til at skabe en unik stemning eller en smuk lokation til den perfekte ramme.</p>
+            </div>
           </div>
         </Reveal>
 
@@ -260,7 +263,10 @@ export const Home = () => {
               <div className="partner-logo partner-logo-showgear">
                 <img src="/images/showgear-logo.jpg" alt="ShowGear" />
               </div>
-              <div className="partner-name">ShowGear</div>
+              <div className="partner-details">
+                <div className="partner-name">ShowGear</div>
+                <p className="partner-description">Alt inden for konfetti, special effects og det, der gør dit event ekstra specielt.</p>
+              </div>
             </a>
           </Reveal>
 
@@ -269,7 +275,10 @@ export const Home = () => {
               <div className="partner-logo partner-logo-park13">
                 <img src="/images/park13-logo.png" alt="PARK 13 - Den Japanske Have" />
               </div>
-              <div className="partner-name">PARK 13 - Den Japanske Have</div>
+              <div className="partner-details">
+                <div className="partner-name">PARK 13 - Den Japanske Have</div>
+                <p className="partner-description">Et fantastisk smukt sted til din næste fest, omgivet af natur og med et serviceniveau i højeste kvalitet.</p>
+              </div>
             </a>
           </Reveal>
         </div>
