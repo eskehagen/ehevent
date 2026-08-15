@@ -4,31 +4,33 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
 
-// Her definerer du stien til dine egne billeder. 
-// Læg dine billeder i 'public/images/' mappen i VS Code, og skriv stien herunder.
+// Her definerer du stien til dine egne billeder.
+// Læg dine billeder i 'public/images/events/' mappen i VS Code, og skriv stien herunder.
+// `src` er det komprimerede fuldstørrelsesbillede (vises i lightbox), `thumb` er det
+// lille, hurtige thumbnail der vises i gitteret. Begge genereres ud fra samme originalfoto.
 const GALLERY_IMAGES = [
-  { id: 0, src: "/images/events/anker1.jpg", alt: "Mellem størrelse setup. Resturant Anker, Aarhus" },
-  { id: 1, src: "/images/events/martino1.jpg", alt: "Lille størrelse setup. Restaurant Martino, Aarhus" },
-  { id: 2, src: "/images/events/martino-nytaar.jpg", alt: "Lounge og dansegulv. Restaurant Martino, Aarhus" },
-  { id: 3, src: "/images/events/park13-glassal1.jpg", alt: "Stor bryllupsfest. Park13 Glassal, Aarhus" },
-  { id: 4, src: "/images/events/park13-glassal2.jpg", alt: "Stor størrelse setup. Park13 Glassal, Aarhus" },
-  { id: 5, src: "/images/events/park13-glassal3.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
-  { id: 6, src: "/images/events/park13-glassal4.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
-  { id: 7, src: "/images/events/park13-jul.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
-  { id: 7, src: "/images/events/park13-jul2.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
-  { id: 8, src: "/images/events/park13-welness1.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
-  { id: 8, src: "/images/events/park13-welness2.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
-  { id: 8, src: "/images/events/rockchok1.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { id: 8, src: "/images/events/rockchok2.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { id: 8, src: "/images/events/rockchok4.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { id: 8, src: "/images/events/havefest1.jpg", alt: "Havefest / Studentergilde. Aarhus" },
-  { id: 8, src: "/images/events/havefest2.jpg", alt: "Mellem størrelse setup. Studentergilde. Aarhus" },
-  { id: 8, src: "/images/events/rockchok3.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
-  { id: 8, src: "/images/events/revy1.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
-  { id: 8, src: "/images/events/revy2.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
-  { id: 9, src: "/images/events/park13-080826.jpg", alt: "Dansegulv med lyssætning og DJ-booth. Park13 Glassal, Aarhus" },
-  { id: 10, src: "/images/events/park13-150826.jpg", alt: "Middagsopdækning med DJ-scene i baggrunden. Park13 Glassal, Aarhus" },
-  { id: 11, src: "/images/events/park13-visitkort.jpg", alt: "DJ-udstyr med visitkort fra DJ Eske Hagen. Park13 Glassal, Aarhus" },
+  { src: "/images/events/anker1.jpg", thumb: "/images/events/thumbs/anker1.jpg", alt: "Mellem størrelse setup. Resturant Anker, Aarhus" },
+  { src: "/images/events/martino1.jpg", thumb: "/images/events/thumbs/martino1.jpg", alt: "Lille størrelse setup. Restaurant Martino, Aarhus" },
+  { src: "/images/events/martino-nytaar.jpg", thumb: "/images/events/thumbs/martino-nytaar.jpg", alt: "Lounge og dansegulv. Restaurant Martino, Aarhus" },
+  { src: "/images/events/park13-glassal1.jpg", thumb: "/images/events/thumbs/park13-glassal1.jpg", alt: "Stor bryllupsfest. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-glassal2.jpg", thumb: "/images/events/thumbs/park13-glassal2.jpg", alt: "Stor størrelse setup. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-glassal3.jpg", thumb: "/images/events/thumbs/park13-glassal3.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-glassal4.jpg", thumb: "/images/events/thumbs/park13-glassal4.jpg", alt: "Stort dansegulv. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-jul.jpg", thumb: "/images/events/thumbs/park13-jul.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-jul2.jpg", thumb: "/images/events/thumbs/park13-jul2.jpg", alt: "Firma julefrokost. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-welness1.jpg", thumb: "/images/events/thumbs/park13-welness1.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
+  { src: "/images/events/park13-welness2.jpg", thumb: "/images/events/thumbs/park13-welness2.jpg", alt: "Mellem størrelse setup. Park13 Wellness Huset , Aarhus" },
+  { src: "/images/events/rockchok1.jpg", thumb: "/images/events/thumbs/rockchok1.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/rockchok2.jpg", thumb: "/images/events/thumbs/rockchok2.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/rockchok4.jpg", thumb: "/images/events/thumbs/rockchok4.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/havefest1.jpg", thumb: "/images/events/thumbs/havefest1.jpg", alt: "Havefest / Studentergilde. Aarhus" },
+  { src: "/images/events/havefest2.jpg", thumb: "/images/events/thumbs/havefest2.jpg", alt: "Mellem størrelse setup. Studentergilde. Aarhus" },
+  { src: "/images/events/rockchok3.jpg", thumb: "/images/events/thumbs/rockchok3.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
+  { src: "/images/events/revy1.jpg", thumb: "/images/events/thumbs/revy1.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
+  { src: "/images/events/revy2.jpg", thumb: "/images/events/thumbs/revy2.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
+  { src: "/images/events/park13-080826.jpg", thumb: "/images/events/thumbs/park13-080826.jpg", alt: "Dansegulv med lyssætning og DJ-booth. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-150826.jpg", thumb: "/images/events/thumbs/park13-150826.jpg", alt: "Middagsopdækning med DJ-scene i baggrunden. Park13 Glassal, Aarhus" },
+  { src: "/images/events/park13-visitkort.jpg", thumb: "/images/events/thumbs/park13-visitkort.jpg", alt: "DJ-udstyr med visitkort fra DJ Eske Hagen. Park13 Glassal, Aarhus" },
 ];
 
 export const Gallery = () => {
@@ -90,17 +92,18 @@ export const Gallery = () => {
         {/* Masonry Grid */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
           {GALLERY_IMAGES.map((img, i) => (
-            <Reveal key={img.id} delay={i * 0.05}>
-              <motion.div 
-                className="relative overflow-hidden rounded-xl cursor-pointer group break-inside-avoid bg-[#141414]"
+            <Reveal key={img.src} delay={i * 0.05}>
+              <motion.div
+                className="relative overflow-hidden rounded-xl cursor-pointer group break-inside-avoid bg-bg3"
                 whileHover={{ y: -5 }}
                 onClick={() => setSelectedIndex(i)}
               >
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
+                <img
+                  src={img.thumb}
+                  alt={img.alt}
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
