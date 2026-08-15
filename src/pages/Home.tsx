@@ -53,27 +53,27 @@ export const Home = () => {
         <div className="hero-visual">
           <svg id="logo-svg" viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg">
             <g id="vinyl-disc">
-              <circle cx="280" cy="250" r="200" fill="#0f0e0c" className="v-face"/>
-              <circle cx="280" cy="250" r="188" fill="none" stroke="#1c1a13" strokeWidth="1.8" className="v-groove-a"/>
-              <circle cx="280" cy="250" r="174" fill="none" stroke="#181611" strokeWidth="1.4" className="v-groove-b"/>
-              <circle cx="280" cy="250" r="159" fill="none" stroke="#1c1a13" strokeWidth="1.1" className="v-groove-a"/>
-              <circle cx="280" cy="250" r="143" fill="none" stroke="#181611" strokeWidth="1" className="v-groove-b"/>
-              <circle cx="280" cy="250" r="126" fill="none" stroke="#1c1a13" strokeWidth="0.9" className="v-groove-a"/>
-              <circle cx="280" cy="250" r="109" fill="none" stroke="#181611" strokeWidth="0.8" className="v-groove-b"/>
-              <circle cx="280" cy="250" r="91"  fill="none" stroke="#1c1a13" strokeWidth="0.7" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="200" className="v-face"/>
+              <circle cx="280" cy="250" r="188" fill="none" strokeWidth="1.8" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="174" fill="none" strokeWidth="1.4" className="v-groove-b"/>
+              <circle cx="280" cy="250" r="159" fill="none" strokeWidth="1.1" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="143" fill="none" strokeWidth="1" className="v-groove-b"/>
+              <circle cx="280" cy="250" r="126" fill="none" strokeWidth="0.9" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="109" fill="none" strokeWidth="0.8" className="v-groove-b"/>
+              <circle cx="280" cy="250" r="91"  fill="none" strokeWidth="0.7" className="v-groove-a"/>
 
               <path d="M122 168 A185 185 0 0 1 148 113" fill="none" stroke="#E8621A" strokeWidth="5" strokeLinecap="round"/>
               <path d="M138 176 A169 169 0 0 1 162 124" fill="none" stroke="#E8621A" strokeWidth="3.4" strokeLinecap="round" opacity="0.65"/>
               <path d="M153 184 A154 154 0 0 1 175 135" fill="none" stroke="#E8621A" strokeWidth="2.1" strokeLinecap="round" opacity="0.4"/>
 
-              <path d="M420 336 A185 185 0 0 1 398 388" fill="none" stroke="#d0c8b8" strokeWidth="4.4" strokeLinecap="round" className="v-arc"/>
-              <path d="M406 326 A169 169 0 0 1 386 375" fill="none" stroke="#d0c8b8" strokeWidth="3"   strokeLinecap="round" opacity="0.6" className="v-arc"/>
-              <path d="M392 316 A154 154 0 0 1 373 362" fill="none" stroke="#d0c8b8" strokeWidth="1.8" strokeLinecap="round" opacity="0.38" className="v-arc"/>
+              <path d="M420 336 A185 185 0 0 1 398 388" fill="none" strokeWidth="4.4" strokeLinecap="round" className="v-arc"/>
+              <path d="M406 326 A169 169 0 0 1 386 375" fill="none" strokeWidth="3"   strokeLinecap="round" opacity="0.6" className="v-arc"/>
+              <path d="M392 316 A154 154 0 0 1 373 362" fill="none" strokeWidth="1.8" strokeLinecap="round" opacity="0.38" className="v-arc"/>
 
               <circle cx="280" cy="250" r="72" fill="#E8621A"/>
               <circle cx="280" cy="250" r="59" fill="none" stroke="#be5010" strokeWidth="1.8" opacity="0.45"/>
               <circle cx="280" cy="250" r="44" fill="none" stroke="#be5010" strokeWidth="1.2" opacity="0.3"/>
-              <circle cx="280" cy="250" r="10" fill="#0a0907" className="v-spindle"/>
+              <circle cx="280" cy="250" r="10" className="v-spindle"/>
             </g>
 
             <g id="hp-group">

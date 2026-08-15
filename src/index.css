@@ -110,11 +110,11 @@
   --partner-plate: #121212;
   --partner-pad: 0.7rem 0.9rem;
 
-  --vinyl-face: #efe7dd;
-  --vinyl-groove-a: #d6cabc;
-  --vinyl-groove-b: #ded3c6;
-  --vinyl-spindle: #b3a596;
-  --vinyl-arc: #8a7f70;
+  --vinyl-face: #0f0e0c;
+  --vinyl-groove-a: #1c1a13;
+  --vinyl-groove-b: #181611;
+  --vinyl-spindle: #0a0907;
+  --vinyl-arc: #d0c8b8;
   --logo-disc: #f2ece6;
 }
 
