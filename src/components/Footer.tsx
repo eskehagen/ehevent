@@ -12,10 +12,10 @@ export const Footer = () => {
               <stop offset="100%" stopColor="#E8621A" />
             </radialGradient>
           </defs>
-          <circle cx="50" cy="50" r="48" fill="#0f0e0c" />
+          <circle cx="50" cy="50" r="48" fill="#0f0e0c" className="f-halo" />
           <g opacity="0.2">
             {[46, 44, 42].map(r => (
-              <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="#1c1a13" strokeWidth="0.5" />
+              <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="#1c1a13" strokeWidth="0.5" className="f-halo-ring" />
             ))}
           </g>
           <circle cx="50" cy="50" r="38" fill="url(#footerLogoGradient)" />
@@ -42,8 +42,8 @@ export const Footer = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
         <div className="footer-copy">&copy; 2026 Eske Hagen Events - Aarhus &nbsp;|&nbsp; CVR: 46389344</div>
         <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.78rem' }}>
-          <Link to="/handelsbetingelser" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Handelsbetingelser</Link>
-          <Link to="/privatlivspolitik" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Privatlivspolitik</Link>
+          <Link to="/handelsbetingelser" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-ink)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Handelsbetingelser</Link>
+          <Link to="/privatlivspolitik" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-ink)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Privatlivspolitik</Link>
         </div>
       </div>
       <div className="footer-showgear"></div>

@@ -3,6 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#080808" />
+
+    <!-- ── Tema: sættes FØR første maling, ellers blinker sitet mørkt i ét frame ── -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('eh-theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#faf7f4' : '#080808');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
 
     <!-- ── Primær SEO ── -->
     <title>Eske Hagen Events – DJ til Bryllup, Firmafest & Events i Aarhus</title>
