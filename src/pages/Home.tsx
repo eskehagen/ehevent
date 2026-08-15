@@ -245,6 +245,35 @@ export const Home = () => {
           </Reveal>
         </div>
       </section>
+      {/* ─── SAMARBEJDSPARTNERE ─── */}
+      <section id="samarbejdspartnere" aria-labelledby="partners-title">
+        <Reveal>
+          <div className="partners-intro">
+            <div className="section-label">Samarbejde</div>
+            <h2 id="partners-title" className="partners-title">Vores <em>samarbejdspartnere</em></h2>
+          </div>
+        </Reveal>
+
+        <div className="partners-grid">
+          <Reveal delay={0.1}>
+            <a href="https://showgear.dk/" target="_blank" rel="noopener noreferrer" className="partner-card" aria-label="Besøg ShowGear">
+              <div className="partner-logo partner-logo-showgear">
+                <img src="/images/showgear-logo.jpg" alt="ShowGear" />
+              </div>
+              <div className="partner-name">ShowGear</div>
+            </a>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <a href="https://www.park13.dk/" target="_blank" rel="noopener noreferrer" className="partner-card" aria-label="Besøg PARK 13 - Den Japanske Have">
+              <div className="partner-logo partner-logo-park13">
+                <img src="/images/park13-logo.png" alt="PARK 13 - Den Japanske Have" />
+              </div>
+              <div className="partner-name">PARK 13 - Den Japanske Have</div>
+            </a>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 };

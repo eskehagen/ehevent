@@ -1503,6 +1503,124 @@ section {
   color: var(--gold-ink);
   flex-shrink: 0;
 }
+/* ─── PARTNERS ─── */
+#samarbejdspartnere {
+  background: var(--bg2);
+  border-top: 1px solid var(--line);
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+.partners-intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+.partners-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  color: var(--cream);
+  text-align: right;
+}
+
+.partners-title em {
+  color: var(--gold-ink);
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+}
+
+.partner-card {
+  min-height: 176px;
+  padding: 2rem 2.5rem 1.5rem;
+  background: var(--bg2);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.35s ease;
+}
+
+.partners-grid > div:last-child .partner-card {
+  border-right: 0;
+}
+
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 2px;
+  background: var(--gold);
+  opacity: 0.55;
+  transition: width 0.35s ease, opacity 0.35s ease;
+}
+
+.partner-card:hover {
+  background: var(--bg3);
+}
+
+.partner-card:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+.partner-logo {
+  height: 84px;
+  display: flex;
+  align-items: center;
+}
+
+.partner-logo img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 260px);
+  max-height: 76px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* ShowGear-logoet har en indbygget mørk baggrund; den indrammes som en
+   bevidst brandflade, også når sitet vises i lyst tema. */
+.partner-logo-showgear {
+  width: fit-content;
+  max-width: 100%;
+  background: #121212;
+  padding: 0.45rem 0.7rem;
+}
+
+.partner-logo-showgear img {
+  max-height: 66px;
+}
+
+.partner-logo-park13 img {
+  max-height: 70px;
+}
+
+.partner-name {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 
 /* ─── FORM ─── */
 .form-group input, .form-group textarea {
@@ -1727,6 +1845,33 @@ footer {
 @media (max-width: 600px) {
   section {
     padding: 5rem 6vw;
+  }
+  #samarbejdspartnere {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .partners-intro {
+    display: block;
+    margin-bottom: 2.5rem;
+  }
+  .partners-title {
+    margin-top: 1.25rem;
+    text-align: left;
+  }
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+  .partner-card {
+    min-height: 152px;
+    padding: 1.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .partners-grid > div:last-child .partner-card {
+    border-bottom: 0;
+  }
+  .partner-logo img {
+    max-width: 220px;
   }
   .about-stat-row {
     gap: 2rem;
