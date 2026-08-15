@@ -26,6 +26,9 @@ const GALLERY_IMAGES = [
   { id: 8, src: "/images/events/rockchok3.jpg", alt: "Stort lys setup til koncert. Sløjfen, Hadsten" },
   { id: 8, src: "/images/events/revy1.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
   { id: 8, src: "/images/events/revy2.jpg", alt: "Scene opsætning med sparkular og baglys. Tivoli Friheden, Aarhus" },
+  { id: 9, src: "/images/events/park13-080826.jpg", alt: "Dansegulv med lyssætning og DJ-booth. Park13 Glassal, Aarhus" },
+  { id: 10, src: "/images/events/park13-150826.jpg", alt: "Middagsopdækning med DJ-scene i baggrunden. Park13 Glassal, Aarhus" },
+  { id: 11, src: "/images/events/park13-visitkort.jpg", alt: "DJ-udstyr med visitkort fra DJ Eske Hagen. Park13 Glassal, Aarhus" },
 ];
 
 export const Gallery = () => {
