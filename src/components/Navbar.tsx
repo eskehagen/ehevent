@@ -30,6 +30,15 @@ export const Navbar = () => {
     document.body.style.overflow = '';
   };
 
+  const handleHomeClick = (event?: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      event?.preventDefault();
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.history.pushState(null, '', '/');
+    }
+  };
+
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,7 +48,7 @@ export const Navbar = () => {
   return (
     <>
       <nav className={`${isScrolled ? 'scrolled' : ''}`}>
-        <Link to="/" className="nav-logo">
+        <Link to="/" className="nav-logo" onClick={handleHomeClick}>
           <svg width="44" height="44" viewBox="0 0 100 100" className="inline-block mr-2 align-middle">
             <defs>
               <radialGradient id="navLogoGradient" cx="50%" cy="50%" r="50%" fx="35%" fy="35%">
@@ -59,7 +68,7 @@ export const Navbar = () => {
           <span>Events</span>
         </Link>
         <ul className="nav-links">
-          <li><Link to="/">Forside</Link></li>
+          <li><Link to="/" onClick={handleHomeClick}>Forside</Link></li>
           <li><Link to="/loesninger">Løsninger</Link></li>
           <li><Link to="/galleri">Galleri</Link></li>
           <li><Link to="/anmeldelser">Anmeldelser</Link></li>
@@ -83,7 +92,7 @@ export const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <Link to="/" onClick={closeMenu}>Forside</Link>
+            <Link to="/" onClick={(event) => { handleHomeClick(event); closeMenu(); }}>Forside</Link>
             <Link to="/loesninger" onClick={closeMenu}>Løsninger</Link>
             <Link to="/galleri" onClick={closeMenu}>Galleri</Link>
             <Link to="/anmeldelser" onClick={closeMenu}>Anmeldelser</Link>

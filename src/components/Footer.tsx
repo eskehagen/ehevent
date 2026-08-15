@@ -1,10 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Footer = () => {
+  const location = useLocation();
+
+  const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.history.pushState(null, '', '/');
+    }
+  };
+
   return (
     <footer>
-      <Link to="/" className="footer-logo">
+      <Link to="/" className="footer-logo" onClick={handleHomeClick}>
         <svg width="64" height="64" viewBox="0 0 100 100" className="inline-block mr-3 align-middle">
           <defs>
             <radialGradient id="footerLogoGradient" cx="50%" cy="50%" r="50%" fx="35%" fy="35%">
