@@ -1542,8 +1542,8 @@ section {
 }
 
 .partner-card {
-  min-height: 176px;
-  padding: 2rem 2.5rem 1.5rem;
+  min-height: 218px;
+  padding: 2.25rem 2.5rem 1.75rem;
   background: var(--bg2);
   border-right: 1px solid var(--line);
   display: flex;
@@ -1583,7 +1583,7 @@ section {
 }
 
 .partner-logo {
-  height: 84px;
+  height: 112px;
   display: flex;
   align-items: center;
 }
@@ -1591,8 +1591,8 @@ section {
 .partner-logo img {
   display: block;
   width: auto;
-  max-width: min(100%, 260px);
-  max-height: 76px;
+  max-width: min(100%, 330px);
+  max-height: 104px;
   object-fit: contain;
   object-position: left center;
 }
@@ -1607,18 +1607,24 @@ section {
 }
 
 .partner-logo-showgear img {
-  max-height: 66px;
+  max-height: 92px;
 }
 
 .partner-logo-park13 img {
-  max-height: 70px;
+  max-height: 96px;
 }
 
 .partner-name {
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--cream);
+  transition: color 0.3s ease;
+}
+
+.partner-card:hover .partner-name {
+  color: var(--gold-ink);
 }
 
 
@@ -1862,7 +1868,7 @@ footer {
     grid-template-columns: 1fr;
   }
   .partner-card {
-    min-height: 152px;
+    min-height: 182px;
     padding: 1.5rem;
     border-right: 0;
     border-bottom: 1px solid var(--line);
@@ -1870,8 +1876,13 @@ footer {
   .partners-grid > div:last-child .partner-card {
     border-bottom: 0;
   }
+  .partner-logo {
+    height: 98px;
+  }
+
   .partner-logo img {
-    max-width: 220px;
+    max-width: 270px;
+    max-height: 90px;
   }
   .about-stat-row {
     gap: 2rem;
