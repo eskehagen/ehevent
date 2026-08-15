@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { ThemeToggle } from './ThemeToggle';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,7 +62,9 @@ export const Navbar = () => {
           <li><Link to="/">Forside</Link></li>
           <li><Link to="/loesninger">Løsninger</Link></li>
           <li><Link to="/galleri">Galleri</Link></li>
+          <li><Link to="/anmeldelser">Anmeldelser</Link></li>
           <li><Link to="/kontakt">Kontakt</Link></li>
+          <li className="nav-toggle-li"><ThemeToggle /></li>
         </ul>
         <button 
           className={`hamburger ${isMenuOpen ? 'open' : ''}`} 
@@ -83,7 +86,12 @@ export const Navbar = () => {
             <Link to="/" onClick={closeMenu}>Forside</Link>
             <Link to="/loesninger" onClick={closeMenu}>Løsninger</Link>
             <Link to="/galleri" onClick={closeMenu}>Galleri</Link>
+            <Link to="/anmeldelser" onClick={closeMenu}>Anmeldelser</Link>
             <Link to="/kontakt" onClick={closeMenu}>Kontakt</Link>
+            <div className="mobile-menu-theme">
+              <span className="mobile-menu-theme-label">Tema</span>
+              <ThemeToggle />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

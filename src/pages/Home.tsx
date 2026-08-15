@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, Music, PartyPopper, Zap } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
+import { ReviewsMarquee } from '../components/ReviewsMarquee';
 import { useSEO } from '../hooks/useSEO';
 
 export const Home = () => {
@@ -52,27 +53,27 @@ export const Home = () => {
         <div className="hero-visual">
           <svg id="logo-svg" viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg">
             <g id="vinyl-disc">
-              <circle cx="280" cy="250" r="200" fill="#0f0e0c"/>
-              <circle cx="280" cy="250" r="188" fill="none" stroke="#1c1a13" strokeWidth="1.8"/>
-              <circle cx="280" cy="250" r="174" fill="none" stroke="#181611" strokeWidth="1.4"/>
-              <circle cx="280" cy="250" r="159" fill="none" stroke="#1c1a13" strokeWidth="1.1"/>
-              <circle cx="280" cy="250" r="143" fill="none" stroke="#181611" strokeWidth="1"/>
-              <circle cx="280" cy="250" r="126" fill="none" stroke="#1c1a13" strokeWidth="0.9"/>
-              <circle cx="280" cy="250" r="109" fill="none" stroke="#181611" strokeWidth="0.8"/>
-              <circle cx="280" cy="250" r="91"  fill="none" stroke="#1c1a13" strokeWidth="0.7"/>
+              <circle cx="280" cy="250" r="200" fill="#0f0e0c" className="v-face"/>
+              <circle cx="280" cy="250" r="188" fill="none" stroke="#1c1a13" strokeWidth="1.8" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="174" fill="none" stroke="#181611" strokeWidth="1.4" className="v-groove-b"/>
+              <circle cx="280" cy="250" r="159" fill="none" stroke="#1c1a13" strokeWidth="1.1" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="143" fill="none" stroke="#181611" strokeWidth="1" className="v-groove-b"/>
+              <circle cx="280" cy="250" r="126" fill="none" stroke="#1c1a13" strokeWidth="0.9" className="v-groove-a"/>
+              <circle cx="280" cy="250" r="109" fill="none" stroke="#181611" strokeWidth="0.8" className="v-groove-b"/>
+              <circle cx="280" cy="250" r="91"  fill="none" stroke="#1c1a13" strokeWidth="0.7" className="v-groove-a"/>
 
               <path d="M122 168 A185 185 0 0 1 148 113" fill="none" stroke="#E8621A" strokeWidth="5" strokeLinecap="round"/>
               <path d="M138 176 A169 169 0 0 1 162 124" fill="none" stroke="#E8621A" strokeWidth="3.4" strokeLinecap="round" opacity="0.65"/>
               <path d="M153 184 A154 154 0 0 1 175 135" fill="none" stroke="#E8621A" strokeWidth="2.1" strokeLinecap="round" opacity="0.4"/>
 
-              <path d="M420 336 A185 185 0 0 1 398 388" fill="none" stroke="#d0c8b8" strokeWidth="4.4" strokeLinecap="round"/>
-              <path d="M406 326 A169 169 0 0 1 386 375" fill="none" stroke="#d0c8b8" strokeWidth="3"   strokeLinecap="round" opacity="0.6"/>
-              <path d="M392 316 A154 154 0 0 1 373 362" fill="none" stroke="#d0c8b8" strokeWidth="1.8" strokeLinecap="round" opacity="0.38"/>
+              <path d="M420 336 A185 185 0 0 1 398 388" fill="none" stroke="#d0c8b8" strokeWidth="4.4" strokeLinecap="round" className="v-arc"/>
+              <path d="M406 326 A169 169 0 0 1 386 375" fill="none" stroke="#d0c8b8" strokeWidth="3"   strokeLinecap="round" opacity="0.6" className="v-arc"/>
+              <path d="M392 316 A154 154 0 0 1 373 362" fill="none" stroke="#d0c8b8" strokeWidth="1.8" strokeLinecap="round" opacity="0.38" className="v-arc"/>
 
               <circle cx="280" cy="250" r="72" fill="#E8621A"/>
               <circle cx="280" cy="250" r="59" fill="none" stroke="#be5010" strokeWidth="1.8" opacity="0.45"/>
               <circle cx="280" cy="250" r="44" fill="none" stroke="#be5010" strokeWidth="1.2" opacity="0.3"/>
-              <circle cx="280" cy="250" r="10" fill="#0a0907"/>
+              <circle cx="280" cy="250" r="10" fill="#0a0907" className="v-spindle"/>
             </g>
 
             <g id="hp-group">
@@ -143,8 +144,8 @@ export const Home = () => {
             </Reveal>
             <Reveal delay={0.6}>
               <div className="mt-10" style={{
-                border: '2px solid #e8621a',
-                boxShadow: '6px 6px 0px #e8621a',
+                border: '2px solid var(--gold)',
+                boxShadow: '6px 6px 0px var(--gold)',
                 display: 'inline-block',
                 lineHeight: 0,
               }}>
@@ -159,6 +160,24 @@ export const Home = () => {
         </div>
       </section>
 
+      {/* ─── ANMELDELSER ─── */}
+      <section id="anmeldelser">
+        <Reveal>
+          <div className="section-label" style={{ justifyContent: 'center' }}>Anmeldelser</div>
+          <h2 className="section-title text-center">Hvad mine kunder<br /><em>siger om mig</em></h2>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <ReviewsMarquee />
+        </Reveal>
+
+        <Reveal delay={0.3}>
+          <div className="reviews-cta-row">
+            <Link to="/anmeldelser" className="btn-primary">Se alle anmeldelser</Link>
+          </div>
+        </Reveal>
+      </section>
+
       {/* ─── UDSTYR ─── */}
       <section id="udstyr">
         <Reveal>
@@ -167,7 +186,7 @@ export const Home = () => {
           <p className="contact-sub" style={{ textAlign: 'left', maxWidth: '700px', marginBottom: '3rem' }}>
             Jeg tilbyder mere end blot musik. Skal dit event være ekstraordinært tilbyder jeg alle former for special effekter samt større lysopsætninger.
             <br />
-            <Link to="/loesninger" className="text-[#e8621a] hover:underline">Se alle mulighederne her.</Link>
+            <Link to="/loesninger" className="text-gold-ink hover:underline">Se alle mulighederne her.</Link>
           </p>
         </Reveal>
 
@@ -213,11 +232,11 @@ export const Home = () => {
           <Reveal delay={0.2}>
             <div className="contact-links items-center">
               <a href="mailto:eskehagen@gmail.com" className="contact-link">
-                <Mail size={18} className="text-[#e8621a]" />
+                <Mail size={18} className="text-gold-ink" />
                 eskehagen@gmail.com
               </a>
               <a href="tel:+4550935952" className="contact-link">
-                <Phone size={18} className="text-[#e8621a]" />
+                <Phone size={18} className="text-gold-ink" />
                 +45 50935952
               </a>
             </div>

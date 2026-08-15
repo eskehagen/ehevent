@@ -43,20 +43,25 @@ const TimeSelect = ({
         type="button"
         id={id}
         onClick={() => setOpen(o => !o)}
-        className="w-full bg-[#141414] border border-[rgba(232,98,26,0.18)] p-3 text-white text-left flex justify-between items-center focus:outline-none focus:border-[#e8621a] transition-colors"
+        className="w-full bg-bg3 border border-line p-3 text-cream text-left flex justify-between items-center focus:outline-none focus:border-gold transition-colors"
       >
         <span>{value}</span>
         <ChevronDown
           size={16}
-          className="text-[#b0a59d] transition-transform duration-200"
+          className="text-muted transition-transform duration-200"
           style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
         />
       </button>
       {open && (
         <div
           ref={listRef}
-          className="absolute z-50 w-full border border-[rgba(232,98,26,0.35)] overflow-y-auto"
-          style={{ background: '#1c1c1c', maxHeight: '200px', top: '100%' }}
+          className="absolute z-50 w-full border overflow-y-auto"
+          style={{
+            background: 'var(--surface-raised)',
+            borderColor: 'rgba(var(--accent-rgb), 0.35)',
+            maxHeight: '200px',
+            top: '100%',
+          }}
         >
           {options.map(t => (
             <button
@@ -66,10 +71,10 @@ const TimeSelect = ({
               onClick={() => { onChange(t); setOpen(false); }}
               className="w-full px-4 py-2 text-left text-sm transition-colors"
               style={{
-                color: t === value ? '#e8621a' : '#ffffff',
-                background: t === value ? 'rgba(232,98,26,0.12)' : 'transparent',
+                color: t === value ? 'var(--gold-ink)' : 'var(--cream)',
+                background: t === value ? 'rgba(var(--accent-rgb), 0.12)' : 'transparent',
               }}
-              onMouseEnter={e => { if (t !== value) (e.currentTarget as HTMLElement).style.background = 'rgba(232,98,26,0.08)'; }}
+              onMouseEnter={e => { if (t !== value) (e.currentTarget as HTMLElement).style.background = 'rgba(var(--accent-rgb), 0.08)'; }}
               onMouseLeave={e => { if (t !== value) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
             >
               {t}
@@ -153,18 +158,18 @@ export const Contact = () => {
                 <h3 className="text-2xl font-head mb-8">Kontaktoplysninger</h3>
                 <div className="contact-links flex flex-col gap-6 items-start">
                   <a href="mailto:eskehagen@gmail.com" className="contact-link">
-                    <Mail size={20} className="text-[#e8621a]" />
+                    <Mail size={20} className="text-gold-ink" />
                     eskehagen@gmail.com
                   </a>
                   <a href="tel:+4550935952" className="contact-link">
-                    <Phone size={20} className="text-[#e8621a]" />
+                    <Phone size={20} className="text-gold-ink" />
                     +45 50935952
                   </a>
                 </div>
 
                 <div className="mt-10" style={{
-                  border: '2px solid #e8621a',
-                  boxShadow: '6px 6px 0px #e8621a',
+                  border: '2px solid var(--gold)',
+                  boxShadow: '6px 6px 0px var(--gold)',
                   display: 'inline-block',
                   lineHeight: 0,
                 }}>
@@ -183,10 +188,10 @@ export const Contact = () => {
                 <p className="text-sm text-muted mb-3">Udfyld de felter du kan på nuværende tidspunkt – det vigtigste er dine kontaktoplysninger samt dato og sted for eventet. Resten finder vi ud af i en personlig samtale.</p>
                 <p className="text-sm text-muted mb-8">
                   Ved at sende beskeden accepterer du {' '}
-                  <Link to="/privatlivspolitik" className="text-gold hover:underline">privatlivspolitiken</Link>.
+                  <Link to="/privatlivspolitik" className="text-gold-ink hover:underline">privatlivspolitiken</Link>.
                   <br />
                   Læs også mine generelle {' '}
-                  <Link to="/handelsbetingelser" className="text-gold hover:underline">handelsbetingelser</Link>{' '}.
+                  <Link to="/handelsbetingelser" className="text-gold-ink hover:underline">handelsbetingelser</Link>{' '}.
                 </p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div style={{ display: 'none' }} aria-hidden="true">

@@ -6,7 +6,7 @@ import { Footer } from './Footer';
 
 export const Layout = () => {
   return (
-    <div className="min-h-screen bg-[#080808] text-[#ffffff] font-body font-light">
+    <div className="min-h-screen bg-bg text-cream font-body font-light">
       <Navbar />
       <main>
         <Outlet />
