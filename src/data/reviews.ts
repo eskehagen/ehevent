@@ -32,17 +32,10 @@ export const REVIEWS: Review[] = [
     date: "Juni 2025",
   },
   {
-    name: "Peter H.",
-    event: "Julefrokost, Aarhus",
-    rating: 5,
-    text: "Lydkvaliteten var i særklasse, og lysshowet passede perfekt til lokalet. Eske læste rummet godt og justerede musikken efter stemningen hele aftenen.",
-    date: "December 2025",
-  },
-  {
     name: "Camilla S.",
-    event: "Studenterfest, Aarhus",
+    event: "Fødselsdagsfest, Aarhus",
     rating: 5,
     text: "Fantastisk energi og super fleksibel omkring vores ønskeliste. Dansegulvet var fyldt fra første til sidste sang. Stor anbefaling herfra!",
-    date: "Juli 2025",
+    date: "Marts 2025",
   },
 ];
