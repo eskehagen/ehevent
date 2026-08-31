@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
+import { InstagramLink } from '../components/InstagramLink';
 import { useSEO } from '../hooks/useSEO';
 
 const TimeSelect = ({
@@ -157,14 +158,19 @@ export const Contact = () => {
               <div className="contact-info-block">
                 <h3 className="text-2xl font-head mb-8">Kontaktoplysninger</h3>
                 <div className="contact-links flex flex-col gap-6 items-start">
-                  <a href="mailto:eskehagen@gmail.com" className="contact-link">
+                  <a href="mailto:eheventsdk@gmail.com" className="contact-link">
                     <Mail size={20} className="text-gold-ink" />
-                    eskehagen@gmail.com
+                    eheventsdk@gmail.com
                   </a>
                   <a href="tel:+4550935952" className="contact-link">
                     <Phone size={20} className="text-gold-ink" />
                     +45 50935952
                   </a>
+
+                  <div className="contact-follow">
+                    <span className="contact-follow-label">Følg med</span>
+                    <InstagramLink variant="labelled" />
+                  </div>
                 </div>
 
                 <div className="mt-10" style={{

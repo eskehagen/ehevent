@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { InstagramLink } from './InstagramLink';
 
 export const Footer = () => {
   const location = useLocation();
@@ -56,7 +57,9 @@ export const Footer = () => {
           <Link to="/privatlivspolitik" style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-ink)')} onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>Privatlivspolitik</Link>
         </div>
       </div>
-      <div className="footer-showgear"></div>
+      <div className="footer-social">
+        <InstagramLink />
+      </div>
     </footer>
   );
 };

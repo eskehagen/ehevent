@@ -1700,16 +1700,113 @@ footer {
   letter-spacing: 0.08em;
 }
 
-.footer-showgear {
-  font-size: 0.82rem;
-  color: var(--muted);
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
-.footer-showgear a {
-  color: var(--gold-ink);
+
+/* ─── INSTAGRAM / SOCIAL ────────────────────────────────────────
+   Samme "chip" bruges i footeren og på kontaktsiden. Hviletilstanden
+   er sitets egen accent, så knappen ikke skriger imod resten af
+   designet — Instagrams farveforløb er gemt som hover-detalje. Ikonet
+   bærer aldrig betydningen alene: linket har altid en aria-label.
+   ───────────────────────────────────────────────────────────── */
+.ig-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--cream);
   text-decoration: none;
+  font-size: 1rem;
+  font-weight: 300;
+  transition: color 0.3s ease;
 }
-.footer-showgear a:hover {
-  text-decoration: underline;
+.ig-link:hover {
+  color: var(--gold-ink);
+}
+.ig-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.ig-chip {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 11px; /* ekko af Instagram-ikonets afrundede kvadrat */
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+  color: var(--gold-ink);
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Farveforløbet ligger i et ::before, fordi background-image ikke selv
+   kan animeres — så kan det i stedet fades ind via opacity. inset:-1px
+   lægger det hen over kanten, så borderen forsvinder i forløbet. */
+.ig-chip::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    circle at 28% 108%,
+    #fdd44b 0%,
+    #f7963f 18%,
+    #ee5f4e 36%,
+    #dd2a7b 58%,
+    #8134af 78%,
+    #515bd4 100%
+  );
+}
+
+.ig-chip svg {
+  position: relative; /* over farveforløbet */
+  z-index: 1;
+}
+
+.ig-link:hover .ig-chip,
+.ig-link:focus-visible .ig-chip {
+  color: #ffffff; /* hvid streg på forløbet — som Instagrams eget ikon */
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(221, 42, 123, 0.32);
+}
+.ig-link:hover .ig-chip::before,
+.ig-link:focus-visible .ig-chip::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ig-chip,
+  .ig-chip::before {
+    transition: none;
+  }
+  .ig-link:hover .ig-chip,
+  .ig-link:focus-visible .ig-chip {
+    transform: none;
+  }
+}
+
+/* Kontaktsiden: "Følg med" under mail og telefon */
+.contact-follow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+.contact-follow-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
 }
 
 /* ─── REVIEWS MARQUEE ─── */
