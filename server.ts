@@ -105,7 +105,7 @@ app.post('/api/contact', async (req: Request, res: Response) => {
     <p>Glæder mig til at høre mere om dit event!</p>
     <p>Med venlig hilsen,<br /><strong>Eske Hagen</strong><br />EH Events</p>
   </div>
-  <div class="footer">EH Events · Aarhus · eskehagen@gmail.com · +45 50 93 59 52</div>
+  <div class="footer">EH Events · Aarhus · eheventsdk@gmail.com · +45 50 93 59 52</div>
 </div>
 </body></html>`;
 

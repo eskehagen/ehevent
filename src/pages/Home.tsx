@@ -231,9 +231,9 @@ export const Home = () => {
 
           <Reveal delay={0.2}>
             <div className="contact-links items-center">
-              <a href="mailto:eskehagen@gmail.com" className="contact-link">
+              <a href="mailto:eheventsdk@gmail.com" className="contact-link">
                 <Mail size={18} className="text-gold-ink" />
-                eskehagen@gmail.com
+                eheventsdk@gmail.com
               </a>
               <a href="tel:+4550935952" className="contact-link">
                 <Phone size={18} className="text-gold-ink" />

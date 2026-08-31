@@ -3,7 +3,7 @@
  * Deploy som Web App: Kør som "Mig" / adgang for "Alle"
  */
 const SECURITY_TOKEN = 'EH-7291-SECURE-634';
-const OWNER_EMAIL    = 'eskehagen@gmail.com';
+const OWNER_EMAIL    = 'eheventsdk@gmail.com';
 
 function doPost(e) {
   try {
@@ -227,7 +227,7 @@ function sendToCustomer(d) {
               </tr>
               <tr>
                 <td>
-                  <a href="mailto:eskehagen@gmail.com" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#e8621a;text-decoration:none;letter-spacing:0.05em;">&#9993;&nbsp; eskehagen@gmail.com</a>
+                  <a href="mailto:eheventsdk@gmail.com" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#e8621a;text-decoration:none;letter-spacing:0.05em;">&#9993;&nbsp; eheventsdk@gmail.com</a>
                 </td>
               </tr>
             </table>

@@ -35,7 +35,7 @@ export const Privatlivspolitik = () => {
                   <strong>Eske Hagen Events</strong><br />
                   Aarhus, Danmark<br />
                   CVR: 46389344<br />
-                  E-mail: <a href="mailto:eskehagen@gmail.com" style={{ color: 'var(--gold)' }}>eskehagen@gmail.com</a><br />
+                  E-mail: <a href="mailto:eheventsdk@gmail.com" style={{ color: 'var(--gold)' }}>eheventsdk@gmail.com</a><br />
                   Telefon: <a href="tel:+4550935952" style={{ color: 'var(--gold)' }}>+45 50 93 59 52</a>
                 </p>
               </div>
@@ -123,7 +123,7 @@ export const Privatlivspolitik = () => {
                   <li><strong>Dataportabilitet</strong> – du kan modtage dine oplysninger i et struktureret, maskinlæsbart format.</li>
                 </ul>
                 <p style={{ marginTop: '0.75rem' }}>
-                  Kontakt os på <a href="mailto:eskehagen@gmail.com" style={{ color: 'var(--gold)' }}>eskehagen@gmail.com</a> for
+                  Kontakt os på <a href="mailto:eheventsdk@gmail.com" style={{ color: 'var(--gold)' }}>eheventsdk@gmail.com</a> for
                   at gøre brug af dine rettigheder.
                 </p>
               </div>
