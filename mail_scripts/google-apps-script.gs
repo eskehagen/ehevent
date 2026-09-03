@@ -244,7 +244,7 @@ function sendToOwner(d) {
 
         <!-- Detaljer -->
         <tr>
-          <td style="padding:0 40px;">
+          <td style="padding:0 40px 36px;">
             ${contactBlock}
             ${eventBlock}
 
@@ -268,32 +268,6 @@ function sendToOwner(d) {
                       <td style="background:#f2ece6;padding:20px 24px;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.8;color:#1a1512;">${message}</td>
                     </tr>
                   </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- Signatur -->
-        <tr>
-          <td style="padding:36px 40px 32px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
-              <tr>
-                <td style="height:1px;background:rgba(180,71,14,0.18);font-size:0;line-height:0;">&nbsp;</td>
-              </tr>
-            </table>
-            <p style="margin:0;font-family:'Segoe UI',Arial,sans-serif;font-size:14px;line-height:1.75;color:#6b5f56;">Med venlig hilsen,</p>
-            <p style="margin:6px 0 2px;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:400;color:#1a1512;">Eske Hagen</p>
-            <p style="margin:0 0 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#b4470e;">EH Events</p>
-            <table cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="padding-bottom:8px;">
-                  <a href="tel:+4550935952" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#b4470e;text-decoration:none;letter-spacing:0.05em;">&#9742;&nbsp; +45 50 93 59 52</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="mailto:eheventsdk@gmail.com" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#b4470e;text-decoration:none;letter-spacing:0.05em;">&#9993;&nbsp; eheventsdk@gmail.com</a>
                 </td>
               </tr>
             </table>
