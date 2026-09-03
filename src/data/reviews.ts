@@ -38,4 +38,11 @@ export const REVIEWS: Review[] = [
     text: "Fantastisk energi og super fleksibel omkring vores ønskeliste. Dansegulvet var fyldt fra første til sidste sang. Stor anbefaling herfra!",
     date: "Marts 2025",
   },
+  {
+    name: "Sophie & Steven",
+    event: "Bryllupsfest, PARK 13 Aarhus",
+    rating: 5,
+    text: "Vi havde en rigtig god oplevelse med Eske som DJ til vores bryllup. Han var gennem hele forløbet tilgængelig og fleksibel, og han tog sig tid til at tale med os om vores ønsker og forventninger til festen. Til selve festen var der rigtig god energi og der var masser af fest på dansegulvet. Vi kan varmt anbefale Eske.",
+    date: "August 2026",
+  },
 ];
