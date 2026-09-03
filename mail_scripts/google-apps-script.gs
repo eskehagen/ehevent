@@ -87,38 +87,245 @@ function s(text) {
   return text.replace(/[\r\n<>]/g, ' ').trim().slice(0, 2000);
 }
 
+/* HTML-escape af én linje – bevarer indholdet i stedet for at fjerne tegn. */
+function esc(text) {
+  if (text === null || text === undefined) return '';
+  return String(text)
+    .slice(0, 2000)
+    .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/* Som esc(), men kundens linjeskift bevares som <br> i beskedfeltet. */
+function escMulti(text) {
+  if (text === null || text === undefined) return '';
+  return String(text)
+    .slice(0, 4000)
+    .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/\r\n|\r|\n/g, '<br>');
+}
+
+/* Én sektion med overskrift og datarækker. Tomme felter udelades helt,
+   så mailen kan videresendes til kunden uden tomme "–"-rækker. */
+function detailBlock(title, rows) {
+  const items = rows.filter(function (r) { return r && r[1]; });
+  if (items.length === 0) return '';
+
+  const line = 'border-bottom:1px solid rgba(180,71,14,0.14);';
+
+  const rowsHtml = items.map(function (r, i) {
+    const border = (i === items.length - 1) ? '' : line;
+    return `
+              <tr>
+                <td style="padding:13px 0;${border}width:96px;vertical-align:top;font-family:'Segoe UI',Arial,sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#6b5f56;line-height:1.9;">${r[0]}</td>
+                <td style="padding:13px 0 13px 18px;${border}vertical-align:top;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;color:#1a1512;line-height:1.5;">${r[1]}</td>
+              </tr>`;
+  }).join('');
+
+  return `
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 28px;">
+              <tr>
+                <td style="padding-bottom:12px;">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="width:22px;height:1px;background:#e8621a;vertical-align:middle;font-size:0;line-height:0;">&nbsp;</td>
+                      <td style="padding-left:10px;font-family:'Segoe UI',Arial,sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#b4470e;vertical-align:middle;">${title}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="background:#f2ece6;border:1px solid rgba(180,71,14,0.16);padding:4px 24px;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">${rowsHtml}
+                  </table>
+                </td>
+              </tr>
+            </table>`;
+}
+
 function sendToOwner(d) {
-  const subject = 'Ny forespørgsel fra ' + s(d.name) + (d.date ? ' – ' + s(d.date) : '');
+  const name      = esc(d.name);
+  const email     = esc(d.email);
+  const phone     = esc(d.phone);
+  const dateTxt   = formatDateDk(d.date);
+  const eventTxt  = esc(d.event);
+  const address   = esc(d.address);
+  const startTime = esc(d.startTime);
+  const endTime   = esc(d.endTime);
+  const message   = escMulti(d.message);
+  const timeTxt   = (startTime && endTime) ? startTime + ' &ndash; ' + endTime : (startTime || endTime);
+  const received  = Utilities.formatDate(new Date(), 'Europe/Copenhagen', "dd-MM-yyyy 'kl.' HH:mm");
+
+  const subject = 'Ny forespørgsel fra ' + s(d.name) + (d.date ? ' – ' + formatDateDk(d.date) : '');
+
+  const contactBlock = detailBlock('Kontakt', [
+    ['Navn',    name],
+    ['Email',   email ? `<a href="mailto:${email}" style="color:#b4470e;text-decoration:none;">${email}</a>` : ''],
+    ['Telefon', phone ? `<a href="tel:${phone.replace(/[^\d+]/g, '')}" style="color:#b4470e;text-decoration:none;">${phone}</a>` : ''],
+  ]);
+
+  const eventBlock = detailBlock('Event', [
+    ['Dato',      dateTxt],
+    ['Eventtype', eventTxt],
+    ['Adresse',   address],
+    ['Tidspunkt', timeTxt],
+  ]);
+
+  const preheader = [name, eventTxt, dateTxt].filter(Boolean).join(' · ');
 
   const html = `<!DOCTYPE html>
 <html lang="da">
-<head><meta charset="UTF-8"><style>
-  body{font-family:Arial,sans-serif;background:#080808;color:#fff;margin:0;padding:0}
-  .wrap{max-width:600px;margin:40px auto;background:#141414;border:1px solid rgba(232,98,26,.25)}
-  .hd{background:#e8621a;padding:28px 32px}
-  .hd h1{margin:0;font-size:22px;color:#fff;letter-spacing:1px}
-  .bd{padding:32px}
-  .row{margin-bottom:16px}
-  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#b0a59d;margin-bottom:4px}
-  .val{font-size:15px;color:#fff}
-  .msg{background:#1c1c1c;border-left:3px solid #e8621a;padding:16px;margin-top:8px;white-space:pre-wrap;font-size:15px;color:#fff}
-  .ft{padding:16px 32px;border-top:1px solid rgba(232,98,26,.15);font-size:12px;color:#b0a59d}
-</style></head>
-<body>
-<div class="wrap">
-  <div class="hd"><h1>Ny bookingforespørgsel – EH Events</h1></div>
-  <div class="bd">
-    <div class="row"><div class="lbl">Navn</div><div class="val">${s(d.name)}</div></div>
-    <div class="row"><div class="lbl">Email</div><div class="val"><a href="mailto:${s(d.email)}" style="color:#e8621a">${s(d.email)}</a></div></div>
-    <div class="row"><div class="lbl">Telefon</div><div class="val">${s(d.phone) || '–'}</div></div>
-    <div class="row"><div class="lbl">Dato</div><div class="val">${s(d.date) || '–'}</div></div>
-    <div class="row"><div class="lbl">Eventtype</div><div class="val">${s(d.event) || '–'}</div></div>
-    <div class="row"><div class="lbl">Adresse</div><div class="val">${s(d.address) || '–'}</div></div>
-    <div class="row"><div class="lbl">Tidspunkt</div><div class="val">${s(d.startTime) || '–'} → ${s(d.endTime) || '–'}</div></div>
-    <div class="row"><div class="lbl">Besked</div><div class="msg">${s(d.message)}</div></div>
-  </div>
-  <div class="ft">Sendt via kontaktformularen på EH Events</div>
-</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <style>:root{color-scheme:light;supported-color-schemes:light;}</style>
+</head>
+<body style="margin:0;padding:0;background-color:#faf7f4;">
+
+<!-- Preview-tekst i indbakken -->
+<div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#faf7f4;opacity:0;">${preheader}</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#faf7f4;">
+  <tr>
+    <td align="center" style="padding:40px 16px;">
+
+      <!-- Card -->
+      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border:1px solid rgba(180,71,14,0.2);box-shadow:0 18px 44px rgba(26,21,18,0.10);">
+
+        <!-- Orange topkant -->
+        <tr>
+          <td style="height:3px;background-color:#e8621a;background:linear-gradient(90deg,#e8621a 0%,#f07d35 50%,rgba(232,98,26,0.1) 100%);font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+
+        <!-- Brand header -->
+        <tr>
+          <td style="padding:30px 40px 26px;border-bottom:1px solid rgba(180,71,14,0.14);">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="width:54px;vertical-align:middle;">
+                  <img src="https://eskehagenevents.dk/images/eh-logo-512.png" width="54" height="54" alt="EH Events" style="display:block;width:54px;height:54px;border:0;outline:none;text-decoration:none;">
+                </td>
+                <td style="padding-left:16px;vertical-align:middle;">
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:21px;font-style:italic;color:#1a1512;line-height:1.15;">Eske Hagen</div>
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:21px;font-style:italic;color:#b4470e;line-height:1.15;">Events</div>
+                </td>
+                <td align="right" style="vertical-align:middle;font-family:'Segoe UI',Arial,sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6b5f56;line-height:1.9;">
+                  DJ &amp; Eventudstyr<br>Aarhus
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Overskrift -->
+        <tr>
+          <td style="padding:40px 40px 32px;">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="width:28px;height:1px;background:#e8621a;vertical-align:middle;font-size:0;line-height:0;">&nbsp;</td>
+                <td style="padding-left:10px;font-family:'Segoe UI',Arial,sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#b4470e;vertical-align:middle;">Ny henvendelse</td>
+              </tr>
+            </table>
+            <div style="margin-top:18px;">
+              <span style="font-family:Georgia,'Times New Roman',serif;font-size:40px;font-weight:400;font-style:italic;color:#1a1512;line-height:1.1;display:block;">Booking</span>
+              <span style="font-family:Georgia,'Times New Roman',serif;font-size:40px;font-weight:400;font-style:italic;color:#b4470e;line-height:1.1;display:block;">forespørgsel</span>
+            </div>
+            <p style="margin:18px 0 0;font-family:'Segoe UI',Arial,sans-serif;font-size:13px;line-height:1.7;color:#6b5f56;">Modtaget via kontaktformularen på eskehagenevents.dk<br>${received}</p>
+          </td>
+        </tr>
+
+        <!-- Detaljer -->
+        <tr>
+          <td style="padding:0 40px;">
+            ${contactBlock}
+            ${eventBlock}
+
+            <!-- Besked -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;">
+              <tr>
+                <td style="padding-bottom:12px;">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="width:22px;height:1px;background:#e8621a;vertical-align:middle;font-size:0;line-height:0;">&nbsp;</td>
+                      <td style="padding-left:10px;font-family:'Segoe UI',Arial,sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#b4470e;vertical-align:middle;">Besked</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="width:3px;background:#e8621a;font-size:0;line-height:0;">&nbsp;</td>
+                      <td style="background:#f2ece6;padding:20px 24px;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.8;color:#1a1512;">${message}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Signatur -->
+        <tr>
+          <td style="padding:36px 40px 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+              <tr>
+                <td style="height:1px;background:rgba(180,71,14,0.18);font-size:0;line-height:0;">&nbsp;</td>
+              </tr>
+            </table>
+            <p style="margin:0;font-family:'Segoe UI',Arial,sans-serif;font-size:14px;line-height:1.75;color:#6b5f56;">Med venlig hilsen,</p>
+            <p style="margin:6px 0 2px;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:400;color:#1a1512;">Eske Hagen</p>
+            <p style="margin:0 0 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#b4470e;">EH Events</p>
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding-bottom:8px;">
+                  <a href="tel:+4550935952" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#b4470e;text-decoration:none;letter-spacing:0.05em;">&#9742;&nbsp; +45 50 93 59 52</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="mailto:eheventsdk@gmail.com" style="font-family:'Segoe UI',Arial,sans-serif;font-size:14px;color:#b4470e;text-decoration:none;letter-spacing:0.05em;">&#9993;&nbsp; eheventsdk@gmail.com</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:22px 40px 26px;border-top:1px solid rgba(180,71,14,0.14);background:#f2ece6;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="vertical-align:top;">
+                  <span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#1a1512;">Eske Hagen</span><span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#b4470e;"> Events</span>
+                  <br>
+                  <span style="font-family:'Segoe UI',Arial,sans-serif;font-size:11px;color:#6b5f56;letter-spacing:0.08em;">Aarhus &middot; CVR 46389344</span>
+                </td>
+                <td align="right" style="vertical-align:top;font-family:'Segoe UI',Arial,sans-serif;font-size:11px;line-height:1.9;letter-spacing:0.06em;">
+                  <a href="https://eskehagenevents.dk" style="color:#b4470e;text-decoration:none;">eskehagenevents.dk</a>
+                  <br>
+                  <a href="https://www.instagram.com/ehevents.dk/" style="color:#b4470e;text-decoration:none;">Instagram &middot; @ehevents.dk</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+      <!-- end card -->
+
+    </td>
+  </tr>
+</table>
 </body></html>`;
 
   GmailApp.sendEmail(OWNER_EMAIL, subject, '', {
@@ -286,4 +493,11 @@ function formatDate(iso) {
   } catch(e) {
     return iso;
   }
+}
+
+// Dato som kunden taster den ind i formularen: dd-mm-åååå
+function formatDateDk(iso) {
+  const raw = s(iso);
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+  return m ? m[3] + '-' + m[2] + '-' + m[1] : raw;
 }
