@@ -47,7 +47,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className={`${isScrolled ? 'scrolled' : ''}`}>
+      <nav className={`site-nav ${isScrolled ? 'scrolled' : ''}`} aria-label="Hovedmenu">
         <Link to="/" className="nav-logo" onClick={handleHomeClick}>
           <svg width="44" height="44" viewBox="0 0 100 100" className="inline-block mr-2 align-middle">
             <defs>
@@ -69,16 +69,19 @@ export const Navbar = () => {
         </Link>
         <ul className="nav-links">
           <li><Link to="/" onClick={handleHomeClick}>Forside</Link></li>
-          <li><Link to="/loesninger">Løsninger</Link></li>
+          <li><Link to="/dj-til-bryllup">Bryllup</Link></li>
+          <li><Link to="/dj-til-firmafest">Firmafest</Link></li>
+          <li><Link to="/dj-til-fodselsdag">Fødselsdag</Link></li>
+          <li><Link to="/special-effekter">Effekter</Link></li>
           <li><Link to="/galleri">Galleri</Link></li>
-          <li><Link to="/anmeldelser">Anmeldelser</Link></li>
           <li><Link to="/kontakt">Kontakt</Link></li>
           <li className="nav-toggle-li"><ThemeToggle /></li>
         </ul>
         <button 
           className={`hamburger ${isMenuOpen ? 'open' : ''}`} 
           onClick={toggleMenu}
-          aria-label="Menu"
+          aria-label={isMenuOpen ? 'Luk menu' : 'Åbn menu'}
+          aria-expanded={isMenuOpen}
         >
           <span></span><span></span><span></span>
         </button>
@@ -93,9 +96,15 @@ export const Navbar = () => {
             exit={{ opacity: 0 }}
           >
             <Link to="/" onClick={(event) => { handleHomeClick(event); closeMenu(); }}>Forside</Link>
-            <Link to="/loesninger" onClick={closeMenu}>Løsninger</Link>
+            <Link to="/dj-til-bryllup" onClick={closeMenu}>DJ til bryllup</Link>
+            <Link to="/dj-til-firmafest" onClick={closeMenu}>DJ til firmafest</Link>
+            <Link to="/dj-til-fodselsdag" onClick={closeMenu}>DJ til fødselsdag</Link>
+            <Link to="/special-effekter" onClick={closeMenu}>Special effekter</Link>
+            <Link to="/loesninger" onClick={closeMenu}>Lyd, lys og teknik</Link>
             <Link to="/galleri" onClick={closeMenu}>Galleri</Link>
             <Link to="/anmeldelser" onClick={closeMenu}>Anmeldelser</Link>
+            <Link to="/om-eske" onClick={closeMenu}>Om Eske</Link>
+            <Link to="/faq" onClick={closeMenu}>FAQ</Link>
             <Link to="/kontakt" onClick={closeMenu}>Kontakt</Link>
             <div className="mobile-menu-theme">
               <span className="mobile-menu-theme-label">Tema</span>

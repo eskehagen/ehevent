@@ -1,16 +1,13 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, Music, PartyPopper, Zap } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { ReviewsMarquee } from '../components/ReviewsMarquee';
+import { Picture } from '../components/Picture';
 import { useSEO } from '../hooks/useSEO';
 
 export const Home = () => {
-  useSEO(
-    'Eske Hagen Events – DJ til Bryllup, Firmafest & Events i Aarhus',
-    'Professionel DJ og eventspecialist i Aarhus med over 22 års erfaring. Musik, lys og special effekter til bryllupper, firmafester og private events. Book din DJ i dag.'
-  );
+  useSEO('/');
   return (
     <div className="home-page">
       {/* ─── HERO ─── */}
@@ -19,35 +16,20 @@ export const Home = () => {
         <div className="hero-grid"></div>
 
         <div className="hero-content">
-          <motion.div 
-            className="hero-eyebrow"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-          >
+          <div className="hero-eyebrow eh-rise" style={{ animationDelay: '0.2s' }}>
             DJ &amp; Events
-          </motion.div>
-          <motion.p 
-            className="hero-tagline"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.65 }}
-          >
+          </div>
+          <p className="hero-tagline eh-rise" style={{ animationDelay: '0.65s' }}>
             <strong>Den rigtige musik skaber stemningen!</strong> 
             <br />
-            Med over 20 års DJ-erfaring skaber jeg altid den helt rigtige stemning, som passer præcis til dit event. 
+            Med over 22 års DJ-erfaring skaber jeg altid den helt rigtige stemning, som passer præcis til dit event. 
             <br />
             Professionel løsning med kompromisløs kvalitet i centrum.
-          </motion.p>
-          <motion.div 
-            className="hero-cta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.85 }}
-          >
+          </p>
+          <div className="hero-cta eh-rise" style={{ animationDelay: '0.85s' }}>
             <Link to="/kontakt" className="btn-primary">Book mig</Link>
             <Link to="/loesninger" className="btn-ghost">Se løsninger</Link>
-          </motion.div>
+          </div>
         </div>
 
         <div className="hero-visual">
@@ -94,14 +76,10 @@ export const Home = () => {
               <rect x="470" y="210" width="54" height="84" rx="22" fill="none" stroke="#30281e" strokeWidth="1" opacity="0.7"/>
             </g>
           </svg>
-          <motion.h1 
-            className="hero-name text-center mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
+          <h1 className="hero-name text-center mt-6 eh-rise" style={{ animationDelay: '0.4s' }}>
             Eske Hagen<br /><em>Events</em>
-          </motion.h1>
+            <span className="hero-h1-sub">DJ og eventlys i Aarhus og Østjylland</span>
+          </h1>
         </div>
       </section>
 
@@ -149,13 +127,75 @@ export const Home = () => {
                 display: 'inline-block',
                 lineHeight: 0,
               }}>
-                <img
+                <Picture
                   src="/images/eske1.jpg"
-                  alt="Eske Hagen"
-                  style={{ display: 'block', width: '100%', maxWidth: '360px' }}
+                  alt="Eske Hagen Sinding, DJ og eventspecialist fra Aarhus"
+                  style={{ display: 'block', width: '100%', maxWidth: '360px', height: 'auto' }}
                 />
               </div>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── YDELSER ───
+           Forsiden præsenterer hver ydelse kort og sender videre til den
+           dedikerede side. Uden disse links ville de nye sider kun kunne nås
+           fra menuen, og forsidens linkværdi ville ikke flyde videre til dem. */}
+      <section id="ydelser" aria-labelledby="ydelser-title">
+        <Reveal>
+          <div className="section-label">Ydelser</div>
+          <h2 id="ydelser-title" className="section-title">
+            Hvad jeg spiller <em>til</em>
+          </h2>
+          <p className="contact-sub" style={{ textAlign: 'left', maxWidth: '68ch', marginTop: '1.5rem' }}>
+            Jeg spiller til alle typer fester i Aarhus og resten af Østjylland, med
+            speciale i bryllupper, firmafester og voksenfester. Lyd, lys og special
+            effekter kommer som én samlet løsning.
+          </p>
+        </Reveal>
+
+        <div className="services-section-wrap mt-12">
+          <div className="related-grid">
+            {[
+              {
+                to: '/dj-til-bryllup',
+                label: 'Bryllup',
+                title: 'DJ til bryllup',
+                desc: 'Brudevals, middag og fest til sidste gæst. Personligt planlægningsmøde altid inkluderet, og cold spark eller konfetti hvis dagen skal sættes i scene.',
+                cta: 'Læs mere om DJ til bryllup',
+              },
+              {
+                to: '/dj-til-firmafest',
+                label: 'Firmafest',
+                title: 'DJ til firmafest og julefrokost',
+                desc: 'Julefrokost, sommerfest, jubilæum og reception. Lyd der bærer både taler og dansegulv, og faktura til virksomheden på CVR 46389344.',
+                cta: 'Læs mere om DJ til firmafest',
+              },
+              {
+                to: '/dj-til-fodselsdag',
+                label: 'Privatfest',
+                title: 'DJ til fødselsdag og privatfest',
+                desc: 'Runde fødselsdage, jubilæer, konfirmationer og havefester. Musik der holder både børnebørn og jævnaldrende på dansegulvet.',
+                cta: 'Læs mere om DJ til fødselsdag',
+              },
+              {
+                to: '/special-effekter',
+                label: 'Effekter',
+                title: 'Special effekter og eventlys',
+                desc: 'Cold spark, konfetti, CO2, røg, sæbebobler, sne og skum — med rådgivning, opsætning og afvikling i samarbejde med Showgear.dk.',
+                cta: 'Se alle special effekter',
+              },
+            ].map((item, i) => (
+              <Reveal key={item.to} delay={Math.min(i * 0.08, 0.3)}>
+                <Link to={item.to} className="related-card" style={{ height: '100%' }}>
+                  <div className="section-label" style={{ marginBottom: '0.6rem' }}>{item.label}</div>
+                  <h3 className="related-card-title">{item.title}</h3>
+                  <p className="related-card-desc">{item.desc}</p>
+                  <span className="related-card-cta">{item.cta} &rarr;</span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -237,7 +277,7 @@ export const Home = () => {
               </a>
               <a href="tel:+4550935952" className="contact-link">
                 <Phone size={18} className="text-gold-ink" />
-                +45 50935952
+                +45 50 93 59 52
               </a>
             </div>
 
@@ -261,7 +301,7 @@ export const Home = () => {
           <Reveal delay={0.1}>
             <a href="https://showgear.dk/" target="_blank" rel="noopener noreferrer" className="partner-card" aria-label="Besøg ShowGear">
               <div className="partner-logo partner-logo-showgear">
-                <img src="/images/showgear-logo.jpg" alt="ShowGear" />
+                <img src="/images/showgear-logo.jpg" alt="ShowGear – leverandør af special effekter" width={2824} height={1644} loading="lazy" decoding="async" />
               </div>
               <div className="partner-details">
                 <div className="partner-name">ShowGear</div>
@@ -273,7 +313,7 @@ export const Home = () => {
           <Reveal delay={0.2}>
             <a href="https://www.park13.dk/" target="_blank" rel="noopener noreferrer" className="partner-card" aria-label="Besøg PARK 13 - Den Japanske Have">
               <div className="partner-logo partner-logo-park13">
-                <img src="/images/park13-logo.png" alt="PARK 13 - Den Japanske Have" />
+                <img src="/images/park13-logo.png" alt="PARK 13 – Den Japanske Have, eventlokation i Aarhus" width={1080} height={1080} loading="lazy" decoding="async" />
               </div>
               <div className="partner-details">
                 <div className="partner-name">PARK 13 - Den Japanske Have</div>

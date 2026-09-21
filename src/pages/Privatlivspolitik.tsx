@@ -1,21 +1,20 @@
 import React from 'react';
 import { Reveal } from '../components/Reveal';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useSEO } from '../hooks/useSEO';
 
 export const Privatlivspolitik = () => {
-  useSEO(
-    'Privatlivspolitik – Eske Hagen Events',
-    'Læs om hvordan Eske Hagen Events behandler dine personoplysninger i henhold til GDPR.'
-  );
+  useSEO('/privatlivspolitik');
   return (
     <div className="contact-page pt-32 pb-24">
       <section>
         <div style={{ maxWidth: '760px', margin: '0 auto', padding: '0 1.5rem' }}>
+          <Breadcrumbs current="Privatlivspolitik" />
           <Reveal>
             <div className="section-label" style={{ justifyContent: 'center' }}>Juridisk</div>
-            <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+            <h1 className="page-title" style={{ textAlign: 'center', marginBottom: '0.5rem', margin: '0 auto 0.5rem' }}>
               Privatlivs<em>politik</em>
-            </h2>
+            </h1>
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem', fontSize: '0.95rem' }}>
               Senest opdateret: april 2026
             </p>

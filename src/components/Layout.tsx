@@ -7,8 +7,13 @@ import { Footer } from './Footer';
 export const Layout = () => {
   return (
     <div className="min-h-screen bg-bg text-cream font-body font-light">
+      {/* Springlink: tastaturbrugere skulle ellers gennem hele menuen på
+          hver eneste sidevisning, før de nåede indholdet. */}
+      <a href="#indhold" className="skip-link">
+        Spring til indhold
+      </a>
       <Navbar />
-      <main>
+      <main id="indhold">
         <Outlet />
       </main>
       <Footer />

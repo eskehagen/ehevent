@@ -1,4 +1,65 @@
+# Eske Hagen Events — https://eskehagenevents.dk
+# Alt indhold må indekseres, både af søgemaskiner og af AI-søgning.
+#
+# BEMÆRK: Cloudflare kan blokere AI-crawlere uafhængigt af denne fil
+# (Security → Bots / AI Crawl Control) og kan indsætte sin egen
+# "managed robots.txt", der tilsidesætter denne. Tjek det i dashboardet.
+
 User-agent: *
+Allow: /
+
+# ─── AI-søgning og -assistenter ───
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI Overviews / Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Copilot / Bing (ChatGPT-søgning bygger på Bings indeks)
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta
+User-agent: meta-externalagent
+Allow: /
+
+# Common Crawl (datasæt mange modeller trænes og slås op i)
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://eskehagenevents.dk/sitemap.xml
