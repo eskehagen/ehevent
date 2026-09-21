@@ -39,10 +39,17 @@ export const Picture = ({
   const w = width ?? natural.w;
   const h = height ?? natural.h;
   const webp = src.replace(/\.(jpe?g|png)$/i, '.webp');
+  const webp800 = src.replace(/\.(jpe?g|png)$/i, '-800.webp');
+
+  // Uden srcset henter browseren fuldstørrelsesbilledet, også når det vises
+  // i en tredjedels spaltebredde. Den smalle variant findes kun når
+  // originalen er bredere end 800 px.
+  const srcSet =
+    natural.w > 800 ? `${webp800} 800w, ${webp} ${natural.w}w` : webp;
 
   return (
     <picture>
-      <source srcSet={webp} type="image/webp" sizes={sizes} />
+      <source srcSet={srcSet} type="image/webp" sizes={sizes} />
       <img
         src={src}
         alt={alt}

@@ -52,13 +52,11 @@ export const Faq = () => {
         </Reveal>
         <dl className="faq-list">
           {FAQ_BRYLLUP.slice(0, 3).map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)}>
-              <div className="faq-item">
-                <dt className="faq-q">
-                  <h3>{item.q}</h3>
-                </dt>
-                <dd className="faq-a">{item.a}</dd>
-              </div>
+            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)} className="faq-item">
+              <dt className="faq-q">
+                <h3>{item.q}</h3>
+              </dt>
+              <dd className="faq-a">{item.a}</dd>
             </Reveal>
           ))}
         </dl>
@@ -73,13 +71,11 @@ export const Faq = () => {
         </Reveal>
         <dl className="faq-list">
           {FAQ_FIRMAFEST.slice(0, 2).map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)}>
-              <div className="faq-item">
-                <dt className="faq-q">
-                  <h3>{item.q}</h3>
-                </dt>
-                <dd className="faq-a">{item.a}</dd>
-              </div>
+            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)} className="faq-item">
+              <dt className="faq-q">
+                <h3>{item.q}</h3>
+              </dt>
+              <dd className="faq-a">{item.a}</dd>
             </Reveal>
           ))}
         </dl>
@@ -94,13 +90,11 @@ export const Faq = () => {
         </Reveal>
         <dl className="faq-list">
           {FAQ_EFFEKTER.slice(0, 2).map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)}>
-              <div className="faq-item">
-                <dt className="faq-q">
-                  <h3>{item.q}</h3>
-                </dt>
-                <dd className="faq-a">{item.a}</dd>
-              </div>
+            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)} className="faq-item">
+              <dt className="faq-q">
+                <h3>{item.q}</h3>
+              </dt>
+              <dd className="faq-a">{item.a}</dd>
             </Reveal>
           ))}
         </dl>

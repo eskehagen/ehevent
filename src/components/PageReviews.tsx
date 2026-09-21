@@ -36,7 +36,7 @@ export const PageReviews = ({
           <Reveal key={r.name} delay={Math.min(i * 0.08, 0.24)}>
             <div className="review-card">
               <Quote className="review-card-icon" size={28} aria-hidden="true" />
-              <div className="review-card-stars" aria-label={`${r.rating} ud af 5 stjerner`}>
+              <div className="review-card-stars" role="img" aria-label={`${r.rating} ud af 5 stjerner`}>
                 {Array.from({ length: 5 }).map((_, s) => (
                   <Star
                     key={s}

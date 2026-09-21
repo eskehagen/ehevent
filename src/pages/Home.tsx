@@ -240,13 +240,12 @@ export const Home = () => {
             <div key={i}>
               <Reveal delay={i * 0.1}>
                 <Link to="/loesninger" className="gear-item-link no-underline">
-                  <div className="gear-item">
+                  <div className="gear-item" data-ghost={item.num}>
                     <div className="gear-icon-wrap">{item.icon}</div>
                     <div className="gear-num">{item.num}</div>
                     <div className="gear-name">{item.name}</div>
                     <div className="gear-divider" />
                     <p className="gear-desc">{item.desc}</p>
-                    <span className="gear-ghost-num">{item.num}</span>
                   </div>
                 </Link>
               </Reveal>
@@ -299,7 +298,7 @@ export const Home = () => {
 
         <div className="partners-grid">
           <Reveal delay={0.1}>
-            <a href="https://showgear.dk/" target="_blank" rel="noopener noreferrer" className="partner-card" aria-label="Besøg ShowGear">
+            <a href="https://showgear.dk/" target="_blank" rel="noopener noreferrer" className="partner-card">
               <div className="partner-logo partner-logo-showgear">
                 <img src="/images/showgear-logo.jpg" alt="ShowGear – leverandør af special effekter" width={2824} height={1644} loading="lazy" decoding="async" />
               </div>
@@ -311,7 +310,7 @@ export const Home = () => {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <a href="https://www.park13.dk/" target="_blank" rel="noopener noreferrer" className="partner-card" aria-label="Besøg PARK 13 - Den Japanske Have">
+            <a href="https://www.park13.dk/" target="_blank" rel="noopener noreferrer" className="partner-card">
               <div className="partner-logo partner-logo-park13">
                 <img src="/images/park13-logo.png" alt="PARK 13 – Den Japanske Have, eventlokation i Aarhus" width={1080} height={1080} loading="lazy" decoding="async" />
               </div>

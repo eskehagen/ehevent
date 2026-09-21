@@ -968,7 +968,8 @@ section {
   text-transform: uppercase;
   color: var(--gold-ink);
   margin-bottom: 1.25rem;
-  opacity: 0.8;
+  /* opacity fjernet: den trak den ellers AA-sikre --gold-ink ned på
+     3,79:1 mod hvid i lyst tema og dumpede dermed kontrastkravet. */
 }
 
 .service-divider {
@@ -1392,7 +1393,8 @@ section {
   text-transform: uppercase;
   color: var(--gold-ink);
   margin-bottom: 1.25rem;
-  opacity: 0.8;
+  /* opacity fjernet: den trak den ellers AA-sikre --gold-ink ned på
+     3,79:1 mod hvid i lyst tema og dumpede dermed kontrastkravet. */
 }
 
 .gear-divider {
@@ -1422,6 +1424,11 @@ section {
   line-height: 1.8;
   margin-top: 1rem;
 }
+.gear-item[data-ghost]::after {
+  content: attr(data-ghost);
+}
+
+.gear-item[data-ghost]::after,
 .gear-ghost-num {
   position: absolute;
   bottom: -0.5rem;

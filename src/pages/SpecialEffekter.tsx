@@ -89,7 +89,6 @@ export const SpecialEffekter = () => {
                 type="button"
                 className="effect-item-card cursor-pointer group"
                 onClick={() => setSelected(effect)}
-                aria-label={`Se billeder af ${effect.title}`}
               >
                 <div className="effect-img-wrapper relative">
                   <Picture

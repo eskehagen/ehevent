@@ -88,6 +88,18 @@ def main() -> None:
                 rgb.save(path, "JPEG", quality=78, optimize=True, progressive=True)
 
         save_webp(path)
+
+        # 800 px-variant til gitre og kort. Uden den henter browseren
+        # fuldstørrelsesbilledet for at vise det i en tredjedels spaltebredde.
+        with Image.open(path) as im2:
+            rgb2 = im2.convert("RGB")
+            if max(rgb2.size) > 800:
+                s2 = 800 / max(rgb2.size)
+                rgb2 = rgb2.resize(
+                    (max(1, round(rgb2.width * s2)), max(1, round(rgb2.height * s2))),
+                    Image.Resampling.LANCZOS,
+                )
+            rgb2.save(path.with_name(path.stem + "-800.webp"), "WEBP", quality=78, method=6)
         after = path.stat().st_size
         total_after += after
 

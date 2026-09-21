@@ -4,6 +4,12 @@ import { motion } from 'motion/react';
 interface RevealProps {
   children: React.ReactNode;
   delay?: number;
+  /**
+   * Lader kaldestedet give wrapper-div'en en klasse.
+   * Nødvendigt inde i <dl>: dér må et <div> kun indeholde <dt>/<dd>, så
+   * Reveal-div'en SKAL selv være gruppen — ikke endnu et lag udenom.
+   */
+  className?: string;
 }
 
 /**
@@ -22,7 +28,7 @@ interface RevealProps {
  *     animationen slået til. Elementer over folden ville ellers blinke ud og
  *     ind igen, og de er alligevel dem der betyder noget for LCP.
  */
-export const Reveal = ({ children, delay = 0 }: RevealProps) => {
+export const Reveal = ({ children, delay = 0, className }: RevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [animated, setAnimated] = useState(false);
 
@@ -41,6 +47,7 @@ export const Reveal = ({ children, delay = 0 }: RevealProps) => {
   return (
     <motion.div
       ref={ref}
+      className={className}
       initial={animated ? { opacity: 0, y: 30 } : false}
       whileInView={animated ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, margin: '-100px' }}
