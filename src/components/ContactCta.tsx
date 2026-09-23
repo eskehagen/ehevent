@@ -4,12 +4,14 @@ import { Mail, Phone } from 'lucide-react';
 import { BUSINESS } from '../seo/site';
 
 /**
- * Kontakt-CTA. Bruges både øverst (variant="inline") og nederst
- * (variant="block") på hver ydelsesside, så der altid er en vej videre
- * uanset hvor langt man har læst.
+ * Kontakt-CTA.
  *
- * Telefon og mail står som rigtige tel:/mailto:-links, ikke som billeder
- * eller JS-handlere — det er dem AI-søgning trækker ud som kontaktinfo.
+ * variant="inline" (øverst på siden): kun knappen "Få et tilbud". Telefon og
+ * mail står bevidst ikke her, så toppen holdes ren.
+ *
+ * variant="block" (nederst på siden): overskrift, tekst, telefon, mail og
+ * knap. Telefon og mail er rigtige tel:/mailto:-links — det er dem,
+ * AI-søgning trækker ud som kontaktinfo. De står desuden i footeren.
  */
 export const ContactCta = ({
   variant = 'block',
@@ -20,6 +22,16 @@ export const ContactCta = ({
   heading?: string;
   text?: string;
 }) => {
+  if (variant === 'inline') {
+    return (
+      <div className="cta-inline">
+        <Link to="/kontakt" className="btn-primary">
+          Få et tilbud
+        </Link>
+      </div>
+    );
+  }
+
   const links = (
     <div className="cta-contact-links">
       <a href={`tel:${BUSINESS.phoneHref}`} className="contact-link">
@@ -32,17 +44,6 @@ export const ContactCta = ({
       </a>
     </div>
   );
-
-  if (variant === 'inline') {
-    return (
-      <div className="cta-inline">
-        <Link to="/kontakt" className="btn-primary">
-          Få et tilbud
-        </Link>
-        {links}
-      </div>
-    );
-  }
 
   return (
     <aside className="cta-block" aria-label="Kontakt">

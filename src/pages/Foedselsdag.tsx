@@ -2,12 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { AnswerFirst, ProcessSteps } from '../components/AnswerFirst';
+import { AnswerFirst } from '../components/AnswerFirst';
 import { ContactCta } from '../components/ContactCta';
-import { FaqSection } from '../components/FaqSection';
 import { PageReviews } from '../components/PageReviews';
 import { RelatedLinks } from '../components/RelatedLinks';
-import { FAQ_FODSELSDAG } from '../seo/faqs';
 import { useSEO } from '../hooks/useSEO';
 
 export const Foedselsdag = () => {
@@ -16,18 +14,18 @@ export const Foedselsdag = () => {
   return (
     <div className="service-page">
       <section className="page-head">
-        <Breadcrumbs current="DJ til fødselsdag" />
+        <Breadcrumbs current="DJ til fødselsdag og privatfest" />
 
-        <div className="section-label">Fødselsdag og privatfest</div>
+        <div className="section-label">Privatfest</div>
         <h1 className="page-title">
           DJ til fødselsdag og <em>privatfest</em>
         </h1>
 
         <AnswerFirst>
-          Eske Hagen Events er en DJ fra Aarhus med over 22 års erfaring, der spiller til
-          runde fødselsdage, jubilæer, konfirmationer og private fester i hele Østjylland.
-          Lyd, lys og special effekter kommer som én samlet løsning, og musikken vælges, så
-          gæster i alle aldre bliver på dansegulvet — ikke kun de yngste.
+          Eske Hagen Events er en DJ fra Aarhus med over 22 års erfaring, der spiller til runde
+          fødselsdage, jubilæer og andre private fester i hele Øst- og Midtjylland. Lyd, lys og
+          special effekter kommer som én samlet løsning, og musikken vælges, så gæster i alle
+          aldre bliver på dansegulvet — ikke kun de yngste.
         </AnswerFirst>
 
         <ContactCta variant="inline" />
@@ -40,21 +38,19 @@ export const Foedselsdag = () => {
           </h2>
           <div className="prose">
             <p>
-              Runde fødselsdage har en helt særlig udfordring: selskabet er sammensat af
-              familie, gamle venner, kollegaer og naboer, der sjældent er samlet ellers.
-              Gæstelisten spænder fra børnebørn til jævnaldrende, og hvis musikken læner
-              sig for hårdt til én generation, deler festen sig i to rum.
+              Runde fødselsdage har en helt særlig udfordring: selskabet er sammensat af familie,
+              gamle venner, kollegaer og naboer, der sjældent er samlet ellers. Gæstelisten spænder
+              fra børnebørn til jævnaldrende, og hvis musikken læner sig for hårdt til én
+              generation, deler festen sig i to rum.
             </p>
             <p>
-              Derfor er opgaven til en fødselsdag mere at holde selskabet samlet end at
-              køre et bestemt sound igennem. Jeg tilpasser musikken løbende hen over
-              aftenen og sørger for, at der er noget at danse til for alle — uden at det
-              bliver en jukebox.
+              Derfor er opgaven til en fødselsdag mere at holde selskabet samlet end at køre et
+              bestemt sound igennem. Jeg tilpasser musikken løbende hen over aftenen og sørger
+              for, at der er noget at danse til for alle — uden at det bliver en jukebox.
             </p>
             <p>
-              Ud over fødselsdage spiller jeg også til jubilæer, konfirmationer,
-              studentergilder og havefester. Jeg har blandt andet spillet til havefester og
-              studentergilder i Aarhus-området.
+              Ud over fødselsdage spiller jeg til jubilæer og andre private fester, og jeg har
+              blandt andet spillet til havefester og studentergilder.
             </p>
           </div>
         </Reveal>
@@ -69,16 +65,14 @@ export const Foedselsdag = () => {
             <li>Professionelt lydanlæg, tilpasset lokalets størrelse</li>
             <li>Lysopsætning — fra stemningslys til fuldt dansegulvslys</li>
             <li>Personlig snak om ønsker og forløb inden festen</li>
-            <li>Mikrofon til taler og sange</li>
             <li>Opsætning, afvikling og nedtagning</li>
             <li>Rådgivning om konfetti og andre effekter</li>
           </ul>
           <div className="prose" style={{ marginTop: '1.4rem' }}>
             <p>
-              Lokalet behøver ikke være stort. Jeg spiller både i forsamlingshuse, lejede
-              lokaler, telte og private haver — anlægget skaleres, så et mindre lokale
-              ikke bliver overdøvet. Der skal blot være plads til opstilling og adgang til
-              230V strøm.
+              Lokalet behøver ikke være stort. Anlægget tilpasses lokalets størrelse, så et mindre
+              rum ikke bliver overdøvet. Der skal blot være plads til opstilling og adgang til 230V
+              strøm.
             </p>
           </div>
         </Reveal>
@@ -91,83 +85,33 @@ export const Foedselsdag = () => {
           </h2>
           <div className="prose">
             <p>
-              Det mest brugte indslag til en fødselsdag er konfetti, timet til sidste vers
-              af fødselsdagssangen eller til at åbne dansegulvet. Alle konfettirør er
-              BAM-testede, brandhæmmende og udviklet til professionel brug, og konfettien
-              fås blandt andet som biologisk nedbrydelig biofetti — praktisk hvis lokalet
-              har krav til oprydning.
+              Et oplagt indslag til en fødselsdag er konfetti, timet til sidste vers af
+              fødselsdagssangen eller til at åbne dansegulvet. Alle konfettirør er BAM-testede,
+              brandhæmmende og udviklet til professionel brug, og konfettien fås blandt andet som
+              biologisk nedbrydelig biofetti — praktisk, hvis lokalet har krav til oprydning.
             </p>
             <p>
-              Skal fejringen have et ekstra løft, findes der også cold spark, CO2,
-              sæbebobler, sne og skum.{' '}
-              <Link to="/special-effekter">Se alle special effekter</Link>.
+              Skal fejringen have et ekstra løft, findes der også cold spark, CO2, sæbebobler, sne
+              og skum. <Link to="/loesninger">Se alle løsninger og special effekter</Link>.
             </p>
           </div>
         </Reveal>
       </section>
 
-      <section style={{ paddingTop: 0 }}>
-        <Reveal>
-          <h2 className="subsection-title">
-            Fra forespørgsel til <em>fest</em>
-          </h2>
-          <ProcessSteps
-            steps={[
-              {
-                title: 'Skriv eller ring',
-                body: 'Send dato, sted og hvilken slags fest det er. Jeg svarer hurtigst muligt.',
-              },
-              {
-                title: 'Uforpligtende snak',
-                body: 'Vi taler om gæsterne, aftenens forløb og hvad I gerne vil høre — og hvad I helst vil undgå.',
-              },
-              {
-                title: 'Tilbud',
-                body: 'I får et samlet tilbud på jeres fest. Tilbuddet er gyldigt i 14 dage, og datoen er reserveret ved skriftlig accept og depositum.',
-              },
-              {
-                title: 'Festen',
-                body: 'Jeg stiller op i god tid, lydtjekker og afvikler aftenen fra første sang til sidste gæst.',
-              },
-            ]}
-          />
-        </Reveal>
-      </section>
-
-      <section style={{ paddingTop: 0 }}>
-        <Reveal>
-          <h2 className="subsection-title">
-            Hvor jeg <em>spiller</em>
-          </h2>
-          <p className="prose">
-            Jeg har base i Aarhus og kører op til 150 km derfra — det dækker Aarhus,
-            Skanderborg, Silkeborg, Randers, Horsens, Hadsten og resten af Østjylland.
-            Ligger festen længere væk, er I velkomne til at spørge alligevel.{' '}
-            <Link to="/galleri">Se billeder fra tidligere events</Link>.
-          </p>
-        </Reveal>
-      </section>
-
       <PageReviews match={/fødselsdag/i} title="Anmeldelse fra en fødselsdagsfest" />
-
-      <FaqSection
-        items={FAQ_FODSELSDAG}
-        title="Spørgsmål om DJ til fødselsdag"
-        id="faq-fodselsdag"
-      />
 
       <section style={{ paddingTop: '5rem' }}>
         <ContactCta
-          heading="Skal jeg spille til din fødselsdag?"
+          heading="Skal jeg spille til din fest?"
           text="Send dato og sted, så vender jeg tilbage med et uforpligtende tilbud på din fest."
         />
 
         <RelatedLinks
           links={[
             {
-              to: '/special-effekter',
-              title: 'Special effekter',
-              desc: 'Konfetti, cold spark og sæbebobler til festens højdepunkter.',
+              to: '/loesninger',
+              title: 'Løsninger',
+              desc: 'Lyd, lys og special effekter som konfetti, cold spark og sæbebobler.',
             },
             {
               to: '/dj-til-bryllup',
@@ -177,12 +121,12 @@ export const Foedselsdag = () => {
             {
               to: '/om-eske',
               title: 'Om Eske',
-              desc: '22+ års erfaring som DJ i Aarhus og Østjylland.',
+              desc: '22+ års erfaring som DJ — baggrund og kontakt.',
             },
             {
               to: '/faq',
               title: 'Ofte stillede spørgsmål',
-              desc: 'Booking, betaling, aflysning og dækningsområde.',
+              desc: 'Booking, betaling, musik og special effekter.',
             },
           ]}
         />

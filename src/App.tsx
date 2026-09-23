@@ -17,7 +17,6 @@ import { Handelsbetingelser } from './pages/Handelsbetingelser';
 import { Bryllup } from './pages/Bryllup';
 import { Firmafest } from './pages/Firmafest';
 import { Foedselsdag } from './pages/Foedselsdag';
-import { SpecialEffekter } from './pages/SpecialEffekter';
 import { OmEske } from './pages/OmEske';
 import { Faq } from './pages/Faq';
 import { NotFound } from './pages/NotFound';
@@ -36,7 +35,6 @@ export const AppRoutes = () => (
       <Route path="dj-til-bryllup" element={<Bryllup />} />
       <Route path="dj-til-firmafest" element={<Firmafest />} />
       <Route path="dj-til-fodselsdag" element={<Foedselsdag />} />
-      <Route path="special-effekter" element={<SpecialEffekter />} />
       <Route path="loesninger" element={<Solutions />} />
       <Route path="om-eske" element={<OmEske />} />
       <Route path="faq" element={<Faq />} />

@@ -32,8 +32,8 @@ export const OmEske = () => {
 
         <AnswerFirst>
           Eske Hagen Sinding er DJ og eventspecialist med base i Aarhus og over 22 års
-          erfaring bag pulten. Han driver Eske Hagen Events (EH Events, CVR 46389344) og
-          spiller til bryllupper, firmafester og private fester i hele Østjylland, hvor
+          erfaring bag pulten. Han driver Eske Hagen Events (EH Events) og
+          spiller til bryllupper, firmafester og private fester i hele Øst- og Midtjylland, hvor
           musik, lys og special effekter leveres som én samlet løsning.
         </AnswerFirst>
 
@@ -112,12 +112,12 @@ export const OmEske = () => {
             <li>
               <span className="fact-key">Firma</span>
               <span className="fact-val">
-                {BUSINESS.name} (også kaldet {BUSINESS.alternateName}), CVR {BUSINESS.cvr}
+                {BUSINESS.name} (også kaldet {BUSINESS.alternateName})
               </span>
             </li>
             <li>
               <span className="fact-key">Base</span>
-              <span className="fact-val">Aarhus, Region Midtjylland</span>
+              <span className="fact-val">Aarhus</span>
             </li>
             <li>
               <span className="fact-key">Erfaring</span>
@@ -146,8 +146,7 @@ export const OmEske = () => {
             <li>
               <span className="fact-key">Dækningsområde</span>
               <span className="fact-val">
-                Aarhus, Skanderborg, Silkeborg, Randers, Horsens, Hadsten og resten af
-                Østjylland — op til 150 km fra Aarhus
+                Hele Øst- og Midtjylland
               </span>
             </li>
             <li>
@@ -211,7 +210,7 @@ export const OmEske = () => {
             {
               to: '/dj-til-bryllup',
               title: 'DJ til bryllup',
-              desc: 'Brudevals, musik og lys i hele Østjylland.',
+              desc: 'Brudevals, musik og lys som én samlet løsning.',
             },
             {
               to: '/dj-til-firmafest',

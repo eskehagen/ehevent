@@ -1,12 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { ChevronDown } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+
+/** Undermenuen "Fester". Rækkefølgen her er rækkefølgen i menuen. */
+const FESTER = [
+  { to: '/dj-til-bryllup', label: 'Bryllup' },
+  { to: '/dj-til-firmafest', label: 'Firmafest' },
+  { to: '/dj-til-fodselsdag', label: 'Privatfest' },
+];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [festerOpen, setFesterOpen] = useState(false);
+  const festerRef = useRef<HTMLLIElement>(null);
+  const festerToggleRef = useRef<HTMLButtonElement>(null);
+  // Hvilken slags input der trykkede på knappen: mus, touch eller tastatur.
+  const lastPointer = useRef('');
   const location = useLocation();
+  const festerActive = FESTER.some((f) => location.pathname === f.to);
+
+  // Luk "Fester" ved klik udenfor eller Escape. Kun aktiv mens den er åben.
+  useEffect(() => {
+    if (!festerOpen) return;
+    const onPointer = (e: MouseEvent | TouchEvent) => {
+      if (festerRef.current && !festerRef.current.contains(e.target as Node)) setFesterOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setFesterOpen(false);
+      // Stod fokus inde i menuen, sendes det tilbage til knappen — ellers
+      // ville tastaturbrugeren stå på et link, der lige er blevet skjult.
+      if (festerRef.current?.contains(document.activeElement)) festerToggleRef.current?.focus();
+    };
+    document.addEventListener('mousedown', onPointer);
+    document.addEventListener('touchstart', onPointer);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onPointer);
+      document.removeEventListener('touchstart', onPointer);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [festerOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +80,7 @@ export const Navbar = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     closeMenu();
+    setFesterOpen(false);
   }, [location.pathname]);
 
   return (
@@ -69,11 +107,55 @@ export const Navbar = () => {
         </Link>
         <ul className="nav-links">
           <li><Link to="/" onClick={handleHomeClick}>Forside</Link></li>
-          <li><Link to="/dj-til-bryllup">Bryllup</Link></li>
-          <li><Link to="/dj-til-firmafest">Firmafest</Link></li>
-          <li><Link to="/dj-til-fodselsdag">Fødselsdag</Link></li>
-          <li><Link to="/special-effekter">Effekter</Link></li>
+          {/* Dropdown: åbner ved hover med mus og ved klik/tryk/Enter. Linkene
+              står altid i HTML'en (skjult med CSS), så crawlere kan følge dem. */}
+          {/* Hover styres i JS og ikke med CSS :hover. Så kan et klik på et
+              underpunkt lukke menuen, selvom musen stadig står over den —
+              med CSS-hover blev den hængende åben efter navigationen. */}
+          <li
+            ref={festerRef}
+            className={`nav-dropdown ${festerOpen ? 'open' : ''}`}
+            onPointerEnter={(e) => {
+              if (e.pointerType === 'mouse') setFesterOpen(true);
+            }}
+            onPointerLeave={(e) => {
+              if (e.pointerType === 'mouse') setFesterOpen(false);
+            }}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) setFesterOpen(false);
+            }}
+          >
+            <button
+              ref={festerToggleRef}
+              type="button"
+              className={`nav-dropdown-toggle ${festerActive ? 'active' : ''}`}
+              aria-expanded={festerOpen}
+              aria-controls="menu-fester"
+              onPointerDown={(e) => {
+                lastPointer.current = e.pointerType;
+              }}
+              onClick={() => {
+                // Med mus er menuen allerede åbnet af hover — et klik skal ikke
+                // lukke den igen. Touch og tastatur skifter mellem åben og lukket.
+                const viaMouse = lastPointer.current === 'mouse';
+                lastPointer.current = '';
+                setFesterOpen((o) => (viaMouse ? true : !o));
+              }}
+            >
+              Fester
+              <ChevronDown size={14} strokeWidth={2} aria-hidden="true" />
+            </button>
+            <ul id="menu-fester" className="nav-dropdown-menu">
+              {FESTER.map((f) => (
+                <li key={f.to}>
+                  <Link to={f.to}>{f.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </li>
+          <li><Link to="/loesninger">Løsninger</Link></li>
           <li><Link to="/galleri">Galleri</Link></li>
+          <li><Link to="/anmeldelser">Anmeldelser</Link></li>
           <li><Link to="/kontakt">Kontakt</Link></li>
           <li className="nav-toggle-li"><ThemeToggle /></li>
         </ul>
@@ -96,15 +178,17 @@ export const Navbar = () => {
             exit={{ opacity: 0 }}
           >
             <Link to="/" onClick={(event) => { handleHomeClick(event); closeMenu(); }}>Forside</Link>
-            <Link to="/dj-til-bryllup" onClick={closeMenu}>DJ til bryllup</Link>
-            <Link to="/dj-til-firmafest" onClick={closeMenu}>DJ til firmafest</Link>
-            <Link to="/dj-til-fodselsdag" onClick={closeMenu}>DJ til fødselsdag</Link>
-            <Link to="/special-effekter" onClick={closeMenu}>Special effekter</Link>
-            <Link to="/loesninger" onClick={closeMenu}>Lyd, lys og teknik</Link>
+            {/* På mobil er der ingen hover, så "Fester" vises som en gruppe
+                med underpunkterne altid synlige. */}
+            <div className="mobile-menu-group" role="group" aria-labelledby="mobil-fester">
+              <span id="mobil-fester" className="mobile-menu-group-label">Fester</span>
+              {FESTER.map((f) => (
+                <Link key={f.to} to={f.to} onClick={closeMenu}>{f.label}</Link>
+              ))}
+            </div>
+            <Link to="/loesninger" onClick={closeMenu}>Løsninger</Link>
             <Link to="/galleri" onClick={closeMenu}>Galleri</Link>
             <Link to="/anmeldelser" onClick={closeMenu}>Anmeldelser</Link>
-            <Link to="/om-eske" onClick={closeMenu}>Om Eske</Link>
-            <Link to="/faq" onClick={closeMenu}>FAQ</Link>
             <Link to="/kontakt" onClick={closeMenu}>Kontakt</Link>
             <div className="mobile-menu-theme">
               <span className="mobile-menu-theme-label">Tema</span>

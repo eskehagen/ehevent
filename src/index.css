@@ -906,6 +906,11 @@ section {
   transform: scaleX(1);
 }
 
+.service-card[data-ghost]::after {
+  content: attr(data-ghost);
+}
+
+.service-card[data-ghost]::after,
 .service-num {
   position: absolute;
   bottom: -0.5rem;
@@ -920,7 +925,8 @@ section {
   user-select: none;
   transition: opacity 0.4s;
 }
-.service-card:hover .service-num {
+.service-card:hover .service-num,
+.service-card[data-ghost]:hover::after {
   opacity: 0.06;
 }
 
@@ -1443,7 +1449,8 @@ section {
   user-select: none;
   transition: opacity 0.4s;
 }
-.gear-item-link:hover .gear-ghost-num {
+.gear-item-link:hover .gear-ghost-num,
+.gear-item-link:hover .gear-item[data-ghost]::after {
   opacity: 0.06;
 }
 
@@ -2285,41 +2292,6 @@ footer {
   color: var(--gold-ink);
 }
 
-/* ─── Forløb (nummererede trin) ─── */
-.process-steps {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0 0;
-  display: grid;
-  gap: 1.6rem;
-  max-width: 72ch;
-}
-.process-steps li {
-  display: flex;
-  gap: 1.3rem;
-  align-items: flex-start;
-}
-.process-num {
-  font-family: var(--font-head);
-  font-size: 1.5rem;
-  color: var(--gold-ink);
-  line-height: 1;
-  min-width: 2.4rem;
-  padding-top: 0.15rem;
-}
-.process-title {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--cream);
-  margin-bottom: 0.3rem;
-}
-.process-body {
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--muted);
-}
-
 /* ─── FAQ ─── */
 .faq-section {
   background: var(--bg2);
@@ -2550,12 +2522,6 @@ button:focus-visible,
   }
 }
 
-/* Mobilmenuen har flere punkter end før — gør den scrollbar frem for
-   at lade de nederste links falde uden for skærmen. */
-.mobile-menu {
-  overflow-y: auto;
-  padding-block: 5.5rem 2.5rem;
-}
 
 /* ─── Footer med NAP og fuld linkoversigt ─── */
 .footer-top {
@@ -2666,4 +2632,160 @@ button:focus-visible,
   .eh-rise {
     animation: none;
   }
+}
+
+/* ─── Dropdown "Fester" i hovedmenuen ───
+   Knappen skal se ud præcis som de andre menupunkter. Undermenuen skjules
+   med visibility (ikke display:none eller betinget rendering), så linkene
+   altid står i HTML'en til crawlere, men er ude af tab-rækkefølgen og
+   skærmlæserens træ, når den er lukket. */
+.nav-links {
+  align-items: center;
+}
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: inherit;
+  transition: color 0.3s;
+}
+.nav-dropdown-toggle svg {
+  transition: transform 0.25s;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle,
+.nav-dropdown-toggle.active {
+  color: var(--gold-ink);
+}
+.nav-dropdown.open .nav-dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -1.2rem;
+  min-width: 190px;
+  /* Usynlig "bro" mellem knap og panel, så hover ikke slipper undervejs */
+  padding-top: 0.9rem;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 110;
+}
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0.9rem 0 0 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  z-index: -1;
+}
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.nav-dropdown-menu li:first-child a {
+  padding-top: 1rem;
+}
+.nav-dropdown-menu li:last-child a {
+  padding-bottom: 1rem;
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 0.55rem 1.2rem;
+  white-space: nowrap;
+}
+@media (max-width: 1180px) {
+  .nav-dropdown-toggle {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown-menu,
+  .nav-dropdown-toggle svg {
+    transition: none;
+  }
+}
+
+/* ─── Mobilmenu med gruppen "Fester" ───
+   `safe center` centrerer, når der er plads, men starter fra toppen, når
+   menuen er højere end skærmen. Almindelig `center` ville skubbe de øverste
+   punkter op over kanten, hvor de ikke kan scrolles frem. */
+.mobile-menu {
+  overflow-y: auto;
+  justify-content: safe center;
+  gap: 1.6rem;
+  padding-block: 5.5rem 2.5rem;
+}
+.mobile-menu a {
+  font-size: 2.1rem;
+}
+.mobile-menu-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+.mobile-menu-group-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  font-weight: 500;
+}
+.mobile-menu-group a {
+  font-size: 1.6rem;
+}
+
+/* ─── FAQ-side: kategorier og genveje ─── */
+.faq-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2.2rem;
+}
+.faq-toc a {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.25s, color 0.25s;
+}
+.faq-toc a:hover {
+  border-color: var(--gold);
+  color: var(--gold-ink);
+}
+.faq-category {
+  /* Plads til den faste menu, når man hopper til en kategori */
+  scroll-margin-top: 7rem;
+}
+.faq-category + .faq-category {
+  margin-top: 5rem;
+}
+.faq-category .faq-list {
+  margin-top: 1.5rem;
 }

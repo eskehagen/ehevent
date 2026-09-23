@@ -8,14 +8,8 @@
  */
 
 import { BUSINESS, ID, SITE_URL } from './site';
-import type { FaqItem } from './faqs';
-import {
-  FAQ_BRYLLUP,
-  FAQ_EFFEKTER,
-  FAQ_FIRMAFEST,
-  FAQ_FODSELSDAG,
-  FAQ_GENEREL,
-} from './faqs';
+import type { FaqItem } from '../data/faq';
+import { allFaqItems } from '../data/faq';
 import { REVIEWS } from '../data/reviews';
 
 /** Sidst redigeret indhold. Opdateres når siderne ændres væsentligt. */
@@ -49,24 +43,23 @@ const OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
 export const PAGES: PageSeo[] = [
   {
     path: '/',
-    title: 'DJ og eventlys i Aarhus og Østjylland | Eske Hagen Events',
+    title: 'DJ og eventlys i Aarhus | Eske Hagen Events',
     description:
-      'DJ med 22+ års erfaring i Aarhus. Musik, lys og special effekter til bryllup, firmafest og fødselsdag i hele Østjylland. Få et uforpligtende tilbud.',
+      'DJ fra Aarhus med 22+ års erfaring. Musik, lys og special effekter til bryllup, firmafest og privatfest i hele Øst- og Midtjylland. Få et tilbud.',
     sitemapPriority: 1.0,
     changefreq: 'monthly',
   },
   {
     path: '/dj-til-bryllup',
-    title: 'DJ til bryllup i Aarhus og Østjylland | Eske Hagen Events',
+    title: 'DJ til bryllup i Aarhus | Eske Hagen Events',
     description:
-      'Bryllups-DJ fra Aarhus med 22+ års erfaring. Lyd, lys og special effekter til brudevals og fest i hele Østjylland. Planlægningsmøde altid inkluderet.',
+      'Bryllups-DJ fra Aarhus med 22+ års erfaring. Lyd, lys og special effekter til brudevals og fest i hele Øst- og Midtjylland. Planlægningsmøde inkluderet.',
     breadcrumb: 'DJ til bryllup',
-    faqs: FAQ_BRYLLUP,
     service: {
       serviceType: 'DJ til bryllup',
       name: 'DJ til bryllup',
       description:
-        'Bryllups-DJ med lyd, lys og special effekter som én samlet løsning. Personligt planlægningsmøde, brudevals og fest til sidste gæst.',
+        'Bryllups-DJ med lyd, lys og special effekter som én samlet løsning. Personligt planlægningsmøde og brudevals planlagt på forhånd.',
     },
     sitemapPriority: 0.9,
     changefreq: 'monthly',
@@ -75,14 +68,13 @@ export const PAGES: PageSeo[] = [
     path: '/dj-til-firmafest',
     title: 'DJ til firmafest og julefrokost i Aarhus | Eske Hagen Events',
     description:
-      'DJ til firmafest, julefrokost og sommerfest i Aarhus og Østjylland. Lyd, lys og effekter som én løsning. Faktura til virksomheder, CVR 46389344.',
+      'DJ til firmafest, julefrokost og sommerfest i hele Øst- og Midtjylland. Lyd, lys og effekter som én samlet løsning, med faktura til virksomheden.',
     breadcrumb: 'DJ til firmafest',
-    faqs: FAQ_FIRMAFEST,
     service: {
       serviceType: 'DJ til firmafest',
       name: 'DJ til firmafest og julefrokost',
       description:
-        'DJ til firmafest, julefrokost, sommerfest og jubilæum. Lyd og lys tilpasset lokalet, fakturering til virksomheder.',
+        'DJ til firmafest, julefrokost, sommerfest og jubilæum. Lyd og lys tilpasset lokalet og faktura til virksomheden.',
     },
     sitemapPriority: 0.9,
     changefreq: 'monthly',
@@ -91,59 +83,51 @@ export const PAGES: PageSeo[] = [
     path: '/dj-til-fodselsdag',
     title: 'DJ til fødselsdag og privatfest i Aarhus | Eske Hagen Events',
     description:
-      'DJ til runde fødselsdage, jubilæer og privatfester i Aarhus og Østjylland. Musik der samler alle aldre, plus lys og konfetti. Få et tilbud i dag.',
-    breadcrumb: 'DJ til fødselsdag',
-    faqs: FAQ_FODSELSDAG,
+      'DJ til runde fødselsdage, jubilæer og privatfester i hele Øst- og Midtjylland. Musik der samler alle aldre, plus lys og konfetti. Få et tilbud i dag.',
+    breadcrumb: 'DJ til fødselsdag og privatfest',
     service: {
       serviceType: 'DJ til fødselsdag',
       name: 'DJ til fødselsdag og privatfest',
       description:
-        'DJ til runde fødselsdage, jubilæer, konfirmationer og studentergilder. Musik der holder alle aldre samlet på dansegulvet.',
+        'DJ til runde fødselsdage, jubilæer, studentergilder og havefester. Musik der holder alle aldre samlet på dansegulvet.',
     },
     sitemapPriority: 0.9,
     changefreq: 'monthly',
   },
   {
-    path: '/special-effekter',
-    title: 'Cold spark, konfetti og eventlys | Eske Hagen Events',
-    description:
-      'Special effekter til bryllup og fest i Aarhus: cold spark, konfetti, CO2, røg, sæbebobler, sne og skum. Rådgivning, opsætning og afvikling samlet.',
-    breadcrumb: 'Special effekter',
-    faqs: FAQ_EFFEKTER,
-    service: {
-      serviceType: 'Special effekter til events',
-      name: 'Special effekter og eventlys',
-      description:
-        'Cold spark, konfetti, CO2, røg, sæbebobler, sne, skum, knæklys og holi powder til bryllupper og fester, leveret med opsætning og afvikling.',
-    },
-    sitemapPriority: 0.9,
-    changefreq: 'monthly',
-  },
-  {
+    // Én samlet side for lyd, lys og special effekter. Den tidligere
+    // /special-effekter er flettet ind her, så emnet kun har én URL.
     path: '/loesninger',
-    title: 'Løsninger: lyd, lys og teknik | Eske Hagen Events',
+    title: 'Lyd, lys og special effekter til fest | Eske Hagen Events',
     description:
-      'Se de tekniske løsninger fra Eske Hagen Events: professionelt lydanlæg, lysopsætning og special effekter til bryllup, firmafest og event i Aarhus.',
+      'Lyd, lys og special effekter til bryllup og fest i Øst- og Midtjylland: cold spark, konfetti, CO2, røg, sæbebobler, sne og skum. Med rådgivning.',
     breadcrumb: 'Løsninger',
-    sitemapPriority: 0.8,
+    service: {
+      serviceType: 'Lyd, lys og special effekter til events',
+      name: 'Lyd, lys og special effekter',
+      description:
+        'Professionelt lyd- og lysanlæg tilpasset lokalet samt cold spark, konfetti, CO2, røg, sæbebobler, sne, skum, knæklys og holi powder til bryllupper og fester.',
+    },
+    sitemapPriority: 0.9,
     changefreq: 'monthly',
   },
   {
     path: '/om-eske',
     title: 'Om Eske Hagen – DJ og eventspecialist i Aarhus',
     description:
-      'Eske Hagen Sinding er DJ og eventspecialist i Aarhus med over 22 års erfaring — fra mobildiskotek over faste spillesteder til events i hele Østjylland.',
+      'Eske Hagen Sinding er DJ og eventspecialist i Aarhus med over 22 års erfaring — fra mobildiskotek over faste spillesteder til events i Øst- og Midtjylland.',
     breadcrumb: 'Om Eske',
     sitemapPriority: 0.8,
     changefreq: 'yearly',
   },
   {
+    // Den eneste side med FAQ. Alle spørgsmål ligger i src/data/faq.ts.
     path: '/faq',
     title: 'Ofte stillede spørgsmål om booking af DJ | Eske Hagen Events',
     description:
-      'Svar på de spørgsmål jeg oftest får: pris, booking, betaling, aflysning, dækningsområde og hvad I selv skal sørge for til jeres fest i Østjylland.',
+      'Svar på de mest stillede spørgsmål om booking, betaling, aflysning, musik, lyd og lys samt special effekter som cold spark og konfetti — samlet ét sted.',
     breadcrumb: 'FAQ',
-    faqs: FAQ_GENEREL,
+    faqs: allFaqItems(),
     sitemapPriority: 0.8,
     changefreq: 'monthly',
   },
@@ -151,7 +135,7 @@ export const PAGES: PageSeo[] = [
     path: '/galleri',
     title: 'Galleri: billeder fra events | Eske Hagen Events',
     description:
-      'Billeder fra tidligere events: bryllupper, firmafester, koncerter og privatfester med DJ, lysopsætning og special effekter i Aarhus og Østjylland.',
+      'Billeder fra tidligere events: bryllupper, firmafester, koncerter og privatfester med DJ, lysopsætning og special effekter i Øst- og Midtjylland.',
     breadcrumb: 'Galleri',
     sitemapPriority: 0.7,
     changefreq: 'monthly',
@@ -160,7 +144,7 @@ export const PAGES: PageSeo[] = [
     path: '/anmeldelser',
     title: 'Anmeldelser fra brudepar og kunder | Eske Hagen Events',
     description:
-      'Læs anmeldelser fra brudepar og kunder, der har haft Eske Hagen Events som DJ til bryllup, fødselsdag og fest i Aarhus og resten af Østjylland.',
+      'Læs anmeldelser fra brudepar og kunder, der har haft Eske Hagen Events som DJ til bryllup, fødselsdag og firmafest i hele Øst- og Midtjylland.',
     breadcrumb: 'Anmeldelser',
     sitemapPriority: 0.8,
     changefreq: 'monthly',
@@ -169,7 +153,7 @@ export const PAGES: PageSeo[] = [
     path: '/kontakt',
     title: 'Book DJ i Aarhus – kontakt og tilbud | Eske Hagen Events',
     description:
-      'Book DJ til bryllup, firmafest eller fødselsdag i Aarhus. Send dato, sted og ønsker, så vender jeg tilbage med et uforpligtende tilbud på dit event.',
+      'Book DJ til bryllup, firmafest eller privatfest i Øst- og Midtjylland. Send dato, sted og ønsker, så vender jeg tilbage med et uforpligtende tilbud.',
     breadcrumb: 'Kontakt',
     sitemapPriority: 0.9,
     changefreq: 'monthly',
@@ -195,7 +179,7 @@ export const PAGES: PageSeo[] = [
   {
     path: '/404',
     title: 'Siden blev ikke fundet | Eske Hagen Events',
-    description: 'Siden findes ikke. Find i stedet DJ til bryllup, firmafest eller fødselsdag hos Eske Hagen Events i Aarhus.',
+    description: 'Siden findes ikke. Find i stedet DJ til bryllup, firmafest eller privatfest hos Eske Hagen Events i Aarhus.',
     noindex: true,
   },
 ];
@@ -215,6 +199,15 @@ export const canonicalFor = (path: string): string =>
 
 type Json = Record<string, unknown>;
 
+/**
+ * Dækningsområdet: hele Øst- og Midtjylland. Bevidst som regioner og ikke
+ * som en liste af byer eller en kilometerradius.
+ */
+const AREA_SERVED = [
+  { '@type': 'AdministrativeArea', name: 'Region Midtjylland' },
+  { '@type': 'Place', name: 'Østjylland' },
+];
+
 /** LocalBusiness + Person + WebSite. Identisk på alle sider, samme @id'er. */
 const globalNodes = (): Json[] => [
   {
@@ -225,7 +218,7 @@ const globalNodes = (): Json[] => [
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/images/eh-logo-512.png`,
     image: OG_IMAGE,
-    description: `DJ og eventspecialist i Aarhus med over ${BUSINESS.yearsExperience} års erfaring. Musik, lys og special effekter til bryllupper, firmafester og private fester i Østjylland.`,
+    description: `DJ og eventspecialist i Aarhus med over ${BUSINESS.yearsExperience} års erfaring. Musik, lys og special effekter til bryllupper, firmafester og private fester i ${BUSINESS.coverage}.`,
     telephone: BUSINESS.phoneHref,
     email: BUSINESS.email,
     vatID: `DK${BUSINESS.cvr}`,
@@ -242,18 +235,7 @@ const globalNodes = (): Json[] => [
       latitude: BUSINESS.latitude,
       longitude: BUSINESS.longitude,
     },
-    areaServed: [
-      {
-        '@type': 'GeoCircle',
-        geoMidpoint: {
-          '@type': 'GeoCoordinates',
-          latitude: BUSINESS.latitude,
-          longitude: BUSINESS.longitude,
-        },
-        geoRadius: String(BUSINESS.serviceRadiusMeters),
-      },
-      ...BUSINESS.areaCities.map((name) => ({ '@type': 'City', name })),
-    ],
+    areaServed: AREA_SERVED,
     knowsAbout: [
       'DJ',
       'Bryllup',
@@ -365,7 +347,7 @@ export const buildJsonLd = (page: PageSeo): Json => {
       name: page.service.name,
       description: page.service.description,
       provider: { '@id': ID.business },
-      areaServed: BUSINESS.areaCities.map((name) => ({ '@type': 'City', name })),
+      areaServed: AREA_SERVED,
       // Ingen offers/priceSpecification: der findes ingen offentlig pris.
     });
   }

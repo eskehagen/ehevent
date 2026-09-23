@@ -63,7 +63,7 @@ export const Footer = () => {
           <address className="footer-nap">
             <strong>{BUSINESS.name}</strong>
             <span>
-              {BUSINESS.city}, {BUSINESS.region} — DJ i hele Østjylland
+              {BUSINESS.city} — DJ i hele {BUSINESS.coverage}
             </span>
             <a href={`tel:${BUSINESS.phoneHref}`}>
               <Phone size={15} aria-hidden="true" />
@@ -86,9 +86,8 @@ export const Footer = () => {
             <ul>
               <li><Link to="/dj-til-bryllup">DJ til bryllup</Link></li>
               <li><Link to="/dj-til-firmafest">DJ til firmafest</Link></li>
-              <li><Link to="/dj-til-fodselsdag">DJ til fødselsdag</Link></li>
-              <li><Link to="/special-effekter">Special effekter</Link></li>
-              <li><Link to="/loesninger">Lyd, lys og teknik</Link></li>
+              <li><Link to="/dj-til-fodselsdag">DJ til privatfest</Link></li>
+              <li><Link to="/loesninger">Løsninger</Link></li>
             </ul>
           </div>
           <div className="footer-col">

@@ -1,10 +1,8 @@
 /**
  * Katalog over special effekter.
  *
- * Flyttet hertil fra Solutions.tsx, så både /special-effekter (det fulde
- * katalog) og /loesninger (kort omtale + link) kan læse fra samme kilde
- * uden at sige det samme to steder i HTML'en — duplikeret brødtekst på to
- * URL'er er præcis det Google straffer.
+ * Vises på /loesninger. Ligger i sin egen fil, så teksterne kan rettes
+ * uden at røre sidens opbygning.
  *
  * Teksterne er uændrede fra den oprindelige side.
  */

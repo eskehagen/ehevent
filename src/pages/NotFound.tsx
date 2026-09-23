@@ -40,10 +40,10 @@ export const NotFound = () => {
 
         <RelatedLinks
           links={[
-            { to: '/dj-til-bryllup', title: 'DJ til bryllup', desc: 'Bryllupper i Aarhus og Østjylland.' },
+            { to: '/dj-til-bryllup', title: 'DJ til bryllup', desc: 'Bryllupper i hele Øst- og Midtjylland.' },
             { to: '/dj-til-firmafest', title: 'DJ til firmafest', desc: 'Firmafest, julefrokost og sommerfest.' },
-            { to: '/dj-til-fodselsdag', title: 'DJ til fødselsdag', desc: 'Runde fødselsdage og privatfester.' },
-            { to: '/special-effekter', title: 'Special effekter', desc: 'Cold spark, konfetti og eventlys.' },
+            { to: '/dj-til-fodselsdag', title: 'DJ til privatfest', desc: 'Runde fødselsdage og andre private fester.' },
+            { to: '/loesninger', title: 'Løsninger', desc: 'Lyd, lys og special effekter.' },
             { to: '/galleri', title: 'Galleri', desc: 'Billeder fra tidligere events.' },
             { to: '/kontakt', title: 'Kontakt', desc: 'Send en forespørgsel og få et tilbud.' },
           ]}

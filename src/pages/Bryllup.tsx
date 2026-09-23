@@ -2,12 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { AnswerFirst, ProcessSteps } from '../components/AnswerFirst';
+import { AnswerFirst } from '../components/AnswerFirst';
 import { ContactCta } from '../components/ContactCta';
-import { FaqSection } from '../components/FaqSection';
 import { PageReviews } from '../components/PageReviews';
 import { RelatedLinks } from '../components/RelatedLinks';
-import { FAQ_BRYLLUP } from '../seo/faqs';
 import { useSEO } from '../hooks/useSEO';
 
 export const Bryllup = () => {
@@ -20,15 +18,15 @@ export const Bryllup = () => {
 
         <div className="section-label">Bryllup</div>
         <h1 className="page-title">
-          DJ til bryllup i Aarhus og <em>Østjylland</em>
+          DJ til bryllup i Øst- og <em>Midtjylland</em>
         </h1>
 
         <AnswerFirst>
           Eske Hagen Events er en DJ fra Aarhus med over 22 års erfaring, der spiller til
-          bryllupper i hele Østjylland og leverer musik, lys og special effekter som én
-          samlet løsning. Der indgår altid et personligt planlægningsmøde, hvor vi
-          gennemgår brudevals, musikønsker og aftenens forløb, så I kan koncentrere jer
-          om jeres gæster i stedet for om teknikken.
+          bryllupper i hele Øst- og Midtjylland og leverer musik, lys og special effekter som én
+          samlet løsning. Der indgår altid et personligt planlægningsmøde, hvor vi gennemgår
+          brudevals, musikønsker og aftenens forløb, så I kan koncentrere jer om jeres gæster i
+          stedet for om teknikken.
         </AnswerFirst>
 
         <ContactCta variant="inline" />
@@ -41,9 +39,9 @@ export const Bryllup = () => {
           </h2>
           <div className="prose">
             <p>
-              Jeg kommer som én leverandør med det hele. I skal ikke koordinere mellem en
-              DJ, en lysmand og en effektleverandør, der først mødes på dagen — alt er
-              planlagt og afstemt på forhånd.
+              Jeg kommer som én leverandør med det hele. I skal ikke koordinere mellem en DJ, en
+              lysmand og en effektleverandør, der først mødes på dagen — alt er planlagt og
+              afstemt på forhånd.
             </p>
           </div>
           <ul className="service-list" style={{ maxWidth: '68ch' }}>
@@ -60,62 +58,28 @@ export const Bryllup = () => {
       <section style={{ paddingTop: 0 }}>
         <Reveal>
           <h2 className="subsection-title">
-            Fra forespørgsel til <em>fest</em>
-          </h2>
-          <ProcessSteps
-            steps={[
-              {
-                title: 'I skriver eller ringer',
-                body: 'Send dato, sted og hvad I forestiller jer. Jeg svarer hurtigst muligt og siger ærligt til, hvis datoen allerede er optaget.',
-              },
-              {
-                title: 'Uforpligtende snak',
-                body: 'Vi tager en snak om aftenens forløb, jeres gæster og hvilket lys og hvilke effekter der giver mening i netop jeres lokale.',
-              },
-              {
-                title: 'I får et tilbud',
-                body: 'Tilbuddet er samlet og konkret, og det er gyldigt i 14 dage. Datoen er reserveret, når I har accepteret skriftligt og depositum er modtaget.',
-              },
-              {
-                title: 'Planlægningsmødet',
-                body: 'Inden bryllupsdagen gennemgår vi brudevals, musikønsker, tidsplan og en eventuel "spil ikke"-liste. Ønsker og spillelister skal være meldt ind senest 14 dage før.',
-              },
-              {
-                title: 'Selve dagen',
-                body: 'Jeg stiller op i god tid, lydtjekker, og sørger for at taler kan høres tydeligt under middagen. Derefter overtager dansegulvet.',
-              },
-            ]}
-          />
-        </Reveal>
-      </section>
-
-      <section style={{ paddingTop: 0 }}>
-        <Reveal>
-          <h2 className="subsection-title">
             Brudevalsen og <em>special effekter</em>
           </h2>
           <div className="prose">
             <p>
-              Brudevalsen er aftenens mest fotograferede øjeblik, og den tåler at blive
-              sat i scene. Den mest brugte effekt er en{' '}
-              <strong>cold spark-maskine</strong>: den sender kolde gnister op i luften som
-              en stor stjernekaster, men uden ild, røg, lugt eller høje brag — og uden
-              brandfare. Derfor kan den bruges indendørs, også i lokaler hvor rigtigt
+              Brudevalsen er et af aftenens store øjeblikke, og den tåler at blive sat i scene. En
+              oplagt effekt er en <strong>cold spark-maskine</strong>: den sender kolde gnister op
+              i luften som en stor stjernekaster, men uden ild, røg, lugt eller høje brag — og
+              uden brandfare. Derfor kan den bruges indendørs, også i lokaler hvor rigtigt
               fyrværkeri aldrig ville komme på tale.
             </p>
             <p>
-              <strong>Konfetti</strong> bruges typisk til brudeparrets indgang eller til at
-              åbne dansegulvet. Alle konfettirør er BAM-testede, brandhæmmende og udviklet
-              til professionel brug, og konfettien fås blandt andet som biologisk
-              nedbrydelig biofetti, hvis stedet har krav til oprydning.{' '}
-              <strong>Sæbebobler</strong> er et blødere alternativ, der fungerer godt på
-              den røde løber eller hen over dansegulvet under selve valsen.
+              <strong>Konfetti</strong> passer til brudeparrets indgang eller til at åbne
+              dansegulvet. Alle konfettirør er BAM-testede, brandhæmmende og udviklet til
+              professionel brug, og konfettien fås blandt andet som biologisk nedbrydelig
+              biofetti, hvis stedet har krav til oprydning. <strong>Sæbebobler</strong> er et
+              blødere alternativ, der fungerer godt på den røde løber eller hen over dansegulvet
+              under selve valsen.
             </p>
             <p>
-              Effekterne leveres i samarbejde med Showgear.dk. I skal ikke selv bestille
-              noget — jeg rådgiver om hvad der kan lade sig gøre i jeres lokale, og står
-              for opsætning og afvikling.{' '}
-              <Link to="/special-effekter">Se alle special effekter</Link>.
+              Effekterne leveres i samarbejde med Showgear.dk. I skal ikke selv bestille noget —
+              jeg rådgiver om, hvad der kan lade sig gøre i jeres lokale.{' '}
+              <Link to="/loesninger">Se alle løsninger og special effekter</Link>.
             </p>
           </div>
         </Reveal>
@@ -128,42 +92,20 @@ export const Bryllup = () => {
           </h2>
           <div className="prose">
             <p>
-              Et bryllup er det sværeste sted at spille, fordi gæstelisten er bredest.
-              Bedsteforældre, kollegaer, studiekammerater og børn skal alle kunne være i
-              samme rum hele aftenen. Opgaven er derfor ikke at spille en bestemt genre,
-              men at læse rummet løbende og skifte retning, før dansegulvet tømmes.
+              Til et bryllup er gæstelisten bred. Bedsteforældre, kollegaer, studiekammerater og
+              børn skal alle kunne være i samme rum hele aftenen. Opgaven er derfor ikke at
+              spille en bestemt genre, men at læse rummet løbende og skifte retning, før
+              dansegulvet tømmes.
             </p>
             <p>
-              Med over 22 års erfaring — fra årene med mobildiskotek til fast DJ på
-              etablerede spillesteder i Aarhus og Randers — er det netop den del, der er
-              blevet rutine. Målet er, at generationer mødes på dansegulvet, og at musikken
-              binder selskabet sammen frem for at dele det op.
+              Med over 22 års erfaring — fra årene med mobildiskotek til fast DJ på etablerede
+              spillesteder i Aarhus og Randers — er det netop den del, der er blevet rutine.
+              Målet er, at generationer mødes på dansegulvet, og at musikken binder selskabet
+              sammen frem for at dele det op.
             </p>
             <p>
-              Lyd er heller ikke bare volumen. Anlægget er valgt, så taler kan høres
-              tydeligt under middagen, og så dansegulvet har det rigtige tryk, uden at det
-              bliver ubehageligt at stå tæt på.
-            </p>
-          </div>
-        </Reveal>
-      </section>
-
-      <section style={{ paddingTop: 0 }}>
-        <Reveal>
-          <h2 className="subsection-title">
-            Hvor jeg spiller <em>bryllupper</em>
-          </h2>
-          <div className="prose">
-            <p>
-              Jeg har base i Aarhus og kører op til 150 km derfra. Det dækker hele
-              Østjylland, blandt andet Skanderborg, Silkeborg, Randers, Horsens og Hadsten.
-              Ligger jeres bryllupslokation længere væk, er I velkomne til at spørge
-              alligevel.
-            </p>
-            <p>
-              Jeg har blandt andet spillet til bryllupsfester i Glassalen hos PARK 13 i
-              Aarhus samt på Restaurant Anker og Restaurant Martino.{' '}
-              <Link to="/galleri">Se billeder fra tidligere events</Link>.
+              Lyd er heller ikke bare volumen. Anlægget er valgt, så taler kan høres tydeligt, og
+              så dansegulvet har det rigtige tryk, uden at det bliver ubehageligt at stå tæt på.
             </p>
           </div>
         </Reveal>
@@ -171,35 +113,33 @@ export const Bryllup = () => {
 
       <PageReviews match={/bryllup/i} title="Brudepar der har haft mig med" />
 
-      <FaqSection items={FAQ_BRYLLUP} title="Spørgsmål om DJ til bryllup" id="faq-bryllup" />
-
       <section style={{ paddingTop: '5rem' }}>
         <ContactCta
           heading="Skal jeg spille til jeres bryllup?"
-          text="Send dato og sted, så vender jeg tilbage med et uforpligtende tilbud. Er datoen optaget, siger jeg det med det samme."
+          text="Send dato og sted, så vender jeg tilbage med et uforpligtende tilbud."
         />
 
         <RelatedLinks
           links={[
             {
-              to: '/special-effekter',
-              title: 'Special effekter',
-              desc: 'Cold spark, konfetti, sæbebobler og røg til brudevals og dansegulv.',
+              to: '/loesninger',
+              title: 'Løsninger',
+              desc: 'Lyd, lys og special effekter som cold spark, konfetti og sæbebobler.',
             },
             {
-              to: '/loesninger',
-              title: 'Lyd, lys og teknik',
-              desc: 'Hvilket udstyr der kommer med, og hvordan det tilpasses lokalet.',
+              to: '/galleri',
+              title: 'Galleri',
+              desc: 'Billeder fra bryllupper og fester.',
             },
             {
               to: '/om-eske',
               title: 'Om Eske',
-              desc: '22+ års erfaring som DJ — baggrund, dækningsområde og kontakt.',
+              desc: '22+ års erfaring som DJ — baggrund og kontakt.',
             },
             {
               to: '/faq',
               title: 'Ofte stillede spørgsmål',
-              desc: 'Booking, betaling, aflysning og hvad I selv skal sørge for.',
+              desc: 'Booking, betaling, musik og special effekter.',
             },
           ]}
         />

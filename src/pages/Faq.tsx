@@ -1,15 +1,18 @@
 import React from 'react';
-import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { AnswerFirst } from '../components/AnswerFirst';
 import { ContactCta } from '../components/ContactCta';
-import { FaqSection } from '../components/FaqSection';
+import { FaqCategory } from '../components/FaqCategory';
 import { RelatedLinks } from '../components/RelatedLinks';
-import { FAQ_BRYLLUP, FAQ_EFFEKTER, FAQ_FIRMAFEST, FAQ_GENEREL } from '../seo/faqs';
+import { FAQ } from '../data/faq';
 import { CONTENT_UPDATED } from '../seo/pages';
 import { formatDanishMonthYear } from '../seo/site';
 import { useSEO } from '../hooks/useSEO';
 
+/**
+ * Den samlede FAQ. Alle spørgsmål ligger i src/data/faq.ts og udvides dér —
+ * siden, indholdsfortegnelsen og de strukturerede data følger automatisk med.
+ */
 export const Faq = () => {
   useSEO('/faq');
 
@@ -24,84 +27,37 @@ export const Faq = () => {
         </h1>
 
         <AnswerFirst>
-          Her er svar på det, jeg oftest bliver spurgt om: hvad det koster, hvordan man
-          booker, hvordan betaling og aflysning fungerer, hvor langt jeg kører, og hvad I
-          selv skal sørge for. Står svaret ikke her, så ring på +45 50 93 59 52 — så tager
-          vi det over telefonen.
+          Her er svar på de spørgsmål, jeg oftest får: hvordan man booker, hvordan betaling og
+          aflysning fungerer, hvordan musikken planlægges, hvad I selv skal sørge for, og hvordan
+          special effekter som cold spark og konfetti fungerer. Står svaret ikke her, så ring på
+          +45 50 93 59 52, så tager vi det over telefonen.
         </AnswerFirst>
 
         <ContactCta variant="inline" />
 
-        <p className="updated-stamp">
-          Senest opdateret: {formatDanishMonthYear(CONTENT_UPDATED)}
-        </p>
+        {/* Genveje til kategorierne. Siden bliver lang, efterhånden som der
+            kommer flere spørgsmål til. */}
+        <nav className="faq-toc" aria-label="Kategorier">
+          {FAQ.map((c) => (
+            <a key={c.id} href={`#${c.id}`}>
+              {c.title}
+            </a>
+          ))}
+        </nav>
+
+        <p className="updated-stamp">Senest opdateret: {formatDanishMonthYear(CONTENT_UPDATED)}</p>
       </section>
 
-      <FaqSection items={FAQ_GENEREL} title="Booking, betaling og praktik" id="faq-generel" />
-
-      {/* Gentagelserne herunder er bevidste: en side skal kunne stå alene for den,
-          der lander direkte på /faq fra en søgning. FAQPage-JSON-LD'en for denne
-          side indeholder kun FAQ_GENEREL, så de samme spørgsmål ikke markeres op
-          to gange på tværs af sitet. */}
-      <section style={{ paddingTop: '5rem', paddingBottom: 0 }}>
-        <Reveal>
-          <div className="section-label">Bryllup</div>
-          <h2 className="subsection-title">
-            Spørgsmål om <em>bryllup</em>
-          </h2>
-        </Reveal>
-        <dl className="faq-list">
-          {FAQ_BRYLLUP.slice(0, 3).map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)} className="faq-item">
-              <dt className="faq-q">
-                <h3>{item.q}</h3>
-              </dt>
-              <dd className="faq-a">{item.a}</dd>
-            </Reveal>
-          ))}
-        </dl>
+      <section className="faq-section">
+        {FAQ.map((c) => (
+          <FaqCategory key={c.id} category={c} />
+        ))}
       </section>
 
-      <section style={{ paddingTop: '4rem', paddingBottom: 0 }}>
-        <Reveal>
-          <div className="section-label">Firmafest</div>
-          <h2 className="subsection-title">
-            Spørgsmål om <em>firmafest</em>
-          </h2>
-        </Reveal>
-        <dl className="faq-list">
-          {FAQ_FIRMAFEST.slice(0, 2).map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)} className="faq-item">
-              <dt className="faq-q">
-                <h3>{item.q}</h3>
-              </dt>
-              <dd className="faq-a">{item.a}</dd>
-            </Reveal>
-          ))}
-        </dl>
-      </section>
-
-      <section style={{ paddingTop: '4rem' }}>
-        <Reveal>
-          <div className="section-label">Special effekter</div>
-          <h2 className="subsection-title">
-            Spørgsmål om <em>special effekter</em>
-          </h2>
-        </Reveal>
-        <dl className="faq-list">
-          {FAQ_EFFEKTER.slice(0, 2).map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.06, 0.2)} className="faq-item">
-              <dt className="faq-q">
-                <h3>{item.q}</h3>
-              </dt>
-              <dd className="faq-a">{item.a}</dd>
-            </Reveal>
-          ))}
-        </dl>
-
+      <section style={{ paddingTop: '2rem' }}>
         <ContactCta
           heading="Fandt du ikke svaret?"
-          text="Ring, skriv eller send en forespørgsel — så vender jeg tilbage hurtigst muligt."
+          text="Ring, skriv eller send en forespørgsel, så vender jeg tilbage hurtigst muligt."
         />
 
         <RelatedLinks
@@ -109,7 +65,7 @@ export const Faq = () => {
             {
               to: '/dj-til-bryllup',
               title: 'DJ til bryllup',
-              desc: 'Forløb, hvad der er inkluderet og brudevals med cold spark.',
+              desc: 'Hvad der er inkluderet, og brudevals med cold spark.',
             },
             {
               to: '/dj-til-firmafest',
@@ -117,14 +73,14 @@ export const Faq = () => {
               desc: 'Julefrokost, sommerfest og faktura til virksomheden.',
             },
             {
-              to: '/special-effekter',
-              title: 'Special effekter',
-              desc: 'Cold spark, konfetti, røg, bobler, sne og skum.',
+              to: '/loesninger',
+              title: 'Løsninger',
+              desc: 'Lyd, lys og special effekter som cold spark, konfetti og røg.',
             },
             {
               to: '/handelsbetingelser',
               title: 'Handelsbetingelser',
-              desc: 'De fulde vilkår for tilbud, betaling og aflysning.',
+              desc: 'De fulde vilkår for booking, betaling og aflysning.',
             },
           ]}
         />

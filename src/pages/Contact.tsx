@@ -152,10 +152,9 @@ export const Contact = () => {
             Sammen tager vi en uforpligtende snak, så vi kan skræddersy den helt rigtige løsning eller tilbud til dig. <br /> 
             Jeg ser frem til at høre fra dig og vender tilbage hurtigst muligt.</p>
             <p className="answer-first" style={{ margin: '0 auto', textAlign: 'left', maxWidth: '62ch' }}>
-              Eske Hagen Events dækker Aarhus, Skanderborg, Silkeborg, Randers, Horsens,
-              Hadsten og resten af Østjylland inden for 150 km fra Aarhus. Du får et
-              uforpligtende tilbud på dit event — tilbuddet er gyldigt i 14 dage, og
-              datoen er først reserveret ved skriftlig accept.
+              Eske Hagen Events dækker hele Øst- og Midtjylland. Du får et uforpligtende
+              tilbud på dit event, og datoen er først reserveret, når du har accepteret
+              tilbuddet skriftligt.
             </p>
           </Reveal>
 

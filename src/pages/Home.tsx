@@ -78,7 +78,7 @@ export const Home = () => {
           </svg>
           <h1 className="hero-name text-center mt-6 eh-rise" style={{ animationDelay: '0.4s' }}>
             Eske Hagen<br /><em>Events</em>
-            <span className="hero-h1-sub">DJ og eventlys i Aarhus og Østjylland</span>
+            <span className="hero-h1-sub">DJ og eventlys i Øst- og Midtjylland</span>
           </h1>
         </div>
       </section>
@@ -149,7 +149,7 @@ export const Home = () => {
             Hvad jeg spiller <em>til</em>
           </h2>
           <p className="contact-sub" style={{ textAlign: 'left', maxWidth: '68ch', marginTop: '1.5rem' }}>
-            Jeg spiller til alle typer fester i Aarhus og resten af Østjylland, med
+            Jeg spiller til alle typer fester i hele Øst- og Midtjylland, med
             speciale i bryllupper, firmafester og voksenfester. Lyd, lys og special
             effekter kommer som én samlet løsning.
           </p>
@@ -162,29 +162,29 @@ export const Home = () => {
                 to: '/dj-til-bryllup',
                 label: 'Bryllup',
                 title: 'DJ til bryllup',
-                desc: 'Brudevals, middag og fest til sidste gæst. Personligt planlægningsmøde altid inkluderet, og cold spark eller konfetti hvis dagen skal sættes i scene.',
+                desc: 'Brudevals og fest med lyd og lys som én løsning. Personligt planlægningsmøde altid inkluderet, og cold spark eller konfetti hvis dagen skal sættes i scene.',
                 cta: 'Læs mere om DJ til bryllup',
               },
               {
                 to: '/dj-til-firmafest',
                 label: 'Firmafest',
                 title: 'DJ til firmafest og julefrokost',
-                desc: 'Julefrokost, sommerfest, jubilæum og reception. Lyd der bærer både taler og dansegulv, og faktura til virksomheden på CVR 46389344.',
+                desc: 'Julefrokost, sommerfest og jubilæum. Lyd der bærer både taler og dansegulv, og faktura til virksomheden.',
                 cta: 'Læs mere om DJ til firmafest',
               },
               {
                 to: '/dj-til-fodselsdag',
                 label: 'Privatfest',
                 title: 'DJ til fødselsdag og privatfest',
-                desc: 'Runde fødselsdage, jubilæer, konfirmationer og havefester. Musik der holder både børnebørn og jævnaldrende på dansegulvet.',
-                cta: 'Læs mere om DJ til fødselsdag',
+                desc: 'Runde fødselsdage, jubilæer og havefester. Musik der holder både børnebørn og jævnaldrende på dansegulvet.',
+                cta: 'Læs mere om DJ til privatfest',
               },
               {
-                to: '/special-effekter',
-                label: 'Effekter',
-                title: 'Special effekter og eventlys',
-                desc: 'Cold spark, konfetti, CO2, røg, sæbebobler, sne og skum — med rådgivning, opsætning og afvikling i samarbejde med Showgear.dk.',
-                cta: 'Se alle special effekter',
+                to: '/loesninger',
+                label: 'Løsninger',
+                title: 'Lyd, lys og special effekter',
+                desc: 'Professionelt lyd- og lysanlæg plus cold spark, konfetti, CO2, røg, sæbebobler, sne og skum i samarbejde med Showgear.dk.',
+                cta: 'Se alle løsninger',
               },
             ].map((item, i) => (
               <Reveal key={item.to} delay={Math.min(i * 0.08, 0.3)}>
@@ -300,7 +300,7 @@ export const Home = () => {
           <Reveal delay={0.1}>
             <a href="https://showgear.dk/" target="_blank" rel="noopener noreferrer" className="partner-card">
               <div className="partner-logo partner-logo-showgear">
-                <img src="/images/showgear-logo.jpg" alt="ShowGear – leverandør af special effekter" width={2824} height={1644} loading="lazy" decoding="async" />
+                <img src="/images/showgear-logo.jpg" alt="ShowGear – leverandør af special effekter" width={1600} height={931} loading="lazy" decoding="async" />
               </div>
               <div className="partner-details">
                 <div className="partner-name">ShowGear</div>
@@ -312,7 +312,7 @@ export const Home = () => {
           <Reveal delay={0.2}>
             <a href="https://www.park13.dk/" target="_blank" rel="noopener noreferrer" className="partner-card">
               <div className="partner-logo partner-logo-park13">
-                <img src="/images/park13-logo.png" alt="PARK 13 – Den Japanske Have, eventlokation i Aarhus" width={1080} height={1080} loading="lazy" decoding="async" />
+                <img src="/images/park13-logo.png" alt="PARK 13 – Den Japanske Have, eventlokation i Aarhus" width={916} height={478} loading="lazy" decoding="async" />
               </div>
               <div className="partner-details">
                 <div className="partner-name">PARK 13 - Den Japanske Have</div>

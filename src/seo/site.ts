@@ -23,16 +23,18 @@ export const BUSINESS = {
   phoneDisplay: '+45 50 93 59 52',
   email: 'eheventsdk@gmail.com',
 
+  /** Hvor virksomheden har base. */
   city: 'Aarhus',
   region: 'Region Midtjylland',
   country: 'DK',
   latitude: 56.1629,
   longitude: 10.2039,
-  /** Radius i meter. Svarer til de 150 km der allerede stod i den gamle JSON-LD. */
-  serviceRadiusMeters: 150000,
 
-  /** Nævnes i tekst på alle ydelsessider, så dækningsområdet er entydigt. */
-  areaCities: ['Aarhus', 'Skanderborg', 'Silkeborg', 'Randers', 'Horsens', 'Hadsten'],
+  /**
+   * Dækningsområdet, sådan som det skal stå i tekst. Bevidst uden lister
+   * over enkelte byer og uden en kilometergrænse.
+   */
+  coverage: 'Øst- og Midtjylland',
 
   yearsExperience: 22,
 
@@ -48,13 +50,6 @@ export const ID = {
   person: `${SITE_URL}/#eske`,
   website: `${SITE_URL}/#website`,
 } as const;
-
-/** "Aarhus, Skanderborg, Silkeborg, Randers, Horsens og Hadsten" */
-export const areaServedSentence = (): string => {
-  const c = [...BUSINESS.areaCities];
-  const last = c.pop();
-  return `${c.join(', ')} og ${last}`;
-};
 
 /** Måned + år på dansk, fx "september 2026". Bruges til "Senest opdateret". */
 export const formatDanishMonthYear = (iso: string): string => {
