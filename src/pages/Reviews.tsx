@@ -4,8 +4,9 @@ import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useSEO } from '../hooks/useSEO';
 import { REVIEWS } from '../data/reviews';
+import { BUSINESS } from '../seo/site';
 
-const GOOGLE_REVIEW_URL = 'https://share.google/jyONMkaHh6qCOPWP2';
+const GOOGLE_REVIEW_URL = BUSINESS.googleReview;
 
 const Stars = ({ rating }: { rating: number }) => (
   <div className="review-card-stars">

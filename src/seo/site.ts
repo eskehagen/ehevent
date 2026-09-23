@@ -52,8 +52,13 @@ export const BUSINESS = {
 
   instagram: 'https://www.instagram.com/ehevents.dk/',
   instagramHandle: '@ehevents.dk',
-  /** Google Business Profile — lå i src/data/reviews.ts og Reviews.tsx. */
-  google: 'https://share.google/jyONMkaHh6qCOPWP2',
+  /**
+   * Google-virksomhedsprofilen for EH Events. Profil-linket bruges i
+   * JSON-LD (sameAs), så Google og AI-søgning kan koble hjemmesiden til
+   * profilen. Anmeldelseslinket åbner direkte formularen til en anmeldelse.
+   */
+  google: 'https://g.page/r/CTseoZuHvrwPEBM',
+  googleReview: 'https://g.page/r/CTseoZuHvrwPEBM/review',
 } as const;
 
 /** Faste @id'er, så alle sider peger på præcis samme entitet i JSON-LD. */
