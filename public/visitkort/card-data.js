@@ -6,11 +6,11 @@ export const CARD = {
     "lastName": "Hagen",
     "title": "Indehaver",
     "company": "EH Events",
-    "phone": "+45 12 34 56 78",
+    "phone": "+45 50 93 59 52",
     "email": "eskehagen@gmail.com",
     "website": "https://eskehagenevents.dk",
     "linkedin": "https://www.linkedin.com/in/eskehagen",
-    "photo": "assets/profile.svg",
+    "photo": "assets/profile.jpg",
     "tagline": ""
   },
   "site": {
