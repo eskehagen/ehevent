@@ -2789,3 +2789,164 @@ button:focus-visible,
 .faq-category .faq-list {
   margin-top: 1.5rem;
 }
+
+/* ─── Spillesteder (/om-eske) ───
+   To grupper: de steder der spilles på i dag står som kort, de gamle
+   steder som kompakte chips. Forskellen i vægt er hele pointen — det
+   skal kunne aflæses på ét blik hvad der er aktuelt, og hvad der er
+   historik. Kun eksisterende tokens, så begge temaer følger med. */
+.venues {
+  margin-top: 2.5rem;
+  max-width: 1000px;
+}
+.venue-group + .venue-group {
+  margin-top: 3.5rem;
+}
+.venue-group-head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+.venue-group-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  white-space: nowrap;
+}
+.venue-group-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.venue-group-count {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Aktuelle steder */
+.venue-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 1rem;
+}
+.venue-card {
+  position: relative;
+  padding: 1.5rem 1.4rem;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s, transform 0.3s;
+}
+/* Guldstregen løber hen over toppen ved hover — samme accent-sprog som
+   understregningen i .showgear-link, bare vandret. */
+.venue-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+.venue-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.venue-card:hover::before {
+  width: calc(100% + 2px);
+}
+.venue-name {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--cream);
+}
+.venue-city {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.venue-tag {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+/* Tidligere steder */
+.venue-chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+.venue-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.8rem 1.1rem;
+  border: 1px solid var(--line);
+  transition: border-color 0.25s;
+}
+.venue-chip:hover {
+  border-color: var(--gold);
+}
+.venue-chip-name {
+  font-family: var(--font-head);
+  font-size: 1.02rem;
+  line-height: 1.2;
+  color: var(--cream);
+}
+.venue-chip-city {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.venues-note {
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 600px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+  .venue-card {
+    padding: 1.3rem 1.2rem;
+  }
+  .venue-chips {
+    gap: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue-card,
+  .venue-card::before {
+    transition: border-color 0.3s;
+  }
+  .venue-card:hover {
+    transform: none;
+  }
+  .venue-card:hover::before {
+    width: calc(100% + 2px);
+  }
+}

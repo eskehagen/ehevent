@@ -11,6 +11,31 @@ import { formatDanishMonthYear } from '../seo/site';
 import { Picture } from '../components/Picture';
 import { useSEO } from '../hooks/useSEO';
 
+interface Venue {
+  name: string;
+  city: string;
+  /** Sættes kun hvor stedet er mere end en enkeltstående opgave. */
+  tag?: string;
+}
+
+/** Lokationer jeg spiller på i dag — sidens referenceliste. */
+const CURRENT_VENUES: Venue[] = [
+  { name: 'PARK 13 - Den Japanske Have', city: 'Aarhus', tag: 'Fast samarbejde' },
+  { name: 'Restaurant Anker', city: 'Aarhus' },
+  { name: 'Restaurant Martino', city: 'Aarhus' },
+  { name: 'Sløjfen', city: 'Hadsten' },
+  { name: 'Tivoli Friheden', city: 'Aarhus' },
+];
+
+/** Årene med mobildiskotek og faste diskoteksaftener. */
+const PAST_VENUES: Venue[] = [
+  { name: 'Mobildiskotek Black Flash', city: 'Hadsten' },
+  { name: 'Diskotek Goggen', city: 'Hadsten' },
+  { name: 'Diskotek Hr. Nielsen', city: 'Randers' },
+  { name: 'Diskotek Social Club', city: 'Aarhus' },
+  { name: 'Diskotek Supreme', city: 'Øster Hurup' },
+];
+
 /**
  * E-E-A-T-siden: hvem står bag, og hvorfor kan man stole på det.
  *
@@ -176,16 +201,55 @@ export const OmEske = () => {
 
       <section style={{ paddingTop: 0 }}>
         <Reveal>
+          <div className="section-label">Spillesteder</div>
           <h2 className="subsection-title">
             Steder jeg har <em>spillet</em>
           </h2>
           <div className="prose">
             <p>
-              Blandt de steder jeg har haft opgaver: Glassalen og Wellness-huset hos{' '}
-              <strong>PARK 13 – Den Japanske Have</strong> i Aarhus, Restaurant Anker,
-              Restaurant Martino, Sløjfen i Hadsten og Tivoli Friheden i Aarhus — både
-              bryllupper, firmajulefrokoster, koncerter og revyer.{' '}
-              <Link to="/galleri">Se billederne</Link>.
+              Fra mobildiskotek og faste diskoteksaftener til de lokationer, jeg kommer
+              på i dag — både bryllupper, firmajulefrokoster, koncerter og revyer.
+            </p>
+          </div>
+
+          <div className="venues">
+            <div className="venue-group">
+              <div className="venue-group-head">
+                <span className="venue-group-label">Her spiller jeg i dag</span>
+                <span className="venue-group-rule" />
+                <span className="venue-group-count">{CURRENT_VENUES.length} steder</span>
+              </div>
+              <ul className="venue-grid">
+                {CURRENT_VENUES.map((venue) => (
+                  <li key={venue.name} className="venue-card">
+                    <span className="venue-name">{venue.name}</span>
+                    <span className="venue-city">{venue.city}</span>
+                    {venue.tag && <span className="venue-tag">{venue.tag}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="venue-group">
+              <div className="venue-group-head">
+                <span className="venue-group-label">Før i tiden</span>
+                <span className="venue-group-rule" />
+                <span className="venue-group-count">{PAST_VENUES.length} steder</span>
+              </div>
+              <ul className="venue-chips">
+                {PAST_VENUES.map((venue) => (
+                  <li key={venue.name} className="venue-chip">
+                    <span className="venue-chip-name">{venue.name}</span>
+                    <span className="venue-chip-city">{venue.city}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="prose venues-note">
+            <p>
+              <Link to="/galleri">Se billederne fra events</Link>.
             </p>
           </div>
         </Reveal>
