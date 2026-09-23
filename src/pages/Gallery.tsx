@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Reveal } from '../components/Reveal';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { Picture } from '../components/Picture';
 import { useSEO } from '../hooks/useSEO';
 
 // Her definerer du stien til dine egne billeder.
@@ -40,10 +42,7 @@ const GALLERY_IMAGES = [
 });
 
 export const Gallery = () => {
-  useSEO(
-    'Galleri – Eske Hagen Events | DJ Aarhus',
-    'Se billeder fra tidligere events med Eske Hagen Events. DJ og lyssætning til bryllupper, firmafester og private fejringer i Aarhus og omegn.'
-  );
+  useSEO('/galleri');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   // Håndter tastatur (Escape for at lukke, pile for at skifte)
@@ -81,14 +80,18 @@ export const Gallery = () => {
   return (
     <div className="gallery-page pt-32 pb-20 min-h-screen">
       <section id="galleri" className="max-w-7xl mx-auto px-6">
+        <Breadcrumbs current="Galleri" />
         <div className="text-center mb-16">
           <Reveal>
             <div className="section-label justify-center">Galleri</div>
-            <h2 className="section-title">Øjeblikke fra <em>Events</em></h2>
+            <h1 className="page-title" style={{ margin: '0 auto' }}>Øjeblikke fra <em>Events</em></h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-muted max-w-2xl mx-auto mt-6">
-              Gå på opdagelse i billeder fra tidligere events. Alt fra DJ spillejobs til live koncerter. 
+              Billeder fra tidligere events — bryllupper, firmajulefrokoster,
+              studentergilder, koncerter og revyer. Billederne viser de faktiske lyd- og
+              lysopsætninger på steder som PARK 13, Restaurant Anker, Restaurant Martino,
+              Sløjfen og Tivoli Friheden.
               <br />
               Klik på et billede for at se det i fuld størrelse.
             </p>
@@ -104,13 +107,12 @@ export const Gallery = () => {
                 whileHover={{ y: -5 }}
                 onClick={() => setSelectedIndex(i)}
               >
-                <img
+                <Picture
                   src={img.thumb}
                   alt={img.alt}
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
+                  priority={i < 3}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="bg-gold/90 text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">

@@ -3,6 +3,8 @@ import { Mail, Phone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { InstagramLink } from '../components/InstagramLink';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { Picture } from '../components/Picture';
 import { useSEO } from '../hooks/useSEO';
 
 const TimeSelect = ({
@@ -91,10 +93,7 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-KGUiC
 const SECURITY_TOKEN = 'EH-7291-SECURE-634';
 
 export const Contact = () => {
-  useSEO(
-    'Book DJ – Kontakt Eske Hagen Events i Aarhus',
-    'Kontakt Eske Hagen Events for at booke en professionel DJ til dit bryllup, firmafest eller event i Aarhus og omegn. Få et uforpligtende tilbud i dag.'
-  );
+  useSEO('/kontakt');
   const times = Array.from({ length: 48 }, (_, i) => {
     const h = Math.floor(i / 2).toString().padStart(2, '0');
     const m = i % 2 === 0 ? '00' : '30';
@@ -145,12 +144,18 @@ export const Contact = () => {
     <div className="contact-page pt-32 pb-20">
       <section id="kontakt">
         <div className="contact-inner">
+          <Breadcrumbs current="Kontakt" />
           <Reveal>
             <div className="section-label" style={{ justifyContent: 'center' }}>Kontakt</div>
-            <h2 className="contact-title">Lad os skabe<br /><em>noget sammen</em></h2>
+            <h1 className="contact-title">Book DJ til <em>dit event</em></h1>
             <p className="contact-sub">Send mig en besked, mail eller sms med dine ønsker for dit event. <br /> 
             Sammen tager vi en uforpligtende snak, så vi kan skræddersy den helt rigtige løsning eller tilbud til dig. <br /> 
             Jeg ser frem til at høre fra dig og vender tilbage hurtigst muligt.</p>
+            <p className="answer-first" style={{ margin: '0 auto', textAlign: 'left', maxWidth: '62ch' }}>
+              Eske Hagen Events dækker hele Øst- og Midtjylland. Du får et uforpligtende
+              tilbud på dit event, og datoen er først reserveret, når du har accepteret
+              tilbuddet skriftligt.
+            </p>
           </Reveal>
 
           <div className="grid md:grid-cols-2 gap-16 mt-16 text-left">
@@ -164,7 +169,7 @@ export const Contact = () => {
                   </a>
                   <a href="tel:+4550935952" className="contact-link">
                     <Phone size={20} className="text-gold-ink" />
-                    +45 50935952
+                    +45 50 93 59 52
                   </a>
 
                   <div className="contact-follow">
@@ -179,11 +184,11 @@ export const Contact = () => {
                   display: 'inline-block',
                   lineHeight: 0,
                 }}>
-                  <img
-                    src="/images/eske1.jpg"
-                    alt="Eske Hagen"
-                    style={{ display: 'block', width: '100%', maxWidth: '360px' }}
-                  />
+                  <Picture
+                  src="/images/eske1.jpg"
+                  alt="Eske Hagen Sinding, DJ og eventspecialist fra Aarhus"
+                  style={{ display: 'block', width: '100%', maxWidth: '360px', height: 'auto' }}
+                />
                 </div>
               </div>
             </Reveal>

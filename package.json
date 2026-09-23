@@ -5,10 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"vite --port=3000 --host=0.0.0.0\" \"tsx watch server.ts\"",
-    "build": "vite build",
+    "build": "vite build && vite build --config vite.ssr.config.ts && node scripts/prerender.mjs",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "build:client": "vite build",
+    "build:ssr": "vite build --config vite.ssr.config.ts",
+    "prerender": "node scripts/prerender.mjs",
+    "validate": "node scripts/validate.mjs",
+    "images": "python3 scripts/optimize_images.py"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",
