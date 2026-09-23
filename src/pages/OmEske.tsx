@@ -16,6 +16,8 @@ interface Venue {
   city: string;
   /** Sættes kun hvor stedet er mere end en enkeltstående opgave. */
   tag?: string;
+  /** Den åbne plads til sidst — en invitation, ikke en reference. */
+  open?: boolean;
 }
 
 /** Lokationer jeg spiller på i dag — sidens referenceliste. */
@@ -25,6 +27,7 @@ const CURRENT_VENUES: Venue[] = [
   { name: 'Restaurant Martino', city: 'Aarhus' },
   { name: 'Sløjfen', city: 'Hadsten' },
   { name: 'Tivoli Friheden', city: 'Aarhus' },
+  { name: 'Dit events lokation', city: 'Øst- og Midtjylland', open: true },
 ];
 
 /** Årene med mobildiskotek og faste diskoteksaftener. */
@@ -218,11 +221,16 @@ export const OmEske = () => {
               <div className="venue-group-head">
                 <span className="venue-group-label">Her spiller jeg i dag</span>
                 <span className="venue-group-rule" />
-                <span className="venue-group-count">{CURRENT_VENUES.length} steder</span>
+                <span className="venue-group-count">
+                  {CURRENT_VENUES.filter((venue) => !venue.open).length} steder
+                </span>
               </div>
               <ul className="venue-grid">
                 {CURRENT_VENUES.map((venue) => (
-                  <li key={venue.name} className="venue-card">
+                  <li
+                    key={venue.name}
+                    className={venue.open ? 'venue-card venue-card--open' : 'venue-card'}
+                  >
                     <span className="venue-name">{venue.name}</span>
                     <span className="venue-city">{venue.city}</span>
                     {venue.tag && <span className="venue-tag">{venue.tag}</span>}

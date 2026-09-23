@@ -2889,6 +2889,21 @@ button:focus-visible,
   color: var(--gold-ink);
 }
 
+/* Den åbne plads til sidst: stiplet og uden fyld, så den læses som en
+   invitation og ikke som endnu en reference man kan tjekke. */
+.venue-card--open {
+  background: transparent;
+  border-style: dashed;
+  border-color: rgba(var(--accent-rgb), 0.35);
+}
+.venue-card--open .venue-name {
+  color: var(--gold-ink);
+  font-style: italic;
+}
+.venue-card--open:hover {
+  border-style: dashed;
+}
+
 /* Tidligere steder */
 .venue-chips {
   list-style: none;
