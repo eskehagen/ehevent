@@ -16,7 +16,7 @@ export const Privatlivspolitik = () => {
               Privatlivs<em>politik</em>
             </h1>
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem', fontSize: '0.95rem' }}>
-              Senest opdateret: april 2026
+              Senest opdateret: september 2026
             </p>
           </Reveal>
 
@@ -106,9 +106,38 @@ export const Privatlivspolitik = () => {
                 </p>
               </div>
 
+              {/* Tilføjet da Vercel Web Analytics blev slået til. Formuleringerne
+                  følger Vercels egen dokumentation for, hvad tjenesten indsamler:
+                  https://vercel.com/docs/analytics/privacy-policy */}
               <div>
                 <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.4rem', color: 'var(--gold)', marginBottom: '0.75rem' }}>
-                  7. Dine rettigheder
+                  7. Besøgsstatistik og cookies
+                </h3>
+                <p>
+                  Hjemmesiden hostes hos Vercel, som også leverer vores besøgsstatistik
+                  (Vercel Web Analytics). Vi bruger statistikken til at se, hvilke sider der bliver
+                  besøgt, så vi kan forbedre indholdet.
+                </p>
+                <p style={{ marginTop: '0.75rem' }}>
+                  Statistikken bruger ingen cookies. Registreringen af sidevisninger er anonym og
+                  knyttes ikke til dig, din IP-adresse eller andre personlige kendetegn. Et besøg
+                  genkendes i stedet ud fra en midlertidig kode, der beregnes ud fra din forespørgsel
+                  og nulstilles automatisk hvert døgn. Du kan derfor ikke følges fra dag til dag eller
+                  på tværs af andre hjemmesider. Behandlingen sker på grundlag af vores legitime
+                  interesse i at forbedre hjemmesiden (GDPR art. 6(1)(f)).
+                </p>
+                <p style={{ marginTop: '0.75rem' }}>
+                  Hvis du skifter mellem lyst og mørkt tema, gemmes dit valg lokalt i din browser, så
+                  siden husker det næste gang. Oplysningen sendes ikke til os og bruges ikke til andet.
+                </p>
+                <p style={{ marginTop: '0.75rem' }}>
+                  Vi bruger ingen cookies til markedsføring eller sporing.
+                </p>
+              </div>
+
+              <div>
+                <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.4rem', color: 'var(--gold)', marginBottom: '0.75rem' }}>
+                  8. Dine rettigheder
                 </h3>
                 <p>
                   Du har følgende rettigheder i henhold til GDPR:
@@ -129,7 +158,7 @@ export const Privatlivspolitik = () => {
 
               <div>
                 <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.4rem', color: 'var(--gold)', marginBottom: '0.75rem' }}>
-                  8. Klage til Datatilsynet
+                  9. Klage til Datatilsynet
                 </h3>
                 <p>
                   Hvis du er utilfreds med vores behandling af dine personoplysninger, har du ret til at indgive
