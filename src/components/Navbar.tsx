@@ -86,7 +86,7 @@ export const Navbar = () => {
   return (
     <>
       <nav className={`site-nav ${isScrolled ? 'scrolled' : ''}`} aria-label="Hovedmenu">
-        <Link to="/" className="nav-logo" onClick={handleHomeClick}>
+        <Link to="/" className="nav-logo" onClick={handleHomeClick} aria-label="EH Events – til forsiden">
           <svg width="44" height="44" viewBox="0 0 100 100" className="inline-block mr-2 align-middle">
             <defs>
               <radialGradient id="navLogoGradient" cx="50%" cy="50%" r="50%" fx="35%" fy="35%">

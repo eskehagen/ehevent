@@ -61,6 +61,7 @@ export const PageReviews = ({
       </div>
 
       <p className="prose" style={{ marginTop: '2rem' }}>
+        Anmeldelserne er modtaget direkte fra kunderne efter deres event.{' '}
         <Link to="/anmeldelser">Læs alle anmeldelser</Link>
       </p>
     </section>

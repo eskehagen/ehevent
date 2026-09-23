@@ -11,8 +11,16 @@
 export const SITE_URL = 'https://eskehagenevents.dk';
 
 export const BUSINESS = {
-  name: 'Eske Hagen Events',
-  alternateName: 'EH Events',
+  /**
+   * Officielt navn: det står i CVR, på Google-profilen, Instagram og Krak.
+   * Bruges i de strukturerede data, header og footer.
+   */
+  name: 'EH Events',
+  /**
+   * Navnet domænet og forsiden bærer. Står stadig synligt på forsiden og i
+   * brødteksten, og kobles i JSON-LD til hovednavnet som alternateName.
+   */
+  alternateName: 'Eske Hagen Events',
   /** Personen bag. Bruges som Person-entitet i JSON-LD (E-E-A-T). */
   founder: 'Eske Hagen Sinding',
   jobTitle: 'DJ og eventspecialist',
@@ -44,8 +52,13 @@ export const BUSINESS = {
 
   instagram: 'https://www.instagram.com/ehevents.dk/',
   instagramHandle: '@ehevents.dk',
-  /** Google Business Profile — lå i src/data/reviews.ts og Reviews.tsx. */
-  google: 'https://share.google/jyONMkaHh6qCOPWP2',
+  /**
+   * Google-virksomhedsprofilen for EH Events. Profil-linket bruges i
+   * JSON-LD (sameAs), så Google og AI-søgning kan koble hjemmesiden til
+   * profilen. Anmeldelseslinket åbner direkte formularen til en anmeldelse.
+   */
+  google: 'https://g.page/r/CTseoZuHvrwPEBM',
+  googleReview: 'https://g.page/r/CTseoZuHvrwPEBM/review',
 } as const;
 
 /** Faste @id'er, så alle sider peger på præcis samme entitet i JSON-LD. */

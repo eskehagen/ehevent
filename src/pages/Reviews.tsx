@@ -4,8 +4,9 @@ import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useSEO } from '../hooks/useSEO';
 import { REVIEWS } from '../data/reviews';
+import { BUSINESS } from '../seo/site';
 
-const GOOGLE_REVIEW_URL = 'https://share.google/jyONMkaHh6qCOPWP2';
+const GOOGLE_REVIEW_URL = BUSINESS.googleReview;
 
 const Stars = ({ rating }: { rating: number }) => (
   <div className="review-card-stars">
@@ -30,6 +31,7 @@ export const Reviews = () => {
           <Reveal delay={0.2}>
             <p className="text-muted max-w-2xl mx-auto mt-6">
               Herunder kan du læse anmeldelser fra tidligere kunder om deres oplevelse med mig som DJ til deres event.
+              Anmeldelserne har jeg modtaget direkte fra kunderne efter deres event.
             </p>
           </Reveal>
         </div>

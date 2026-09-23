@@ -56,7 +56,7 @@ export const Footer = () => {
               </g>
               <path d="M30 30 A28 28 0 0 1 70 30" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.15" />
             </svg>
-            <span>{BUSINESS.alternateName}</span>
+            <span>{BUSINESS.name}</span>
           </Link>
 
           {/* NAP — samme strenge som i JSON-LD */}

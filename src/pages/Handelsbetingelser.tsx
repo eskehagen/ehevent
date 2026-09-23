@@ -17,7 +17,7 @@ export const Handelsbetingelser = () => {
               Handels<em>betingelser</em>
             </h1>
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem', fontSize: '0.95rem' }}>
-              Senest opdateret: april 2026
+              Senest opdateret: september 2026
             </p>
           </Reveal>
 
@@ -32,7 +32,7 @@ export const Handelsbetingelser = () => {
                   Disse handelsbetingelser gælder for alle aftaler indgået mellem:
                 </p>
                 <p style={{ marginTop: '0.75rem', paddingLeft: '1rem', borderLeft: '2px solid var(--line)' }}>
-                  <strong>Eske Hagen Events</strong><br />
+                  <strong>EH Events</strong><br />
                   Aarhus, Danmark<br />
                   CVR: 46389344<br />
                   E-mail: <a href="mailto:eheventsdk@gmail.com" style={{ color: 'var(--gold)' }}>eheventsdk@gmail.com</a><br />
@@ -53,7 +53,7 @@ export const Handelsbetingelser = () => {
                   medmindre andet er angivet.
                 </p>
                 <p style={{ marginTop: '0.75rem' }}>
-                  Datoen er kun reserveret, når der foreligger en skriftlig bekræftelse fra Eske Hagen Events.
+                  Datoen er kun reserveret, når der foreligger en skriftlig bekræftelse fra EH Events.
                 </p>
               </div>
 
@@ -95,12 +95,12 @@ export const Handelsbetingelser = () => {
 
               <div>
                 <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.4rem', color: 'var(--gold)', marginBottom: '0.75rem' }}>
-                  5. Aflysning — fra Eske Hagen Events
+                  5. Aflysning — fra EH Events
                 </h3>
                 <p>
-                  I det ekstraordinære tilfælde, at Eske Hagen Events er nødsaget til at aflyse en aftale
+                  I det ekstraordinære tilfælde, at EH Events er nødsaget til at aflyse en aftale
                   (fx ved sygdom eller force majeure), vil kunden hurtigst muligt blive orienteret, og alle
-                  indbetalte beløb vil blive refunderet fuldt ud. Eske Hagen Events er ikke ansvarlig for
+                  indbetalte beløb vil blive refunderet fuldt ud. EH Events er ikke ansvarlig for
                   yderligere tab eller udgifter hos kunden som følge af aflysningen.
                 </p>
               </div>
@@ -138,7 +138,7 @@ export const Handelsbetingelser = () => {
                   8. Ansvarsbegrænsning
                 </h3>
                 <p>
-                  Eske Hagen Events er ikke ansvarlig for indirekte tab, driftstab, mistet fortjeneste eller
+                  EH Events er ikke ansvarlig for indirekte tab, driftstab, mistet fortjeneste eller
                   andre følgeskader som følge af ydelsernes levering eller manglende levering.
                   Det samlede erstatningsansvar kan ikke overstige den aftalte pris for den pågældende ydelse.
                 </p>
