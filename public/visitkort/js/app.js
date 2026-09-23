@@ -39,10 +39,6 @@ avatar.src = profile.photo || 'assets/profile.svg';
 avatar.alt = fullName ? `Portræt af ${fullName}` : 'Portræt';
 avatar.addEventListener('error', () => { avatar.src = 'assets/profile.svg'; }, { once: true });
 
-if (CARD.site?.accentColor) {
-  document.documentElement.style.setProperty('--accent', CARD.site.accentColor);
-}
-
 /* ---------- kontaktrækker ---------- */
 
 const ICONS = {
