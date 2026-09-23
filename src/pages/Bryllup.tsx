@@ -54,11 +54,6 @@ export const Bryllup = () => {
             <li>Opsætning, afvikling og nedtagning</li>
             <li>Rådgivning om special effekter til brudevals og dansegulv</li>
           </ul>
-          {/* TODO ESKE: hvor mange timers spilletid indgår som standard, og hvad koster
-              overtid hvis festen trækker ud? Det er et af de hyppigste spørgsmål, og
-              svaret findes ikke i koden, så det er bevidst udeladt frem for gættet. */}
-          {/* TODO ESKE: er kørsel inkluderet inden for de 150 km, eller kommer der
-              transporttillæg? */}
         </Reveal>
       </section>
 

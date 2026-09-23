@@ -10,8 +10,11 @@
  * det er sådan AI-assistenter citerer dem.
  *
  * Alle fakta stammer fra handelsbetingelserne, Solutions-siden og
- * forsideteksten. Hvor et tal mangler, står der en TODO ESKE-kommentar
- * i stedet for et gæt.
+ * forsideteksten.
+ *
+ * Priser og spilletid nævnes bevidst ikke: de oplyses først i et konkret
+ * tilbud ud fra kundens behov. Svarene forklarer i stedet HVAD der påvirker
+ * prisen, så siden stadig kan besvare "hvad koster en DJ" uden at love tal.
  */
 
 export interface FaqItem {
@@ -23,8 +26,6 @@ export interface FaqItem {
 export const FAQ_BRYLLUP: FaqItem[] = [
   {
     q: 'Hvad koster en DJ til bryllup i Aarhus?',
-    // TODO ESKE: hvis du på et tidspunkt vil vise en fra-pris, er det her og i
-    // FAQ_PRIS nedenfor den skal stå. Lige nu er svaret bevidst uden tal.
     a: 'Prisen afhænger af aftenens længde, lokalets størrelse, hvor meget lys der skal til, og om I ønsker special effekter som konfetti eller cold spark. Derfor får I et konkret tilbud ud fra netop jeres bryllup frem for en standardpris. Skriv eller ring med dato og sted, så vender jeg tilbage med et samlet tilbud. Tilbuddet er gyldigt i 14 dage.',
   },
   {

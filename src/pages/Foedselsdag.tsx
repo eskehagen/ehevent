@@ -73,8 +73,6 @@ export const Foedselsdag = () => {
             <li>Opsætning, afvikling og nedtagning</li>
             <li>Rådgivning om konfetti og andre effekter</li>
           </ul>
-          {/* TODO ESKE: hvor mange timers spilletid indgår til en privatfest, og hvad
-              koster overtid, hvis festen trækker ud? */}
           <div className="prose" style={{ marginTop: '1.4rem' }}>
             <p>
               Lokalet behøver ikke være stort. Jeg spiller både i forsamlingshuse, lejede

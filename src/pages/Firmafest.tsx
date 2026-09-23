@@ -48,8 +48,6 @@ export const Firmafest = () => {
           </ul>
           {/* TODO ESKE: kan I tage imod EAN-fakturering til offentlige kunder? Det
               spørger kommuner og regioner altid om, og det står ikke i koden. */}
-          {/* TODO ESKE: hvor mange timers spilletid indgår som standard til en
-              firmafest, og hvad koster overtid? */}
         </Reveal>
       </section>
 
