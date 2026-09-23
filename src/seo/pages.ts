@@ -162,7 +162,7 @@ export const PAGES: PageSeo[] = [
     path: '/handelsbetingelser',
     title: 'Handelsbetingelser | Eske Hagen Events',
     description:
-      'Handelsbetingelser for booking af DJ og eventydelser hos Eske Hagen Events: tilbud, betaling, depositum, aflysning og kundens forpligtelser.',
+      'Handelsbetingelser for booking af DJ, lys og special effekter hos EH Events: tilbud, betaling, depositum, aflysning og kundens forpligtelser.',
     breadcrumb: 'Handelsbetingelser',
     sitemapPriority: 0.3,
     changefreq: 'yearly',
@@ -171,7 +171,7 @@ export const PAGES: PageSeo[] = [
     path: '/privatlivspolitik',
     title: 'Privatlivspolitik | Eske Hagen Events',
     description:
-      'Sådan behandler Eske Hagen Events dine personoplysninger efter GDPR: hvilke data der indsamles, hvor længe de gemmes, og hvilke rettigheder du har.',
+      'Sådan behandler EH Events dine personoplysninger efter GDPR: hvilke data der indsamles, hvor længe de gemmes, og hvilke rettigheder du har som kunde.',
     breadcrumb: 'Privatlivspolitik',
     sitemapPriority: 0.3,
     changefreq: 'yearly',

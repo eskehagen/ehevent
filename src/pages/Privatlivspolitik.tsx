@@ -31,7 +31,7 @@ export const Privatlivspolitik = () => {
                   Den dataansvarlige for behandling af dine personoplysninger er:
                 </p>
                 <p style={{ marginTop: '0.75rem', paddingLeft: '1rem', borderLeft: '2px solid var(--line)' }}>
-                  <strong>Eske Hagen Events</strong><br />
+                  <strong>EH Events</strong><br />
                   Aarhus, Danmark<br />
                   CVR: 46389344<br />
                   E-mail: <a href="mailto:eheventsdk@gmail.com" style={{ color: 'var(--gold)' }}>eheventsdk@gmail.com</a><br />
