@@ -30,7 +30,16 @@ const htmlFiles = [];
   }
 })(DIST);
 
-const pages = htmlFiles.filter((f) => !f.url.includes('google'));
+/*
+ * /visitkort er ikke en side på sitet, men et selvstændigt digitalt
+ * visitkort med sin egen HTML. Det findes ved at scanne en QR-kode eller
+ * holde en telefon mod et NFC-tag — ikke ved at søge — og er markeret
+ * noindex. Kravene herunder handler om hvad en søgemaskine får ud af en
+ * side, så de giver ingen mening for den. Kilden ligger i Visitkort-repoet.
+ */
+const pages = htmlFiles.filter(
+  (f) => !f.url.includes('google') && !f.url.startsWith('/visitkort/'),
+);
 
 const strip = (html) => {
   const body = html.match(/<body>([\s\S]*)<\/body>/)?.[1] ?? '';

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<base href="/visitkort/">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Visitkort</title>
+
+<meta name="description" content="Digitalt visitkort — gem mine kontaktoplysninger direkte i din telefon.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Digitalt visitkort">
+<meta property="og:description" content="Gem mine kontaktoplysninger direkte i din telefon.">
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="card" id="card" aria-busy="true">
+
+  <div class="cover" aria-hidden="true"></div>
+
+  <header class="identity">
+    <img class="avatar" id="avatar" alt="" width="128" height="128" decoding="async">
+    <h1 class="name" id="name">&nbsp;</h1>
+    <p class="role" id="role"></p>
+    <p class="tagline" id="tagline"></p>
+  </header>
+
+  <div class="primary-actions">
+    <a class="btn btn-primary" id="save-contact" href="#" download>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+      <span>Gem i kontakter</span>
+    </a>
+    <button class="btn btn-secondary" id="share-btn" type="button" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13m0-13 4 4m-4-4-4 4"/></svg>
+      <span>Del</span>
+    </button>
+    <button class="btn btn-secondary" id="qr-btn" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z"/></svg>
+      <span>QR-kode</span>
+    </button>
+  </div>
+
+  <nav class="contact-list" id="contact-list" aria-label="Kontaktoplysninger"></nav>
+
+  <p class="hint" id="hint">
+    Tryk på <strong>Gem i kontakter</strong> for at lægge mig i din telefonbog.
+  </p>
+
+  <footer class="foot">
+    <span id="channel-badge" class="badge" hidden></span>
+  </footer>
+</main>
+
+<dialog class="qr-dialog" id="qr-dialog" aria-labelledby="qr-title">
+  <h2 id="qr-title">Scan for at få mit visitkort</h2>
+  <div class="qr-holder" id="qr-holder"></div>
+  <p class="qr-url" id="qr-url"></p>
+  <button class="btn btn-secondary" id="qr-close" type="button">Luk</button>
+</dialog>
+
+<noscript>
+  <p class="noscript">
+    Slå JavaScript til for at se det fulde visitkort —
+    eller <a href="visitkort.vcf">hent kontaktkortet direkte</a>.
+  </p>
+</noscript>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

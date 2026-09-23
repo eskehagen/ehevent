@@ -1,0 +1,14 @@
+Digitalt visitkort — genereret, ret ikke filerne her.
+
+Kilden ligger i Visitkort-repoet. Ret card.json dér og kør
+
+    npm run export
+
+og kopiér denne mappe ind igen.
+
+Eksporteret: 2026-09-23
+
+VIGTIGT: serveren skal sende .vcf-filerne som text/vcard.
+Uden det henter Safari bare filen ned i stedet for at vise
+kontaktarket, og "Gem i kontakter" virker ikke på iPhone.
+På Vercel sættes det i vercel.json — se repoets README.

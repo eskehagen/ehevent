@@ -16,6 +16,12 @@
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=2592000" }
       ]
+    },
+    {
+      "source": "/visitkort/(.*).vcf",
+      "headers": [
+        { "key": "Content-Type", "value": "text/vcard; charset=utf-8" }
+      ]
     }
   ]
 }
