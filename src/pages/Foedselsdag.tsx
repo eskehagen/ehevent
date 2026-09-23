@@ -70,9 +70,8 @@ export const Foedselsdag = () => {
           </ul>
           <div className="prose" style={{ marginTop: '1.4rem' }}>
             <p>
-              Lokalet behøver ikke være stort. Anlægget tilpasses lokalets størrelse, så et mindre
-              rum ikke bliver overdøvet. Der skal blot være plads til opstilling og adgang til 230V
-              strøm.
+              Lokalets størrelse er ikke vigtigt. Anlægget tilpasses altid, så et mindre
+              rum ikke bliver overdøvet, og et stort rum ikke bliver for tomt.
             </p>
           </div>
         </Reveal>
@@ -88,7 +87,7 @@ export const Foedselsdag = () => {
               Et oplagt indslag til en fødselsdag er konfetti, timet til sidste vers af
               fødselsdagssangen eller til at åbne dansegulvet. Alle konfettirør er BAM-testede,
               brandhæmmende og udviklet til professionel brug, og konfettien fås blandt andet som
-              biologisk nedbrydelig biofetti — praktisk, hvis lokalet har krav til oprydning.
+              biologisk nedbrydelig biofetti - praktisk, hvis lokalet har krav til oprydning eller det foregår udendørs.
             </p>
             <p>
               Skal fejringen have et ekstra løft, findes der også cold spark, CO2, sæbebobler, sne

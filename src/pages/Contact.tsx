@@ -147,14 +147,14 @@ export const Contact = () => {
           <Breadcrumbs current="Kontakt" />
           <Reveal>
             <div className="section-label" style={{ justifyContent: 'center' }}>Kontakt</div>
-            <h1 className="contact-title">Book DJ til <em>dit event</em></h1>
+            <h1 className="contact-title">Book EH Events til <em>dit event</em></h1>
             <p className="contact-sub">Send mig en besked, mail eller sms med dine ønsker for dit event. <br /> 
             Sammen tager vi en uforpligtende snak, så vi kan skræddersy den helt rigtige løsning eller tilbud til dig. <br /> 
             Jeg ser frem til at høre fra dig og vender tilbage hurtigst muligt.</p>
             <p className="answer-first" style={{ margin: '0 auto', textAlign: 'left', maxWidth: '62ch' }}>
-              Eske Hagen Events dækker hele Øst- og Midtjylland. Du får et uforpligtende
-              tilbud på dit event, og datoen er først reserveret, når du har accepteret
-              tilbuddet skriftligt.
+              EH Events dækker hele Øst- og Midtjylland. 
+              <br />
+              Har du yderligere spørgsmål - søg svar i <a href="https://eskehagenevents.dk/faq" target="_blank" rel="noopener noreferrer" className="showgear-link">FAQ</a>. 
             </p>
           </Reveal>
 
@@ -196,7 +196,7 @@ export const Contact = () => {
             <Reveal delay={0.3}>
               <div className="contact-form-container">
                 <h3 className="text-2xl font-head mb-3">Send en besked</h3>
-                <p className="text-sm text-muted mb-3">Udfyld de felter du kan på nuværende tidspunkt – det vigtigste er dine kontaktoplysninger samt dato og sted for eventet. Resten finder vi ud af i en personlig samtale.</p>
+                <p className="text-sm text-muted mb-3">Udfyld de felter du kan på nuværende tidspunkt - det vigtigste er dine kontaktoplysninger samt dato og sted for eventet. Resten finder vi ud af i en personlig samtale.</p>
                 <p className="text-sm text-muted mb-8">
                   Ved at sende beskeden accepterer du {' '}
                   <Link to="/privatlivspolitik" className="text-gold-ink hover:underline">privatlivspolitiken</Link>.

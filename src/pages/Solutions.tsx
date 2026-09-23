@@ -33,12 +33,12 @@ export const Solutions = () => {
         </h1>
 
         <AnswerFirst>
-          Eske Hagen Events leverer lyd, lys og special effekter til bryllupper, firmafester og
-          private fester i hele Øst- og Midtjylland. Lyd- og lysanlægget tilpasses altid lokalets
+          EH Events leverer lyd, lys og special effekter alle former for events i hele Øst- og Midtjylland. Lyd- og lysanlægget tilpasses altid lokalets
           størrelse, og special effekter som cold spark, konfetti, CO2, røg, sæbebobler, sne og
-          skum leveres i samarbejde med Showgear.dk. På lysområdet har jeg blandt andet 1½ års
-          erfaring fra lysproducenten Martin Professional. Jeg rådgiver om, hvad der kan lade sig
-          gøre i jeres lokale — I skal kun sørge for plads og 230V strøm.
+          skum leveres i samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a>. 
+          <br /> <br />
+          Jeg har selv 1,5 års erfaring fra lysproducenten Martin Professional's R&D udviklingsafdelingen. Jeg rådgiver om, hvad der kan lade sig
+          gøre i jeres lokale - I skal kun sørge for at komme med ønsker og ideer. 
         </AnswerFirst>
 
         <ContactCta variant="inline" />
@@ -260,13 +260,13 @@ export const Solutions = () => {
             <p>
               Alle konfettirør er BAM-testede, brandhæmmende og udviklet til professionel brug.
               Konfettien fås i papir, metal-look og biologisk nedbrydelig biofetti, så der kan
-              vælges en variant, der passer til stedets regler for oprydning. Skummet er
-              allergivenligt, og holi powder er biologisk nedbrydeligt og sikkert for huden.
+              vælges en variant, der passer til stedets regler for oprydning og miljø. Skummet er
+              allergivenligt, og holi powder er biologisk nedbrydeligt og sikkert for huden og naturen.
             </p>
             <p>
-              Om en given effekt kan bruges, afhænger altid af lokalet — især ventilation og
-              røgalarmer. Derfor rådgiver jeg altid ud fra det konkrete lokale. Kan røg ikke
-              bruges, findes der næsten altid en anden effekt, der giver samme løft.
+              Om en given effekt kan bruges, afhænger altid af lokationen - især ventilation og
+              røgalarmer. Derfor rådgiver jeg altid ud fra den konkrete lokation. Kan røg ikke
+              bruges, findes der næsten altid en anden effekt, der giver samme unikke løft.
             </p>
           </div>
         </Reveal>

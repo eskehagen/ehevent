@@ -53,19 +53,18 @@ export const Firmafest = () => {
           <div className="prose">
             <p>
               <strong>Julefrokosten</strong> er svær at ramme: middagen trækker ud, stemningen
-              svinger, og halvdelen af selskabet kender kun hinanden fra kontoret. Jeg har blandt
-              andet spillet til firmajulefrokoster i Glassalen hos PARK 13. Holder I julefrokost i
-              november eller december, så kontakt mig gerne i god tid.
+              svinger, og halvdelen af selskabet kender kun hinanden fra kontoret. Holder I julefrokost i
+              november eller december, så kontakt mig gerne i god tid for at sikre jeres dato.
             </p>
             <p>
               <strong>Sommerfesten</strong> er ofte mere afslappet og ligger tit udendørs eller i
-              telt. Her fungerer skum og holi powder godt, hvis I vil have et indslag, der også
+              telt. Her fungerer skum og holi powder godt, hvis I vil have et unikt indslag, der også
               involverer gæsterne.
             </p>
             <p>
               <strong>Jubilæer</strong> har typisk et program med taler, hvor teknikken skal kunne
               bære både tale og fest. Lyden er sat op, så en tale kan høres tydeligt i hele
-              lokalet — ikke kun på de forreste rækker.
+              lokalet - ikke kun på de forreste rækker.
             </p>
           </div>
         </Reveal>
@@ -78,10 +77,10 @@ export const Firmafest = () => {
           </h2>
           <div className="prose">
             <p>
-              Til en firmafest er gæstelisten ikke selvvalgt. Aldersspændet går typisk fra elever
-              i tyverne til ledelse i tresserne, og musiksmagen følger med. Den eneste måde at
+              Til en firmafest er gæstelisten ikke selvvalgt. Aldersspændet går typisk fra unge
+              i tyverne til seniorer i tresserne, og musiksmagen følger med. Den eneste måde at
               holde alle på dansegulvet er at læse rummet løbende og skifte retning, <em>før</em>{' '}
-              gulvet tømmes — ikke at køre en forudbestemt liste igennem.
+              gulvet tømmes - ikke at køre en forudbestemt liste igennem.
             </p>
             <p>
               Med over 22 års erfaring fra både mobildiskotek og faste spillesteder i Aarhus og

@@ -88,11 +88,11 @@ export const Gallery = () => {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-muted max-w-2xl mx-auto mt-6">
-              Billeder fra tidligere events — bryllupper, firmajulefrokoster,
-              studentergilder, koncerter og revyer. Billederne viser de faktiske lyd- og
-              lysopsætninger på steder som PARK 13, Restaurant Anker, Restaurant Martino,
-              Sløjfen og Tivoli Friheden.
-              <br />
+              Billeder fra tidligere events - bryllupper, firmafester,
+              studentergilder og koncerter. Billederne viser de faktiske lyd- og
+              lysopsætninger på steder som bl.a. PARK 13, Restaurant Anker, Restaurant Martino,
+              Sløjfen Hadsten og Tivoli Friheden.
+              <br /> <br />
               Klik på et billede for at se det i fuld størrelse.
             </p>
           </Reveal>

@@ -44,27 +44,27 @@ export const FAQ: FaqCategory[] = [
     items: [
       {
         q: 'Hvad koster det at booke en DJ?',
-        a: 'Der er ingen fast pris, fordi to fester sjældent kræver det samme. Prisen afhænger af aftenens længde, lokalets størrelse, lysopsætningen og om I ønsker special effekter som konfetti eller cold spark. Derfor får I et konkret tilbud ud fra netop jeres fest. Skriv eller ring med dato og sted, så vender jeg tilbage.',
+        a: 'Der er ingen fast pris, fordi to fester sjældent er ens. Prisen afhænger af aftenens længde, lokation, udstyr og ønsker om special effekter som konfetti eller effektmaskiner. Derfor får I altid et specificeret tilbud ud fra netop jeres ønsker. Skriv eller ring, så finder vi ud af det sammen.',
       },
       {
         q: 'Hvordan booker jeg?',
-        a: 'Skriv via kontaktformularen, send en mail til eheventsdk@gmail.com eller ring på +45 50 93 59 52 med dato, sted og type fest. Derefter tager vi en uforpligtende snak om jeres ønsker, og I får et tilbud. Datoen er først reserveret, når I har accepteret tilbuddet skriftligt.',
+        a: 'Skriv via kontaktformularen, send en mail eller ring med dato, lokation og type fest. Derefter tager vi en uforpligtende snak om jeres ønsker, og I får et tilbud. Datoen er først reserveret, når I har accepteret tilbuddet skriftligt.',
       },
       {
         q: 'Hvordan foregår betalingen?',
-        a: 'Betalingsbetingelserne aftales individuelt, men følger typisk samme mønster: 25% i depositum ved bookingbekræftelsen og restbeløbet senest 14 dage før festen. Betaling sker via bankoverførsel til kontonummeret på fakturaen.',
+        a: 'Betalingsbetingelserne aftales individuelt, men sker normalt via bankoverførsel.',
       },
       {
         q: 'Kan vi få en faktura som virksomhed?',
-        a: 'Ja. Eske Hagen Events er et registreret dansk firma, og der faktureres til virksomheden. Betaling sker via bankoverførsel til kontonummeret på fakturaen.',
+        a: 'Ja. EH Events er et registreret dansk firma, og der faktureres til virksomheden. Betaling sker via bankoverførsel til kontonummeret på fakturaen.',
       },
       {
         q: 'Hvad sker der, hvis vi bliver nødt til at aflyse?',
-        a: 'Aflysning skal ske skriftligt. Aflyses der mere end 90 dage før festen, tilbageholdes depositummet. Mellem 31 og 90 dage før opkræves 50% af den aftalte pris, og fra 30 dage før opkræves 100%. Ændringer i tid, sted eller varighed aftales skriftligt og kan regulere prisen.',
+        a: 'Aflysning skal ske skriftligt. Aflyses der med under 14 dage før eventet opkræves 50% af den aftalte pris, og fra 7 dage før opkræves 100%. Ændringer i tid, sted eller varighed aftales skriftligt og kan regulere prisen.',
       },
       {
         q: 'Hvad sker der, hvis DJ’en bliver syg?',
-        a: 'I det ekstraordinære tilfælde, at jeg er nødt til at aflyse — for eksempel ved sygdom eller force majeure — bliver I orienteret hurtigst muligt, og alle indbetalte beløb refunderes fuldt ud.',
+        a: 'I det ekstraordinære tilfælde, at jeg er nødt til at aflyse - for eksempel ved sygdom eller force majeure - bliver I orienteret hurtigst muligt, og alle indbetalte beløb refunderes fuldt ud. Vi vil samtidig forsøge at finde en anden DJ, der kan dække jeres event, men dette kan ikke garanteres.',
       },
     ],
   },
@@ -74,19 +74,19 @@ export const FAQ: FaqCategory[] = [
     items: [
       {
         q: 'Holder du et møde med os inden festen?',
-        a: 'Ja. Der indgår altid et personligt planlægningsmøde eller en grundig snak inden festen, hvor vi gennemgår forventninger, forløb og musikønsker. Det bedste resultat opstår i tæt dialog, og så kan I koncentrere jer om jeres gæster på dagen.',
+        a: 'Ja. Jeg gør meget ud af en personlig planlægning. Derfor afholdes altid et personligt møde eller en grundig snak inden festen, hvor vi gennemgår forventninger, forløb og ønsker. Det bedste resultat opstår i tæt dialog, og så kan I koncentrere jer om jeres gæster på dagen.',
       },
       {
         q: 'Kan vi selv vælge musikken og lave en "spil ikke"-liste?',
-        a: 'Ja. På planlægningsmødet gennemgår vi jeres ønsker, jeres gæster og det, I helst vil undgå. Særlige ønsker, spillelister og tekniske krav skal være meldt ind senest 14 dage før festen, så der er tid til at forberede aftenen ordentligt.',
+        a: 'Ja. På planlægningsmødet gennemgår vi jeres ønsker, jeres gæster og det, I helst vil undgå. Særlige ønsker, spillelister og tekniske krav skal være meldt ind senest 7 dage før festen, så der er tid til at forberede aftenen ordentligt.',
       },
       {
         q: 'Hvordan rammer du musikken, når gæsterne er i meget forskellige aldre?',
-        a: 'Ved at læse rummet løbende og skifte retning, før dansegulvet tømmes, i stedet for at køre en fast liste igennem. Målet er, at generationer mødes på dansegulvet, og at musikken binder selskabet sammen frem for at dele det op.',
+        a: 'Ved at læse rummet løbende og skifte retning, før dansegulvet tømmes, i stedet for at køre en fast liste igennem. Målet er, at generationer mødes på dansegulvet, og at musikken binder selskabet sammen frem for at dele det op. Her kommer mine mange års erfaring i spil.',
       },
       {
         q: 'Spiller du også til brudevalsen?',
-        a: 'Ja. Brudevalsen planlægger vi sammen på forhånd, så sang, lys og timing sidder, som I ønsker. Den kan også lyses op med en cold spark-maskine, der sender kolde gnister op i luften som en stor stjernekaster — uden ild, røg eller brandfare, så den kan bruges indendørs.',
+        a: 'Ja. Brudevalsen planlægger vi sammen på forhånd, så sang, lys og timing bliver som I ønsker. Den kan også lyses op med en cold spark-maskine, der sender kolde gnister op i luften som en stor stjernekaster - uden ild, røg eller brandfare.',
       },
     ],
   },
@@ -96,19 +96,19 @@ export const FAQ: FaqCategory[] = [
     items: [
       {
         q: 'Medbringer du selv lyd og lys?',
-        a: 'Ja. Jeg medbringer altid et professionelt lyd- og lysanlæg, som tilpasses lokalets størrelse. Lyden er valgt, så taler kan høres tydeligt, og dansegulvet har det rigtige tryk uden at blive ubehageligt. I skal kun sørge for plads til opstilling og adgang til 230V strøm.',
+        a: 'Ja. Jeg medbringer altid et professionelt lyd- og lysanlæg, som tilpasses lokalets størrelse. Lyden er valgt, så taler kan høres tydeligt, og dansegulvet har det rigtige tryk uden at blive ubehageligt. I skal kun sørge for plads til opstilling og adgang til strøm.',
       },
       {
         q: 'Kan du spille i et mindre lokale eller en privat have?',
-        a: 'Ja. Lyd- og lysanlægget tilpasses altid lokalets størrelse, så et mindre rum ikke bliver overdøvet, og jeg har blandt andet spillet til havefester. Der skal blot være plads til opstilling og adgang til 230V strøm.',
+        a: 'Ja. Lyd- og lysanlægget tilpasses altid lokalets størrelse, så et mindre rum ikke bliver overdøvet, og jeg har blandt andet spillet til havefester. Der skal blot være plads til opstilling og adgang til strøm.',
       },
       {
         q: 'Hvad skal vi selv sørge for?',
-        a: 'I skal sikre tilstrækkelig plads og adgang til opstilling af udstyret, adgang til 230V strømforsyning, og at lokalet har KODA/Gramex-tilladelse, hvis det kræves for arrangementet. Særlige ønsker, spillelister og tekniske krav skal meldes ind senest 14 dage før festen.',
+        a: 'I skal sikre tilstrækkelig plads og adgang til opstilling af udstyret, adgang til 230V strømforsyning. Særlige ønsker, spillelister og tekniske krav skal meldes ind senest 7 dage før festen.',
       },
       {
         q: 'Hvor i landet spiller du?',
-        a: 'Jeg har base i Aarhus og dækker hele Øst- og Midtjylland. Ligger jeres fest længere væk, er I velkomne til at spørge alligevel.',
+        a: 'Jeg har base i Aarhus og dækker hele Øst- og Midtjylland. Ligger jeres fest længere væk, er I velkomne til at kontakte mig alligevel.',
       },
     ],
   },
@@ -118,7 +118,7 @@ export const FAQ: FaqCategory[] = [
     items: [
       {
         q: 'Spiller du til julefrokost og sommerfest?',
-        a: 'Ja. Jeg spiller til julefrokoster, sommerfester og andre firmafester og har blandt andet spillet til firmajulefrokoster i Glassalen hos PARK 13. Holder I julefrokost i november eller december, så kontakt mig gerne i god tid.',
+        a: 'Ja. Jeg spiller til julefrokoster, sommerfester og andre firmaevents. Holder I julefrokost i november eller december, så kontakt mig gerne i god tid.',
       },
       {
         q: 'Spiller du til runde fødselsdage?',
@@ -132,15 +132,15 @@ export const FAQ: FaqCategory[] = [
     items: [
       {
         q: 'Hvad er en gnistmaskine (cold spark), og er den sikker indendørs?',
-        a: 'En cold spark-maskine efterligner effekten af en fyrværkerifontæne, men uden at udlede ild, røg, lugt eller høje brag. I stedet sendes kolde gnister op i luften som en stor stjernekaster, og der er ikke brandfare. Derfor kan den bruges både indendørs og udendørs — for eksempel til brudevalsen.',
+        a: 'En cold spark-maskine efterligner effekten af en fyrværkerifontæne, men uden at udlede ild, røg, lugt eller høje brag. I stedet sendes kolde gnister op i luften som en stor stjernekaster, og der er ikke brandfare. Derfor kan den bruges både indendørs og udendørs - for eksempel til brudevalsen.',
       },
       {
         q: 'Er konfettien sikker og til at rydde op efter?',
-        a: 'Alle konfettirør er BAM-testede, brandhæmmende og udviklet til professionel brug. Konfettien fås i papir, metal-look og biologisk nedbrydelig biofetti, så I kan vælge en variant, der passer til lokalet og til stedets regler for oprydning.',
+        a: 'Alle konfettirør er BAM-testede, brandhæmmende og udviklet til professionel brug. Konfettien fås i papir, metal-look og biologisk nedbrydelig biofetti, så I kan vælge en variant, der passer til lokationen og til stedets regler for oprydning.',
       },
       {
         q: 'Hvilke special effekter kan jeg vælge imellem?',
-        a: 'Konfetti og streamers, cold spark (indendørs fyrværkeri), røgmaskiner og håndholdte CO2-guns, sæbebobler, sne, skum, knæklys og UV-tape samt holi powder. Effekterne leveres i samarbejde med Showgear.dk, som har et af markedets største udvalg.',
+        a: 'Se alle løsninger på FAQ-siden. Effekterne leveres i samarbejde med Showgear.dk, som har et af markedets største udvalg.',
       },
       {
         q: 'Skal jeg selv bestille effekterne?',
@@ -148,7 +148,7 @@ export const FAQ: FaqCategory[] = [
       },
       {
         q: 'Kan man bruge røg og CO2 i alle lokaler?',
-        a: 'Det afhænger af lokalet, blandt andet af ventilation og røgalarmer. Derfor rådgiver jeg altid ud fra det konkrete lokale. Er røg ikke en mulighed, findes der næsten altid en anden effekt, der giver samme løft.',
+        a: 'Det afhænger blandt andet af ventilation, røgalarmer og regler. Derfor rådgiver jeg altid ud fra den konkrete lokation. Er røg ikke en mulighed, findes der næsten altid en anden effekt, der giver samme løft.',
       },
     ],
   },

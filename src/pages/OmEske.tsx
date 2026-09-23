@@ -32,9 +32,9 @@ export const OmEske = () => {
 
         <AnswerFirst>
           Eske Hagen Sinding er DJ og eventspecialist med base i Aarhus og har været DJ siden
-          2004 — over 22 år bag pulten. Han driver EH Events (Eske Hagen Events) og spiller til
+          2004 - over 22 år bag pulten og planlægning af events. Han driver EH Events og spiller til
           bryllupper, firmafester og private fester i hele Øst- og Midtjylland, hvor musik, lys og
-          special effekter leveres som én samlet løsning. Han har desuden arbejdet 1½ år hos
+          special effekter leveres som én samlet løsning. Han har desuden arbejdet 1,5 år hos
           lysproducenten Martin Professional.
         </AnswerFirst>
 
@@ -49,7 +49,7 @@ export const OmEske = () => {
             </h2>
             <div className="prose">
               <p>
-                Jeg hedder Eske Hagen Sinding. Jeg er 35 år og bor i Aarhus sammen med min
+                Jeg hedder Eske Hagen Sinding. Jeg er 36 år og bor i Aarhus sammen med min
                 familie. Musikken har altid været et centralt omdrejningspunkt i mit liv.
               </p>
               <p>
@@ -113,7 +113,7 @@ export const OmEske = () => {
             <li>
               <span className="fact-key">Firma</span>
               <span className="fact-val">
-                {BUSINESS.name} (også kaldet {BUSINESS.alternateName})
+                {BUSINESS.name}
               </span>
             </li>
             <li>
@@ -123,21 +123,21 @@ export const OmEske = () => {
             <li>
               <span className="fact-key">Erfaring</span>
               <span className="fact-val">
-                DJ siden {BUSINESS.djSince} — over {BUSINESS.yearsExperience} år bag pulten
+                DJ siden {BUSINESS.djSince} - over {BUSINESS.yearsExperience} år bag pulten
               </span>
             </li>
             <li>
               <span className="fact-key">Baggrund</span>
               <span className="fact-val">
-                Mobildiskotek, derefter fast DJ på etablerede spillesteder i Aarhus og
-                Randers. Arbejdede {BUSINESS.martinProfessional}. I dag udelukkende events.
+                Mange års mobildiskotek, derefter fast DJ på etablerede spillesteder i Aarhus og
+                Randers. Arbejdede {BUSINESS.martinProfessional}. Laver i dag udelukkende events for private og erhverv.
               </span>
             </li>
             <li>
               <span className="fact-key">Eventtyper</span>
               <span className="fact-val">
-                Bryllupper, firmafester og julefrokoster, runde fødselsdage, jubilæer,
-                studentergilder, havefester, koncerter og revyer
+                Bryllupper, firmafester og julefrokoster, fødselsdage, jubilæer,
+                studentergilder, havefester og koncerter
               </span>
             </li>
             <li>
@@ -156,13 +156,13 @@ export const OmEske = () => {
             <li>
               <span className="fact-key">Samarbejder med</span>
               <span className="fact-val">
-                Showgear.dk (special effekter) og PARK 13 – Den Japanske Have (lokation)
+                Showgear.dk (special effekter) og PARK 13 - Den Japanske Have (lokation)
               </span>
             </li>
             <li>
               <span className="fact-key">Sådan booker du</span>
               <span className="fact-val">
-                Ring på {BUSINESS.phoneDisplay}, skriv til {BUSINESS.email} eller brug{' '}
+                Ring, skriv eller brug{' '}
                 <Link to="/kontakt">kontaktformularen</Link>
               </span>
             </li>

@@ -29,8 +29,7 @@ export const Faq = () => {
         <AnswerFirst>
           Her er svar på de spørgsmål, jeg oftest får: hvordan man booker, hvordan betaling og
           aflysning fungerer, hvordan musikken planlægges, hvad I selv skal sørge for, og hvordan
-          special effekter som cold spark og konfetti fungerer. Står svaret ikke her, så ring på
-          +45 50 93 59 52, så tager vi det over telefonen.
+          special effekter som cold spark og konfetti fungerer. Står svaret ikke her, så send en besked eller ring, så finder vi ud af det sammen.
         </AnswerFirst>
 
         <ContactCta variant="inline" />
