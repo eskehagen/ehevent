@@ -6,7 +6,7 @@
 // `date` er valgfri og vises som fx "Juni 2026".
 //
 // Du kan finde/sammenligne med de rigtige anmeldelser her:
-// https://share.google/jyONMkaHh6qCOPWP2
+// https://g.page/r/CTseoZuHvrwPEBM (anmeldelseslink: .../review)
 
 export interface Review {
   name: string;

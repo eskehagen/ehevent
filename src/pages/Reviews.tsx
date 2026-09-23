@@ -1,10 +1,12 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useSEO } from '../hooks/useSEO';
 import { REVIEWS } from '../data/reviews';
+import { BUSINESS } from '../seo/site';
 
-const GOOGLE_REVIEW_URL = 'https://share.google/jyONMkaHh6qCOPWP2';
+const GOOGLE_REVIEW_URL = BUSINESS.googleReview;
 
 const Stars = ({ rating }: { rating: number }) => (
   <div className="review-card-stars">
@@ -15,22 +17,21 @@ const Stars = ({ rating }: { rating: number }) => (
 );
 
 export const Reviews = () => {
-  useSEO(
-    'Anmeldelser – Eske Hagen Events | DJ Aarhus',
-    'Læs hvad tidligere kunder siger om Eske Hagen Events. Anmeldelser fra bryllupper, firmafester og private events i Aarhus og omegn.'
-  );
+  useSEO('/anmeldelser');
 
   return (
     <div className="reviews-page pt-32 pb-20 min-h-screen">
       <section className="max-w-6xl mx-auto px-6">
+        <Breadcrumbs current="Anmeldelser" />
         <div className="text-center mb-16">
           <Reveal>
             <div className="section-label justify-center">Anmeldelser</div>
-            <h2 className="section-title">Hvad mine kunder<br /><em>siger om mig</em></h2>
+            <h1 className="page-title" style={{ margin: '0 auto' }}>Hvad mine kunder<br /><em>siger om mig</em></h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-muted max-w-2xl mx-auto mt-6">
               Herunder kan du læse anmeldelser fra tidligere kunder om deres oplevelse med mig som DJ til deres event.
+              Anmeldelserne har jeg modtaget direkte fra kunderne efter deres event.
             </p>
           </Reveal>
         </div>

@@ -1,17 +1,23 @@
 @import "tailwindcss";
 
-/* Cormorant Garamond – self-hosted via fontsource */
-@import "@fontsource/cormorant-garamond/300.css";
-@import "@fontsource/cormorant-garamond/400.css";
-@import "@fontsource/cormorant-garamond/600.css";
-@import "@fontsource/cormorant-garamond/300-italic.css";
-@import "@fontsource/cormorant-garamond/400-italic.css";
+/* Cormorant Garamond – self-hosted via fontsource.
+   KUN latin + latin-ext: de fulde filer trak også cyrillic, cyrillic-ext og
+   vietnamesisk med, altså 33 fontfiler i build'et for et dansk site.
+   latin-ext er nødvendig — æ, ø og å ligger dels dér. */
+@import "@fontsource/cormorant-garamond/latin-300.css";
+@import "@fontsource/cormorant-garamond/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-300-italic.css";
+@import "@fontsource/cormorant-garamond/latin-400-italic.css";
+@import "@fontsource/cormorant-garamond/latin-ext-400.css";
+@import "@fontsource/cormorant-garamond/latin-ext-400-italic.css";
 
 /* Outfit – self-hosted via fontsource */
-@import "@fontsource/outfit/200.css";
-@import "@fontsource/outfit/300.css";
-@import "@fontsource/outfit/400.css";
-@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/latin-200.css";
+@import "@fontsource/outfit/latin-300.css";
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+@import "@fontsource/outfit/latin-ext-400.css";
 
 /* Gør `light:` tilgængelig som Tailwind-variant i JSX */
 @custom-variant light ([data-theme="light"] &);
@@ -224,7 +230,7 @@ body {
 }
 
 /* ─── NAV ─── */
-nav.scrolled {
+.site-nav.scrolled {
   background: var(--nav-bg);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
@@ -358,7 +364,7 @@ nav.scrolled {
 
 /* ─── UDSTYR ─── */
 /* ─── NAV ─── */
-nav {
+.site-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -900,6 +906,11 @@ section {
   transform: scaleX(1);
 }
 
+.service-card[data-ghost]::after {
+  content: attr(data-ghost);
+}
+
+.service-card[data-ghost]::after,
 .service-num {
   position: absolute;
   bottom: -0.5rem;
@@ -914,7 +925,8 @@ section {
   user-select: none;
   transition: opacity 0.4s;
 }
-.service-card:hover .service-num {
+.service-card:hover .service-num,
+.service-card[data-ghost]:hover::after {
   opacity: 0.06;
 }
 
@@ -962,7 +974,8 @@ section {
   text-transform: uppercase;
   color: var(--gold-ink);
   margin-bottom: 1.25rem;
-  opacity: 0.8;
+  /* opacity fjernet: den trak den ellers AA-sikre --gold-ink ned på
+     3,79:1 mod hvid i lyst tema og dumpede dermed kontrastkravet. */
 }
 
 .service-divider {
@@ -1386,7 +1399,8 @@ section {
   text-transform: uppercase;
   color: var(--gold-ink);
   margin-bottom: 1.25rem;
-  opacity: 0.8;
+  /* opacity fjernet: den trak den ellers AA-sikre --gold-ink ned på
+     3,79:1 mod hvid i lyst tema og dumpede dermed kontrastkravet. */
 }
 
 .gear-divider {
@@ -1416,6 +1430,11 @@ section {
   line-height: 1.8;
   margin-top: 1rem;
 }
+.gear-item[data-ghost]::after {
+  content: attr(data-ghost);
+}
+
+.gear-item[data-ghost]::after,
 .gear-ghost-num {
   position: absolute;
   bottom: -0.5rem;
@@ -1430,7 +1449,8 @@ section {
   user-select: none;
   transition: opacity 0.4s;
 }
-.gear-item-link:hover .gear-ghost-num {
+.gear-item-link:hover .gear-ghost-num,
+.gear-item-link:hover .gear-item[data-ghost]::after {
   opacity: 0.06;
 }
 
@@ -2169,4 +2189,603 @@ footer {
   .reviews-cta-block {
     padding: 3rem 1.5rem;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SEO-SIDER: brødkrummer, svar-først, forløb, FAQ og CTA
+   Bruger udelukkende de eksisterende tokens (--gold, --gold-ink,
+   --muted, --line, --bg2, --bg3), så lyst og mørkt tema følger med
+   af sig selv og branding er uændret.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─── Brødkrummer ─── */
+.breadcrumbs {
+  margin-bottom: 2.5rem;
+}
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+}
+.breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.breadcrumbs a:hover {
+  color: var(--gold-ink);
+}
+.breadcrumbs [aria-current='page'] {
+  color: var(--gold-ink);
+}
+
+/* ─── Sidehoved på ydelsessider ─── */
+.page-head {
+  padding-top: 9rem;
+  padding-bottom: 0;
+}
+.page-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.3rem, 4.6vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.06;
+  color: var(--cream);
+  max-width: 20ch;
+}
+.page-title em {
+  font-style: italic;
+  color: var(--gold-ink);
+}
+
+/* ─── Svar-først ─── */
+.answer-first {
+  margin-top: 1.8rem;
+  max-width: 68ch;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--cream);
+  border-left: 2px solid var(--gold);
+  padding-left: 1.4rem;
+}
+
+/* ─── Brødtekst på indholdssider ─── */
+.prose {
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.8;
+}
+.prose p + p {
+  margin-top: 1.1rem;
+}
+.prose strong {
+  color: var(--cream);
+  font-weight: 500;
+}
+.prose a {
+  color: var(--gold-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.subsection-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.subsection-title em {
+  font-style: italic;
+  color: var(--gold-ink);
+}
+
+/* ─── FAQ ─── */
+.faq-section {
+  background: var(--bg2);
+}
+.faq-list {
+  margin: 3rem 0 0;
+  display: grid;
+  gap: 0;
+  max-width: 78ch;
+}
+.faq-item {
+  border-top: 1px solid var(--line);
+  padding: 1.8rem 0;
+}
+.faq-list > *:last-child .faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-q {
+  margin: 0 0 0.7rem;
+}
+.faq-q h3 {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--cream);
+}
+.faq-a {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+/* ─── CTA ─── */
+.cta-inline {
+  margin-top: 2.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.4rem 2.2rem;
+}
+.cta-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.8rem;
+}
+.cta-block {
+  margin-top: 5rem;
+  padding: 3rem 2.4rem;
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  text-align: center;
+}
+.cta-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.9rem;
+}
+.cta-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0 auto 2rem;
+}
+.cta-block .cta-contact-links {
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.cta-btn {
+  margin-top: 0.4rem;
+}
+
+/* ─── Interne links mellem ydelsessider ─── */
+.related-links {
+  margin-top: 4.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.related-links h2 {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin-bottom: 1.4rem;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+.related-card {
+  display: block;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.related-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.related-card-title {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+.related-card-desc {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ─── Fakta-blok (/om-eske) — punktform er lettest at citere ─── */
+.fact-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: grid;
+  gap: 0.9rem;
+  max-width: 68ch;
+}
+.fact-list li {
+  display: grid;
+  grid-template-columns: minmax(9rem, 12rem) 1fr;
+  gap: 0.4rem 1.4rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+.fact-key {
+  color: var(--gold-ink);
+  letter-spacing: 0.06em;
+}
+.fact-val {
+  color: var(--muted);
+}
+@media (max-width: 560px) {
+  .fact-list li {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Datostempling ─── */
+.updated-stamp {
+  margin-top: 3rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* ─── Synlig fokusmarkering overalt ───
+   Tidligere fandtes :focus-visible kun tre steder i filen. Tastaturbrugere
+   kunne derfor ikke se hvor de var i navigation, brødkrummer og CTA'er. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ─── Springlink til indhold ─── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 300;
+  padding: 0.8rem 1.4rem;
+  background: var(--gold);
+  color: var(--on-gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ─── Forsidens H1-underlinje ───
+   H1 bar tidligere kun brandnavnet. Søgeordene skulle med, uden at
+   ændre den store visuelle signatur — derfor en lille linje inde i
+   samme h1 frem for en ny overskrift. */
+.hero-h1-sub {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Kort-CTA på forsidens ydelseskort */
+.related-card-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+/* Menuen bærer nu alle ydelser. Afstanden strammes lidt, så de syv punkter
+   stadig kan være på én linje på almindelige laptopskærme. */
+.nav-links {
+  gap: 1.7rem;
+}
+@media (max-width: 1180px) {
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  .nav-links {
+    gap: 1.2rem;
+  }
+}
+
+
+/* ─── Footer med NAP og fuld linkoversigt ─── */
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 2fr;
+  gap: 3rem 4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+  align-items: start;
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+.footer-nap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-style: normal;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.footer-nap strong {
+  color: var(--cream);
+  font-weight: 500;
+}
+.footer-nap a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-nap a:hover {
+  color: var(--gold-ink);
+}
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem;
+}
+.footer-col h2 {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+.footer-col a {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-col a:hover {
+  color: var(--gold-ink);
+}
+.footer-copy {
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+@media (max-width: 860px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Heroens indflyvning ───
+   Lavet i CSS frem for JavaScript. Da siden prerenderes, ville
+   motion-komponenternes initial={{opacity:0}} ende som style="opacity:0"
+   på blandt andet <h1> i den udsendte HTML — altså usynlig tekst i kilden
+   for crawlere uden JavaScript. En CSS-animation kører uafhængigt af JS og
+   efterlader intet inline-opacity i markup'en. */
+@keyframes eh-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.eh-rise {
+  animation: eh-rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eh-rise {
+    animation: none;
+  }
+}
+
+/* ─── Dropdown "Fester" i hovedmenuen ───
+   Knappen skal se ud præcis som de andre menupunkter. Undermenuen skjules
+   med visibility (ikke display:none eller betinget rendering), så linkene
+   altid står i HTML'en til crawlere, men er ude af tab-rækkefølgen og
+   skærmlæserens træ, når den er lukket. */
+.nav-links {
+  align-items: center;
+}
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: inherit;
+  transition: color 0.3s;
+}
+.nav-dropdown-toggle svg {
+  transition: transform 0.25s;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle,
+.nav-dropdown-toggle.active {
+  color: var(--gold-ink);
+}
+.nav-dropdown.open .nav-dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -1.2rem;
+  min-width: 190px;
+  /* Usynlig "bro" mellem knap og panel, så hover ikke slipper undervejs */
+  padding-top: 0.9rem;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 110;
+}
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0.9rem 0 0 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  z-index: -1;
+}
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.nav-dropdown-menu li:first-child a {
+  padding-top: 1rem;
+}
+.nav-dropdown-menu li:last-child a {
+  padding-bottom: 1rem;
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 0.55rem 1.2rem;
+  white-space: nowrap;
+}
+@media (max-width: 1180px) {
+  .nav-dropdown-toggle {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown-menu,
+  .nav-dropdown-toggle svg {
+    transition: none;
+  }
+}
+
+/* ─── Mobilmenu med gruppen "Fester" ───
+   `safe center` centrerer, når der er plads, men starter fra toppen, når
+   menuen er højere end skærmen. Almindelig `center` ville skubbe de øverste
+   punkter op over kanten, hvor de ikke kan scrolles frem. */
+.mobile-menu {
+  overflow-y: auto;
+  justify-content: safe center;
+  gap: 1.6rem;
+  padding-block: 5.5rem 2.5rem;
+}
+.mobile-menu a {
+  font-size: 2.1rem;
+}
+.mobile-menu-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+.mobile-menu-group-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  font-weight: 500;
+}
+.mobile-menu-group a {
+  font-size: 1.6rem;
+}
+
+/* ─── FAQ-side: kategorier og genveje ─── */
+.faq-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2.2rem;
+}
+.faq-toc a {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.25s, color 0.25s;
+}
+.faq-toc a:hover {
+  border-color: var(--gold);
+  color: var(--gold-ink);
+}
+.faq-category {
+  /* Plads til den faste menu, når man hopper til en kategori */
+  scroll-margin-top: 7rem;
+}
+.faq-category + .faq-category {
+  margin-top: 5rem;
+}
+.faq-category .faq-list {
+  margin-top: 1.5rem;
 }

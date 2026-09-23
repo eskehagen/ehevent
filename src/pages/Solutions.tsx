@@ -1,141 +1,83 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Music, Zap, PartyPopper } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { AnswerFirst } from '../components/AnswerFirst';
+import { ContactCta } from '../components/ContactCta';
+import { RelatedLinks } from '../components/RelatedLinks';
 import { GalleryModal } from '../components/GalleryModal';
+import { Picture } from '../components/Picture';
+import { EFFECTS_DATA, type Effect } from '../data/effects';
 import { useSEO } from '../hooks/useSEO';
 
-const EFFECTS_DATA = [
-  { 
-    title: "Konfetti", 
-    description: "Alt fra håndholdte rør med konfetti, streamers eller biofetti - til elektriske rør i maskiner. Fås i mange størrelser, varianter og farver. Alle konfetti rør er BAM testet, brandhæmmende og udviklet til professionelle.",
-    img: "/images/confetti.jpg",
-    gallery: [
-      { src: "/images/confetti.jpg",  caption: "Konfetti-maskiner til alle typer og størrelser events" },
-      { src: "/images/confetti1.jpg", caption: "Konfetti-rør (håndholdt og elektrisk) i mange forskellige farver og typer (papir, bio, metal, streamer)" },
-      { src: "/images/confetti2.jpg", caption: "Metal look konfetti (guld, sølv, bronze) Biologisk nedbrydelig" },
-      { src: "/images/confetti3.jpg", caption: "Mikro-konfetti i mange forskellige farver" },
-      { src: "/images/confetti4.jpg", caption: "Konfetti i bedste kvalitet til dit event" },
-    ]
-  },
-  { 
-    title: "Gnister / indendørs fyrværkeri", 
-    description: "Gnistmaskine (cold spark) der efterligner effekten af fyrværkerifontæner uden at udlede ild, røg, lugt eller høje brag. I stedet sendes kolde gnister op i luften uden brandfare. Kan bruges både inde- og udendørs. Sæt prikken over i'et på brudevalsen eller løbende på dansegulvet.",
-    img: "/images/spark.jpg",
-    gallery: [
-      { src: "/images/spark.jpg", caption: "Sparkular-maskiner til alle typer og størrelser events. Indendørs fyrværkeri uden brandfare." },
-      { src: "/images/spark1.jpg", caption: "Maskinen skyder kolde gnister op i luften, som en kæmpe stjernekaster." },
-      { src: "/images/spark2.jpg", caption: "Dans brudevalsen lyst op af et imponerende indendørs fyrværkeri." },
-    ]
-  },
-  { 
-    title: "Røg og CO2", 
-    description: "Professionelle røgmaskiner der skaber visuelle effekter, samt håndholdt CO2 guns der skyder hvid røg.",
-    img: "/images/smoke.jpg",
-    gallery: [
-      { src: "/images/smoke.jpg", caption: "Professionelle røgmaskiner der fylder dansegulvet med røg og forstærker lyseffekterne." },
-      { src: "/images/co2-1.jpg", caption: "Håndholdt CO2 gun der skyder hvid røg ud. Perfekt til at sætte ekstra gang i på dansegulvet.", },
-      { src: "/images/co2-2.jpg", caption: "Håndholdt CO2 gun der skyder hvid røg ud. Perfekt til at sætte ekstra gang i på dansegulvet.", },
-    ]
-  },
-  { 
-    title: "Sæbebobler", 
-    description: "Professionelle boblemaskiner, der producerer tusindvis af bobler i minuttet. Fyld den røde løber eller dansegulvet med sæbebobler for at få en flot visuel effekt.",
-    img: "/images/bubbles.jpg",
-    gallery: [
-      { src: "/images/bubbles.jpg", caption: "Professionelle sæbebobbel maskiner der sender en strøm af bobler ud over dansegulvet." },
-      { src: "/images/bubbles1.jpg", caption: "Skab en magisk atmosfære med sæbebobler på dansegulvet eller under brudevalsen." },
-    ]
-  },
-  { 
-    title: "Sne", 
-    description: "Skab en vinterlig stemning med kraftige snemaskiner. Få et realistisk snefald af skumbaserede fnug dalende ned over dansegulvet.",
-    img: "/images/snow.jpg",
-    gallery: [
-      { src: "/images/snow.jpg", caption: "Kraftige snemaskiner der skaber en vinterlig stemning." },
-      { src: "/images/snow1.jpg", caption: "Skab en magisk atmosfære med sne på dansegulvet for at skabe en vinterlig stemning." },
-    ]
-  },
-  { 
-    title: "Skum", 
-    description: "Den ultimative feststarter til skumfester. Vores skumkanoner producerer enorme mængder allergivenligt og sikkert skum på kort tid. Perfekt til sommerfester og events.",
-    img: "/images/foam.jpg",
-    gallery: [
-      { src: "/images/foam.jpg", caption: "Professionelle skumkanoner i forskellige størrelser, der producerer enorme mængder allergivenligt og sikkert skum på kort tid." },
-      { src: "/images/foam1.jpg", caption: "Perfekt til sommerfester og events, hvor skum skaber en unik og sjov atmosfære." },
-    ]
-  },
-  { 
-    title: "Knæklys & UV", 
-    description: "Klassiske knæklys i høj kvalitet til fester og events. Fås i mange farver og størrelser – perfekte til at skabe stemning på dansegulvet eller som festligt tilbehør til gæsterne. <br /> Farverigt UV-tape tilføjer ekstra effekt under UV lys.",
-    img: "/images/knaklys.jpg",
-    gallery: [
-      { src: "/images/knaklys.jpg", caption: "Klassiske knæklys i høj kvalitet. Fås i forskellige farver og sammensætninger." },
-      { src: "/images/uvtape.jpg", caption: "Farverigt UV-tape tilføjer ekstra effekt under UV lys." },
-    ]
-  },
-  { 
-    title: "Holi Powder", 
-    description: "Farverigt holi powder. Biologisk nedbrydeligt og sikkert for huden. Brugt til fx det kendte Color Runs event.",
-    img: "/images/holipowder.jpg",
-    gallery: [
-      { src: "/images/holipowder.jpg", caption: "Farverigt holi powder. Biologisk nedbrydeligt og sikkert for huden." },
-      { src: "/images/colorrun.jpg", caption: "Holi powder i aktion til det kendte Color Runs event." },
-      { src: "/images/holipowder2.jpg", caption: "Skab en farverig og festlig atmosfære med holi powder." },
-    ]
-  },
-];
-
+/**
+ * Løsninger: én samlet side for lyd, lys og special effekter.
+ *
+ * Den tidligere /special-effekter er flettet ind her, så emnet kun har én
+ * URL. Adressen /loesninger er bevaret, fordi den allerede er kendt af
+ * Google fra det gamle sitemap.
+ */
 export const Solutions = () => {
-  useSEO(
-    'Løsninger & Effekter – Eske Hagen Events | DJ Aarhus',
-    'Se alle DJ- og eventydelser fra Eske Hagen Events: konfetti, gnistmaskine (cold spark), røg, snø, skærmbobler og professionelt lys til bryllup, firmafest og events i Aarhus.'
-  );
-  const [selectedEffect, setSelectedEffect] = useState<{title: string, gallery: {src: string; caption?: string}[], description: string} | null>(null);
+  useSEO('/loesninger');
+  const [selected, setSelected] = useState<Effect | null>(null);
 
   return (
-    <div className="services-page pt-32 pb-20">
-      <section id="services">
-        <Reveal>
-          <div className="section-label">Løsninger</div>
-          <h2 className="section-title">Teknik, Udstyr &amp; <em>Ekspertise</em></h2>
-          <p className="max-w-2xl mt-6 text-muted">Her kan du læse mere om de tekniske løsninger og udstyrspakker jeg tilbyder. Jeg lægger vægt på høj kvalitet og driftssikkerhed, så jeres event forløber fejlfrit.</p>
-          
-        </Reveal>
+    <div className="service-page">
+      <section className="page-head">
+        <Breadcrumbs current="Løsninger" />
 
-        <div className="services-section-wrap mt-16">
+        <div className="section-label">Løsninger</div>
+        <h1 className="page-title">
+          Lyd, lys og <em>special effekter</em>
+        </h1>
+
+        <AnswerFirst>
+          Eske Hagen Events leverer lyd, lys og special effekter til bryllupper, firmafester og
+          private fester i hele Øst- og Midtjylland. Lyd- og lysanlægget tilpasses altid lokalets
+          størrelse, og special effekter som cold spark, konfetti, CO2, røg, sæbebobler, sne og
+          skum leveres i samarbejde med Showgear.dk. På lysområdet har jeg blandt andet 1½ års
+          erfaring fra lysproducenten Martin Professional. Jeg rådgiver om, hvad der kan lade sig
+          gøre i jeres lokale — I skal kun sørge for plads og 230V strøm.
+        </AnswerFirst>
+
+        <ContactCta variant="inline" />
+      </section>
+
+      <section id="services" style={{ paddingTop: '4rem' }}>
+        <div className="services-section-wrap">
         <div className="services-grid">
           <Reveal delay={0.1}>
-            <div className="service-card">
+            <div className="service-card" data-ghost="01">
               <div className="service-icon-wrap"><Music className="service-icon" /></div>
               <div className="service-eyebrow">01</div>
-              <div className="service-title">DJ &amp; Musik</div>
+              <h2 className="service-title">DJ &amp; Musik</h2>
               <div className="service-divider" />
               <p className="service-desc">Jeg spiller til alle typer fester, med speciale i bryllupper, firma- og voksenfester. Jeg tilpasser altid musikken til stemningen og jeres ønsker. 
               <br /> <br />
               Lyd er ikke bare volumen. Det handler om klarhed og balance. Jeg medbringer altid udstyr fra anerkendte mærker, der sikrer at både taler kan høres tydeligt, og at dansegulvet har det rigtige tryk uden at det bliver ubehageligt.</p>
               <div className="mt-6">
-                <h4 className="text-gold-ink text-sm uppercase tracking-wider mb-3">Hvad er inkluderet:</h4>
+                <p className="text-gold-ink text-sm uppercase tracking-wider mb-3">Hvad er inkluderet:</p>
                 <ul className="service-list">
                   <li>Professionelt lyd- og lysanlæg (tilpasset lokalestørrelse)</li>
                   <li>Musikgenre tilpasset jeres gæster og ønsker</li>
                   <li>Personligt planlægningsmøde før eventet</li>
                 </ul>
               </div>
-              <span className="service-num">01</span>
             </div>
           </Reveal>
 
           <Reveal delay={0.3}>
-            <div className="service-card">
+            <div className="service-card" data-ghost="02">
               <div className="service-icon-wrap"><PartyPopper className="service-icon" /></div>
               <div className="service-eyebrow">02</div>
-              <div className="service-title">Special Effekter</div>
+              <h2 className="service-title">Special Effekter</h2>
               <div className="service-divider" />
               <p className="service-desc">Drømmer du om noget ekstraordinært til dit event. Jeg tilbyder næsten alle former for special effekter og konfetti løsninger.
               <br /> <br />
               I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a> tilbyder jeg markedets bedste og største udvalg af special effekter og maskiner. Alt fra konfetti til indendørs fyrværkeri. Alt sammen til fordelagtige priser. Jeg rådgiver altid om bedste løsninger specifikt til dit event.</p>
               <div className="mt-6">
-                <h4 className="text-gold-ink text-sm uppercase tracking-wider mb-3">I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a>:</h4>
+                <p className="text-gold-ink text-sm uppercase tracking-wider mb-3">I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a>:</p>
                 <ul className="service-list">
                   <li>Konfetti</li>
                   <li>Røg og CO2</li>
@@ -145,21 +87,20 @@ export const Solutions = () => {
                   <li>Rådgivning om teknisk setup</li>
                 </ul>
               </div>
-              <span className="service-num">02</span>
             </div>
           </Reveal>
           
           <Reveal delay={0.2}>
-            <div className="service-card">
+            <div className="service-card" data-ghost="03">
               <div className="service-icon-wrap"><Zap className="service-icon" /></div>
               <div className="service-eyebrow">03</div>
-              <div className="service-title">Lysopsætning</div>
+              <h2 className="service-title">Lysopsætning</h2>
               <div className="service-divider" />
               <p className="service-desc">Professionel lysopsætning og -afvikling der forvandler et hvilket som helst rum. Fra ambient lys til fuldt showlys med bevægende effekter.
               <br /> <br />
               Med mange års erfaring med lyssætning og -design finder jeg altid den bedste og flotteste opsætning for dit event.</p>
               <div className="mt-6">
-                <h4 className="text-gold-ink text-sm uppercase tracking-wider mb-3">Muligheder:</h4>
+                <p className="text-gold-ink text-sm uppercase tracking-wider mb-3">Muligheder:</p>
                 <ul className="service-list">
                   <li>Bevægeligt lys</li>
                   <li>Spotlights</li>
@@ -168,63 +109,198 @@ export const Solutions = () => {
                   <li>Professionel opsætning</li>
                 </ul>
               </div>
-              <span className="service-num">03</span>
             </div>
           </Reveal>
         </div>
         </div>
+      </section>
 
-        <div className="mt-32">
-          <Reveal>
-            <div className="section-label">Ekspertise</div>
-            <h2 className="section-title mb-6">Special <em>Effekter</em></h2>
-            <p className="max-w-3xl text-muted leading-relaxed">
-              Se nærmere på alle de special effekter, som jeg tilbyder til alle typer events. I samarbejde med <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" className="showgear-link">Showgear.dk</a> sikrer jeg topprofessionelt udstyr og et kæmpe udvalg af muligheder. 
-              <br />
-              Alt fra konfetti til indendørs fyrværkeri.
+      <section style={{ paddingTop: 0 }}>
+        <Reveal>
+          <h2 className="subsection-title">
+            Hvad en <em>gnistmaskine</em> er
+          </h2>
+          <div className="prose">
+            <p>
+              Cold spark — også kaldet gnistmaskine eller indendørs fyrværkeri — efterligner
+              effekten af en fyrværkerifontæne, men <strong>uden at udlede ild, røg, lugt eller
+              høje brag</strong>. I stedet sendes kolde gnister op i luften som en kæmpe
+              stjernekaster.
             </p>
-            <div className="mt-8 mb-12 showgear-logo-wrap">
-              <a href="https://www.showgear.dk" target="_blank" rel="noopener noreferrer" style={{ position: 'relative', display: 'block' }}>
-                <div className="showgear-eyebrow">I samarbejde med</div>
-                <img
-                  src="/images/showgear-logo.jpg"
-                  alt="Showgear.dk"
-                  style={{ height: '120px', width: 'auto', display: 'block' }}
-                />
-              </a>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {EFFECTS_DATA.map((effect, i) => (
-                <div key={i}>
-                  <Reveal delay={i * 0.1}>
-                    <div 
-                      className="effect-item-card cursor-pointer group"
-                      onClick={() => setSelectedEffect({ title: effect.title, gallery: effect.gallery, description: effect.description })}
-                    >
-                      <div className="effect-img-wrapper relative">
-                        <img src={effect.img} alt={effect.title} referrerPolicy="no-referrer" />
-                        <div className="absolute inset-0 bg-gold/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="text-white text-xs uppercase tracking-widest font-medium bg-black/40 px-4 py-2 backdrop-blur-sm">Se Galleri</span>
-                        </div>
-                      </div>
-                      <div className="effect-info">
-                        <h4 className="effect-title">{effect.title}</h4>
-                        <p className="text-muted text-sm mt-2 line-clamp-3 group-hover:line-clamp-none transition-all duration-300" dangerouslySetInnerHTML={{ __html: effect.description }} />
-                      </div>
-                    </div>
-                  </Reveal>
+            <p>
+              Fordi der ikke er brandfare, kan den bruges både indendørs og udendørs. Derfor egner
+              den sig godt til brudevalsen: man får det visuelle løft fra fyrværkeri i et lokale,
+              hvor rigtigt fyrværkeri aldrig ville være en mulighed.{' '}
+              <Link to="/dj-til-bryllup">Læs mere om DJ til bryllup</Link>.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      <section style={{ paddingTop: 0 }}>
+        <Reveal>
+          <div className="section-label">Katalog</div>
+          <h2 className="subsection-title">
+            Alle <em>special effekter</em>
+          </h2>
+          <p className="prose">
+            Klik på en effekt for at se billeder fra tidligere events. I samarbejde med{' '}
+            <a
+              href="https://www.showgear.dk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="showgear-link"
+            >
+              Showgear.dk
+            </a>{' '}
+            tilbyder jeg markedets bedste og største udvalg af special effekter og maskiner — alt
+            fra konfetti til indendørs fyrværkeri.
+          </p>
+          <div className="mt-8 mb-4 showgear-logo-wrap">
+            <a
+              href="https://www.showgear.dk"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ position: 'relative', display: 'block' }}
+            >
+              <div className="showgear-eyebrow">I samarbejde med</div>
+              <img
+                src="/images/showgear-logo.jpg"
+                alt="Showgear.dk – leverandør af special effekter"
+                width={1600}
+                height={931}
+                loading="lazy"
+                decoding="async"
+                style={{ height: '120px', width: 'auto', display: 'block' }}
+              />
+            </a>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {EFFECTS_DATA.map((effect, i) => (
+            <Reveal key={effect.title} delay={Math.min(i * 0.07, 0.35)}>
+              <button
+                type="button"
+                className="effect-item-card cursor-pointer group"
+                onClick={() => setSelected(effect)}
+              >
+                <div className="effect-img-wrapper relative">
+                  <Picture
+                    src={effect.img}
+                    alt={effect.alt}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gold/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="text-white text-xs uppercase tracking-widest font-medium bg-black/40 px-4 py-2 backdrop-blur-sm">
+                      Se galleri
+                    </span>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+                <div className="effect-info">
+                  <h3 className="effect-title">{effect.title}</h3>
+                  <p
+                    className="text-muted text-sm mt-2"
+                    dangerouslySetInnerHTML={{ __html: effect.description }}
+                  />
+                </div>
+              </button>
+            </Reveal>
+          ))}
         </div>
 
-        <GalleryModal 
-          isOpen={!!selectedEffect}
-          onClose={() => setSelectedEffect(null)}
-          title={selectedEffect?.title || ''}
-          images={selectedEffect?.gallery || []}
-          description={selectedEffect?.description}
+        <GalleryModal
+          isOpen={!!selected}
+          onClose={() => setSelected(null)}
+          title={selected?.title ?? ''}
+          images={selected?.gallery ?? []}
+          description={selected?.description}
+        />
+      </section>
+
+      <section style={{ paddingTop: 0 }}>
+        <Reveal>
+          <h2 className="subsection-title">
+            Hvilken effekt passer til <em>hvilket øjeblik</em>?
+          </h2>
+          <ul className="service-list" style={{ maxWidth: '68ch' }}>
+            <li>
+              <strong>Brudevals:</strong> cold spark eller sæbebobler — begge kan bruges
+              indendørs
+            </li>
+            <li>
+              <strong>Brudeparrets indgang:</strong> konfetti eller håndholdte konfettirør
+            </li>
+            <li>
+              <strong>Fødselsdagssangen:</strong> konfetti, timet til sidste vers
+            </li>
+            <li>
+              <strong>Åbning af dansegulvet:</strong> CO2-gun eller konfettimaskine
+            </li>
+            <li>
+              <strong>Hen over aftenen:</strong> røg, der får lyseffekterne til at træde frem i
+              luften
+            </li>
+            <li>
+              <strong>Sommerfest udendørs:</strong> skum eller holi powder
+            </li>
+            <li>
+              <strong>Julefrokost og vinterfest:</strong> sne
+            </li>
+          </ul>
+        </Reveal>
+      </section>
+
+      <section style={{ paddingTop: 0 }}>
+        <Reveal>
+          <h2 className="subsection-title">
+            Sikkerhed og <em>lokalet</em>
+          </h2>
+          <div className="prose">
+            <p>
+              Alle konfettirør er BAM-testede, brandhæmmende og udviklet til professionel brug.
+              Konfettien fås i papir, metal-look og biologisk nedbrydelig biofetti, så der kan
+              vælges en variant, der passer til stedets regler for oprydning. Skummet er
+              allergivenligt, og holi powder er biologisk nedbrydeligt og sikkert for huden.
+            </p>
+            <p>
+              Om en given effekt kan bruges, afhænger altid af lokalet — især ventilation og
+              røgalarmer. Derfor rådgiver jeg altid ud fra det konkrete lokale. Kan røg ikke
+              bruges, findes der næsten altid en anden effekt, der giver samme løft.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      <section style={{ paddingTop: '2rem' }}>
+        <ContactCta
+          heading="Skal vi finde det rigtige setup?"
+          text="Fortæl om lokalet og hvilke øjeblikke der skal løftes, så rådgiver jeg om, hvad der kan lade sig gøre."
+        />
+
+        <RelatedLinks
+          links={[
+            {
+              to: '/dj-til-bryllup',
+              title: 'DJ til bryllup',
+              desc: 'Brudevals, musik og lys som én samlet løsning.',
+            },
+            {
+              to: '/dj-til-firmafest',
+              title: 'DJ til firmafest',
+              desc: 'Julefrokost, sommerfest og jubilæum.',
+            },
+            {
+              to: '/dj-til-fodselsdag',
+              title: 'DJ til privatfest',
+              desc: 'Runde fødselsdage, jubilæer og andre private fester.',
+            },
+            {
+              to: '/galleri',
+              title: 'Galleri',
+              desc: 'Se setups og effekter fra rigtige events.',
+            },
+          ]}
         />
       </section>
     </div>
