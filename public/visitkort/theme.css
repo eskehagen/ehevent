@@ -1,0 +1,21 @@
+/* GENERERET AF tools/sync-card.mjs — ret farverne i card.json. */
+
+:root {
+  --accent: #c5500d;
+  --accent-bright: #f59e0b;
+  --accent-deep: #93340a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #ff9f4a;
+    --accent-bright: #ffc078;
+    --accent-deep: #f08030;
+  }
+}
+
+:root[data-theme="dark"] {
+  --accent: #ff9f4a;
+  --accent-bright: #ffc078;
+  --accent-deep: #f08030;
+}

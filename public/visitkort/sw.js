@@ -12,6 +12,7 @@ const SHELL = [
   '.',
   'index.html',
   'styles.css',
+  'theme.css',
   'card-data.js',
   'js/app.js',
   'js/qr.js',

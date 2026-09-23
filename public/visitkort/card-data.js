@@ -14,12 +14,16 @@ export const CARD = {
     "tagline": ""
   },
   "site": {
+    "_farver": "accentColor bruges hvor hvid tekst ligger ovenpå og er valgt så den kan læses. accentBright og accentDeep er forløbets yderpunkter.",
     "baseUrl": "https://eskehagenevents.dk/visitkort",
-    "accentColor": "#2f6df6",
-    "accentColorDark": "#7aa2ff",
+    "accentColor": "#c5500d",
+    "accentColorDark": "#ff9f4a",
     "language": "da",
-    "_updatedAt": "Valgfrit: sæt f.eks. 2026-09-22 for at datere kontaktfilen",
-    "updatedAt": null
+    "updatedAt": null,
+    "accentBright": "#f59e0b",
+    "accentDeep": "#93340a",
+    "accentBrightDark": "#ffc078",
+    "accentDeepDark": "#f08030"
   },
   "vcardFile": "eske-hagen.vcf"
 };
