@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Hagen;Eske;;;
+FN:Eske Hagen
+ORG:EH Events
+TITLE:Indehaver
+TEL;TYPE=CELL,VOICE:+45 12 34 56 78
+EMAIL;TYPE=INTERNET,PREF:eskehagen@gmail.com
+URL:https://eskehagenevents.dk
+item1.URL:https://www.linkedin.com/in/eskehagen
+item1.X-ABLabel:LinkedIn
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/eskehagen
+END:VCARD

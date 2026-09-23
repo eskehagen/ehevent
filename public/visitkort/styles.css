@@ -1,0 +1,339 @@
+/* Digitalt visitkort — mobil først, men holder også på store skærme. */
+
+:root {
+  --accent: #2f6df6;
+  --accent-contrast: #ffffff;
+
+  --bg: #eef1f6;
+  --surface: #ffffff;
+  --text: #11151c;
+  --text-muted: #5b6472;
+  --border: #e2e6ed;
+  --row-hover: #f5f7fb;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 12px 32px rgba(16, 24, 40, .10);
+
+  --radius: 20px;
+  --radius-sm: 12px;
+  --tap: 52px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #7aa2ff;
+    --accent-contrast: #0b1020;
+    --bg: #0b0e14;
+    --surface: #141922;
+    --text: #e8ecf3;
+    --text-muted: #9aa5b6;
+    --border: #232a36;
+    --row-hover: #1b212c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .45);
+  }
+}
+
+:root[data-theme="dark"] {
+  --accent: #7aa2ff;
+  --accent-contrast: #0b1020;
+  --bg: #0b0e14;
+  --surface: #141922;
+  --text: #e8ecf3;
+  --text-muted: #9aa5b6;
+  --border: #232a36;
+  --row-hover: #1b212c;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .45);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: max(16px, env(safe-area-inset-top)) 16px
+           max(24px, env(safe-area-inset-bottom)) 16px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ---------- kortet ---------- */
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  animation: rise .45s cubic-bezier(.2, .7, .3, 1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+}
+
+.cover {
+  height: 104px;
+  background:
+    radial-gradient(120% 140% at 15% 0%, color-mix(in srgb, var(--accent) 85%, #ffffff) 0%, var(--accent) 55%, color-mix(in srgb, var(--accent) 70%, #000000) 100%);
+}
+
+/* ---------- identitet ---------- */
+
+.identity {
+  padding: 0 24px 4px;
+  margin-top: -64px;
+  text-align: center;
+}
+
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface);
+  border: 4px solid var(--surface);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, .18);
+  display: block;
+  margin: 0 auto 14px;
+}
+
+.name {
+  font-size: clamp(1.5rem, 6vw, 1.9rem);
+  line-height: 1.2;
+  margin: 0 0 4px;
+  letter-spacing: -.02em;
+  font-weight: 700;
+}
+
+.role {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.role .company { color: var(--text); font-weight: 600; }
+
+.tagline {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: .95rem;
+  text-wrap: balance;
+}
+
+/* ---------- knapper ---------- */
+
+.primary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 22px 24px 4px;
+}
+
+.btn {
+  flex: 1 1 auto;
+  min-height: var(--tap);
+  min-width: 112px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .12s ease, background-color .15s ease, border-color .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active { transform: scale(.97); }
+
+.btn-primary {
+  flex-basis: 100%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 1.05rem;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover { background: var(--row-hover); }
+
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* QR-ikonet er tegnet med flader, ikke streger. */
+#qr-btn .icon { fill: currentColor; stroke: none; }
+
+/* ---------- kontaktrækker ---------- */
+
+.contact-list {
+  padding: 18px 12px 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: var(--tap);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.row:hover { background: var(--row-hover); }
+.row:active { background: var(--row-hover); }
+
+.row:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.row-icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+}
+
+.row-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.row-text { min-width: 0; }
+
+.row-label {
+  display: block;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+}
+
+.row-value {
+  display: block;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- bund ---------- */
+
+.hint {
+  margin: 8px 24px 0;
+  font-size: .85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.foot {
+  padding: 16px 24px max(20px, env(safe-area-inset-bottom));
+  text-align: center;
+  min-height: 20px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+/* ---------- QR-dialog ---------- */
+
+.qr-dialog {
+  border: none;
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: min(92vw, 380px);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.qr-dialog::backdrop { background: rgba(4, 8, 16, .6); }
+
+.qr-dialog h2 { margin: 0 0 16px; font-size: 1.1rem; }
+
+.qr-holder {
+  /* QR-koder skal læses på hvid — også i mørk tilstand. */
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.qr-holder svg { display: block; width: 100%; height: auto; }
+
+.qr-url {
+  margin: 0 0 16px;
+  font-size: .8rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.noscript {
+  max-width: 440px;
+  margin: 24px auto;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+/* ---------- store skærme ---------- */
+
+@media (min-width: 520px) {
+  body { align-items: center; }
+}
