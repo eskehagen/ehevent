@@ -32,7 +32,7 @@ export const OmEske = () => {
 
         <AnswerFirst>
           Eske Hagen Sinding er DJ og eventspecialist med base i Aarhus og har været DJ siden
-          2004 — over 22 år bag pulten. Han driver Eske Hagen Events (EH Events) og spiller til
+          2004 — over 22 år bag pulten. Han driver EH Events (Eske Hagen Events) og spiller til
           bryllupper, firmafester og private fester i hele Øst- og Midtjylland, hvor musik, lys og
           special effekter leveres som én samlet løsning. Han har desuden arbejdet 1½ år hos
           lysproducenten Martin Professional.

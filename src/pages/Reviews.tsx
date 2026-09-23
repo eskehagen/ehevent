@@ -30,6 +30,7 @@ export const Reviews = () => {
           <Reveal delay={0.2}>
             <p className="text-muted max-w-2xl mx-auto mt-6">
               Herunder kan du læse anmeldelser fra tidligere kunder om deres oplevelse med mig som DJ til deres event.
+              Anmeldelserne har jeg modtaget direkte fra kunderne efter deres event.
             </p>
           </Reveal>
         </div>
