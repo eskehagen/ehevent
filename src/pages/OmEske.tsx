@@ -31,10 +31,11 @@ export const OmEske = () => {
         </h1>
 
         <AnswerFirst>
-          Eske Hagen Sinding er DJ og eventspecialist med base i Aarhus og over 22 års
-          erfaring bag pulten. Han driver Eske Hagen Events (EH Events) og
-          spiller til bryllupper, firmafester og private fester i hele Øst- og Midtjylland, hvor
-          musik, lys og special effekter leveres som én samlet løsning.
+          Eske Hagen Sinding er DJ og eventspecialist med base i Aarhus og har været DJ siden
+          2004 — over 22 år bag pulten. Han driver Eske Hagen Events (EH Events) og spiller til
+          bryllupper, firmafester og private fester i hele Øst- og Midtjylland, hvor musik, lys og
+          special effekter leveres som én samlet løsning. Han har desuden arbejdet 1½ år hos
+          lysproducenten Martin Professional.
         </AnswerFirst>
 
         <ContactCta variant="inline" />
@@ -121,20 +122,16 @@ export const OmEske = () => {
             </li>
             <li>
               <span className="fact-key">Erfaring</span>
-              <span className="fact-val">Over {BUSINESS.yearsExperience} år som DJ</span>
-              {/* TODO ESKE: hvilket årstal startede du helt præcist? Så kan der stå
-                  "DJ siden ÅÅÅÅ", som både Google og AI-søgning citerer gerne.
-                  Jeg har bevidst IKKE regnet 2026 minus 22 ud og gættet. */}
+              <span className="fact-val">
+                DJ siden {BUSINESS.djSince} — over {BUSINESS.yearsExperience} år bag pulten
+              </span>
             </li>
             <li>
               <span className="fact-key">Baggrund</span>
               <span className="fact-val">
                 Mobildiskotek, derefter fast DJ på etablerede spillesteder i Aarhus og
-                Randers. I dag udelukkende events.
+                Randers. Arbejdede {BUSINESS.martinProfessional}. I dag udelukkende events.
               </span>
-              {/* TODO ESKE: må dine år med intelligent lys hos Martin Professional
-                  nævnes her? Det ville styrke lys-delen markant, men det står ingen
-                  steder i koden, så jeg har ikke skrevet det ind. */}
             </li>
             <li>
               <span className="fact-key">Eventtyper</span>

@@ -42,8 +42,6 @@ export const Firmafest = () => {
             <li>Opsætning, afvikling og nedtagning</li>
             <li>Faktura til virksomheden</li>
           </ul>
-          {/* TODO ESKE: kan I tage imod EAN-fakturering til offentlige kunder? Det
-              spørger kommuner og regioner altid om, og det står ikke i koden. */}
         </Reveal>
       </section>
 

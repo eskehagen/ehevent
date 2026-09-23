@@ -36,8 +36,9 @@ export const Solutions = () => {
           Eske Hagen Events leverer lyd, lys og special effekter til bryllupper, firmafester og
           private fester i hele Øst- og Midtjylland. Lyd- og lysanlægget tilpasses altid lokalets
           størrelse, og special effekter som cold spark, konfetti, CO2, røg, sæbebobler, sne og
-          skum leveres i samarbejde med Showgear.dk. Jeg rådgiver om, hvad der kan lade sig gøre i
-          jeres lokale — I skal kun sørge for plads og 230V strøm.
+          skum leveres i samarbejde med Showgear.dk. På lysområdet har jeg blandt andet 1½ års
+          erfaring fra lysproducenten Martin Professional. Jeg rådgiver om, hvad der kan lade sig
+          gøre i jeres lokale — I skal kun sørge for plads og 230V strøm.
         </AnswerFirst>
 
         <ContactCta variant="inline" />
@@ -267,9 +268,6 @@ export const Solutions = () => {
               røgalarmer. Derfor rådgiver jeg altid ud fra det konkrete lokale. Kan røg ikke
               bruges, findes der næsten altid en anden effekt, der giver samme løft.
             </p>
-            {/* TODO ESKE: har du faste krav til loftshøjde eller sikkerhedsafstand ved
-                cold spark? Det spørger både brudepar og venues om, og tallet findes
-                ikke i koden, så det er udeladt frem for gættet. */}
           </div>
         </Reveal>
       </section>

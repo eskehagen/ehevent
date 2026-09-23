@@ -13,7 +13,7 @@ import { allFaqItems } from '../data/faq';
 import { REVIEWS } from '../data/reviews';
 
 /** Sidst redigeret indhold. Opdateres når siderne ændres væsentligt. */
-export const CONTENT_UPDATED = '2026-09-21';
+export const CONTENT_UPDATED = '2026-09-23';
 
 export interface ServiceMeta {
   /** schema.org serviceType — det folk faktisk søger på. */
@@ -113,9 +113,9 @@ export const PAGES: PageSeo[] = [
   },
   {
     path: '/om-eske',
-    title: 'Om Eske Hagen – DJ og eventspecialist i Aarhus',
+    title: 'Om Eske Hagen – DJ siden 2004 | Eske Hagen Events',
     description:
-      'Eske Hagen Sinding er DJ og eventspecialist i Aarhus med over 22 års erfaring — fra mobildiskotek over faste spillesteder til events i Øst- og Midtjylland.',
+      'Eske Hagen Sinding har været DJ siden 2004: mobildiskotek, faste spillesteder og 1½ år hos Martin Professional. I dag events i hele Øst- og Midtjylland.',
     breadcrumb: 'Om Eske',
     sitemapPriority: 0.8,
     changefreq: 'yearly',
@@ -266,6 +266,7 @@ const globalNodes = (): Json[] => [
     '@id': ID.person,
     name: BUSINESS.founder,
     jobTitle: BUSINESS.jobTitle,
+    description: `DJ og eventspecialist fra ${BUSINESS.city}, DJ siden ${BUSINESS.djSince}. Har arbejdet ${BUSINESS.martinProfessional}.`,
     worksFor: { '@id': ID.business },
     homeLocation: { '@type': 'Place', name: BUSINESS.city },
     sameAs: [BUSINESS.instagram],

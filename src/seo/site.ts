@@ -37,6 +37,10 @@ export const BUSINESS = {
   coverage: 'Øst- og Midtjylland',
 
   yearsExperience: 22,
+  /** Bekræftet af Eske. */
+  djSince: 2004,
+  /** Bekræftet af Eske: 1½ år hos Martin Professional i 2014–2015. */
+  martinProfessional: '1½ år hos lysproducenten Martin Professional (2014–2015)',
 
   instagram: 'https://www.instagram.com/ehevents.dk/',
   instagramHandle: '@ehevents.dk',
