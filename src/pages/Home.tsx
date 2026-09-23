@@ -111,6 +111,13 @@ export const Home = () => {
                 <div className="about-stat-label">Glade gæster</div>
               </div>
             </div>
+            {/* Forsiden fortæller kun det korte. Genvejen sender videre til
+                E-E-A-T-siden med fakta, baggrund og spillesteder. */}
+            <div className="about-cta">
+              <Link to="/om-eske" className="btn-ghost">
+                Læs mere om mig
+              </Link>
+            </div>
           </Reveal>
 
           <div className="about-right">

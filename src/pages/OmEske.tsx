@@ -30,6 +30,7 @@ const CURRENT_VENUES: Venue[] = [
 /** Årene med mobildiskotek og faste diskoteksaftener. */
 const PAST_VENUES: Venue[] = [
   { name: 'Mobildiskotek Black Flash', city: 'Hadsten' },
+  { name: 'Diskotek Excalibur', city: 'Randers' },
   { name: 'Diskotek Goggen', city: 'Hadsten' },
   { name: 'Diskotek Hr. Nielsen', city: 'Randers' },
   { name: 'Diskotek Social Club', city: 'Aarhus' },

@@ -2950,3 +2950,9 @@ button:focus-visible,
     width: calc(100% + 2px);
   }
 }
+
+/* Genvej fra forsidens "Om mig" til /om-eske. Ligger under nøgletallene,
+   så den følger efter historien frem for at afbryde den. */
+.about-cta {
+  margin-top: 2.5rem;
+}
