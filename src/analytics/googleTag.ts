@@ -16,21 +16,25 @@
 /**
  * Tag-ID'et fra Google Ads.
  *
- * Findes i Google Ads under Mål → Konverteringer → Indstillinger → Google-tag
- * (eller i opsætningsguiden: vælg "Installer selv"). Det står i Googles
- * kodestykke som `gtag('config', 'AW-…')`. Kun ID'et skal ind her, ikke
- * kodestykket.
+ * Det er AW-delen af `send_to` i konverteringens kodestykke nedenfor. Et ID
+ * der starter med G- hører til Google Analytics og må ikke stå her: det
+ * ville sende besøgsstatistik til Google, som hverken banneret eller
+ * privatlivspolitikken beder om samtykke til.
  */
-export const GOOGLE_TAG_ID = '';
+export const GOOGLE_TAG_ID: string = 'AW-18388326877';
 
 /**
  * Konverteringen der tælles, når kontaktformularen er sendt.
  *
- * Oprettes i Google Ads som en konverteringshandling på hjemmesiden.
- * Værdien er `send_to` fra Googles "begivenhedskodestykke", fx
- * 'AW-123456789/AbC-D_efG'. Tom = ingen konvertering sendes.
+ * Konverteringshandlingen "Indsend kundeformular" i Google Ads. Værdierne er
+ * kopieret fra Googles hændelseskodestykke for den. Tom send_to = ingen
+ * konvertering sendes.
  */
-export const LEAD_CONVERSION = '';
+export const LEAD_CONVERSION = {
+  send_to: 'AW-18388326877/6zr4CN-ZyoodEN2znsBE',
+  value: 1.0,
+  currency: 'DKK',
+};
 
 export const googleTagEnabled = GOOGLE_TAG_ID !== '';
 
@@ -182,8 +186,8 @@ export function trackPageView() {
 
 /** Melder en sendt kontaktformular som konvertering i Google Ads. */
 export function trackLead() {
-  if (!loaded || !LEAD_CONVERSION) return;
-  gtag('event', 'conversion', { send_to: LEAD_CONVERSION });
+  if (!loaded || !LEAD_CONVERSION.send_to) return;
+  gtag('event', 'conversion', LEAD_CONVERSION);
 }
 
 /* ─── Cookie-indstillinger ──────────────────────────────────────── */
