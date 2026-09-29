@@ -2595,6 +2595,21 @@ button:focus-visible,
 .footer-col a:hover {
   color: var(--gold-ink);
 }
+/* "Cookie-indstillinger" er en knap (den åbner banneret, den navigerer
+   ikke), men skal ligne linkene omkring den. */
+.footer-col button {
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+.footer-col button:hover {
+  color: var(--gold-ink);
+}
 .footer-copy {
   width: 100%;
   max-width: 1200px;
@@ -2970,4 +2985,66 @@ button:focus-visible,
    så den følger efter historien frem for at afbryde den. */
 .about-cta {
   margin-top: 2.5rem;
+}
+
+/* ─── Cookiebanner ───
+   Over menuen (100/110), under springlinket (300). */
+.cookie-consent {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 200;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 12px 32px var(--shadow);
+  color: var(--cream);
+}
+.cookie-consent:focus:not(:focus-visible) {
+  outline: none;
+}
+.cookie-consent h2 {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  margin-bottom: 0.4rem;
+}
+.cookie-consent p {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.cookie-consent a {
+  color: var(--gold-ink);
+  text-decoration: underline;
+}
+.cookie-consent-current {
+  margin-top: 0.5rem;
+}
+.cookie-consent-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+.cookie-consent-actions .btn-ghost {
+  padding: 0.75rem 1.4rem;
+  background: none;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .cookie-consent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+  .cookie-consent-actions > * {
+    flex: 1;
+  }
 }
