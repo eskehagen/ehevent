@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
 import { InstagramLink } from './InstagramLink';
 import { BUSINESS } from '../seo/site';
+import { googleTagEnabled, openCookieSettings } from '../analytics/googleTag';
 
 /**
  * Footer med NAP (navn, område, telefon) — identisk på alle sider.
@@ -105,6 +106,13 @@ export const Footer = () => {
             <ul>
               <li><Link to="/handelsbetingelser">Handelsbetingelser</Link></li>
               <li><Link to="/privatlivspolitik">Privatlivspolitik</Link></li>
+              {googleTagEnabled && (
+                <li>
+                  <button type="button" onClick={openCookieSettings}>
+                    Cookie-indstillinger
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </nav>

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { CookieConsent } from './CookieConsent';
 
 export const Layout = () => {
   return (
@@ -17,6 +18,7 @@ export const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <CookieConsent />
       <Analytics />
     </div>
   );

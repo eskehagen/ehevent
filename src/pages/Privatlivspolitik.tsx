@@ -2,6 +2,7 @@ import React from 'react';
 import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useSEO } from '../hooks/useSEO';
+import { googleTagEnabled, openCookieSettings } from '../analytics/googleTag';
 
 export const Privatlivspolitik = () => {
   useSEO('/privatlivspolitik');
@@ -80,6 +81,9 @@ export const Privatlivspolitik = () => {
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
                   <li><strong>Art. 6(1)(b)</strong> – behandlingen er nødvendig for at opfylde en aftale eller for at træffe foranstaltninger forud for indgåelse af en aftale (ved booking).</li>
                   <li><strong>Art. 6(1)(f)</strong> – legitim interesse i at besvare henvendelser vedrørende vores ydelser.</li>
+                  {googleTagEnabled && (
+                    <li><strong>Art. 6(1)(a)</strong> – dit samtykke, når du accepterer cookies til markedsføring (se punkt 7).</li>
+                  )}
                 </ul>
               </div>
 
@@ -104,6 +108,12 @@ export const Privatlivspolitik = () => {
                   hjælper os med at drive hjemmesiden, dog udelukkende i det omfang det er nødvendigt og
                   på grundlag af en databehandleraftale.
                 </p>
+                {googleTagEnabled && (
+                  <p style={{ marginTop: '0.75rem' }}>
+                    Accepterer du cookies til markedsføring, modtager Google oplysninger om dit besøg
+                    (se punkt 7).
+                  </p>
+                )}
               </div>
 
               {/* Tilføjet da Vercel Web Analytics blev slået til. Formuleringerne
@@ -130,9 +140,45 @@ export const Privatlivspolitik = () => {
                   Hvis du skifter mellem lyst og mørkt tema, gemmes dit valg lokalt i din browser, så
                   siden husker det næste gang. Oplysningen sendes ikke til os og bruges ikke til andet.
                 </p>
-                <p style={{ marginTop: '0.75rem' }}>
-                  Vi bruger ingen cookies til markedsføring eller sporing.
-                </p>
+                {/* Afsnittet følger Google-tagget: det vises kun, når
+                    GOOGLE_TAG_ID i src/analytics/googleTag.ts er udfyldt. */}
+                {googleTagEnabled ? (
+                  <>
+                    <p style={{ marginTop: '0.75rem' }}>
+                      <strong>Cookies til markedsføring (Google Ads).</strong> Vi annoncerer på Google.
+                      Kun hvis du accepterer det i cookiebanneret, indlæser siden Googles tag, som
+                      sætter cookies (fx <code>_gcl_au</code>). De lader os måle, om en annonce fører til
+                      en henvendelse via kontaktformularen, og gør det muligt at vise vores annoncer igen
+                      til folk, der har besøgt siden. Google modtager i den forbindelse oplysninger om dit
+                      besøg, bl.a. hvilke sider du ser, din IP-adresse og oplysninger om din browser.
+                    </p>
+                    <p style={{ marginTop: '0.75rem' }}>
+                      Behandlingen sker på grundlag af dit samtykke (GDPR art. 6(1)(a) og
+                      cookiebekendtgørelsen). Google LLC er certificeret under EU-US Data Privacy
+                      Framework, som er grundlaget for overførslen af oplysninger til USA. Læs mere
+                      i <a href="https://policies.google.com/technologies/ads?hl=da" style={{ color: 'var(--gold)' }} target="_blank" rel="noopener noreferrer">Googles
+                      forklaring om annoncering</a>.
+                    </p>
+                    <p style={{ marginTop: '0.75rem' }}>
+                      Afviser du, eller tager du ikke stilling, indlæses Googles tag slet ikke, og der
+                      sendes intet til Google. Dit valg gemmes lokalt i din browser i 12 måneder, hvorefter
+                      du bliver spurgt igen. Du kan til enhver tid ændre eller trække dit samtykke tilbage
+                      under{' '}
+                      <button
+                        type="button"
+                        onClick={openCookieSettings}
+                        style={{ color: 'var(--gold)', textDecoration: 'underline', cursor: 'pointer', background: 'none', border: 0, padding: 0, font: 'inherit' }}
+                      >
+                        Cookie-indstillinger
+                      </button>
+                      , som også findes nederst på alle sider.
+                    </p>
+                  </>
+                ) : (
+                  <p style={{ marginTop: '0.75rem' }}>
+                    Vi bruger ingen cookies til markedsføring eller sporing.
+                  </p>
+                )}
               </div>
 
               <div>

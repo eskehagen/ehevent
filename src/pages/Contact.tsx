@@ -6,6 +6,7 @@ import { InstagramLink } from '../components/InstagramLink';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Picture } from '../components/Picture';
 import { useSEO } from '../hooks/useSEO';
+import { trackLead } from '../analytics/googleTag';
 
 const TimeSelect = ({
   id, value, options, onChange
@@ -130,6 +131,7 @@ export const Contact = () => {
       });
       const data = await res.json();
       if (!data.success) throw new Error(data.error ?? 'Ukendt fejl');
+      trackLead();
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', date: '', event: '', address: '', startTime: '22:00', endTime: '02:00', message: '', botField: '' });
       setTimeout(() => setSubmitted(false), 8000);
