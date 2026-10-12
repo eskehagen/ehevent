@@ -47,10 +47,14 @@ export const LEAD_CONVERSION: Conversion = {
  * (tel:-link) eller en mailadresse (mailto:-link) — uanset hvor på sitet.
  *
  * Konverteringshandlingerne "Klik på telefonnummer" og "Klik på e-mail" i
- * Google Ads, oprettet med "Klik" som målemetode. Værdierne kopieres fra
- * hver sit hændelseskodestykke. Tom send_to = ingen konvertering sendes.
+ * Google Ads (målet "Kontakt"). Værdierne er kopieret fra hver sit
+ * hændelseskodestykke. Tom send_to = ingen konvertering sendes.
  */
-export const PHONE_CONVERSION: Conversion = { send_to: '' };
+export const PHONE_CONVERSION: Conversion = {
+  send_to: 'AW-18388326877/cgQkCMOdmJodEN2znsBE',
+  value: 1.0,
+  currency: 'DKK',
+};
 export const EMAIL_CONVERSION: Conversion = { send_to: '' };
 
 interface Conversion {
