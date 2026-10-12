@@ -158,8 +158,10 @@ export const Privatlivspolitik = () => {
                     <strong>Cookies til markedsføring (Google Ads).</strong> Vi annoncerer på Google.
                     Kun hvis du accepterer markedsføring i cookiebanneret, indlæser siden Google Ads'
                     tag, som sætter cookies (fx <code>_gcl_au</code>). De lader os måle, om en annonce
-                    fører til en henvendelse via kontaktformularen, og gør det muligt at vise vores
-                    annoncer igen til folk, der har besøgt siden. Google modtager i den forbindelse
+                    fører til en henvendelse via kontaktformularen, eller til at du klikker på vores
+                    telefonnummer eller mailadresse, og gør det muligt at vise vores annoncer igen til
+                    folk, der har besøgt siden. Google Ads får kun besked om, at der er sket en
+                    henvendelse — ikke indholdet af den. Google modtager i den forbindelse
                     oplysninger om dit besøg, bl.a. hvilke sider du ser, din IP-adresse og oplysninger
                     om din browser.
                   </p>

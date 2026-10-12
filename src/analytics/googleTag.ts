@@ -36,11 +36,36 @@ export const GOOGLE_ADS_ID: string = 'AW-18388326877';
  * kopieret fra Googles hændelseskodestykke for den. Tom send_to = ingen
  * konvertering sendes.
  */
-export const LEAD_CONVERSION = {
+export const LEAD_CONVERSION: Conversion = {
   send_to: 'AW-18388326877/6zr4CN-ZyoodEN2znsBE',
   value: 1.0,
   currency: 'DKK',
 };
+
+/**
+ * Konverteringerne der tælles, når nogen klikker på et telefonnummer
+ * (tel:-link) eller en mailadresse (mailto:-link) — uanset hvor på sitet.
+ *
+ * Konverteringshandlingerne "Klik på telefonnummer" og "Klik på e-mail" i
+ * Google Ads (målet "Kontakt"). Værdierne er kopieret fra hver sit
+ * hændelseskodestykke. Tom send_to = ingen konvertering sendes.
+ */
+export const PHONE_CONVERSION: Conversion = {
+  send_to: 'AW-18388326877/cgQkCMOdmJodEN2znsBE',
+  value: 1.0,
+  currency: 'DKK',
+};
+export const EMAIL_CONVERSION: Conversion = {
+  send_to: 'AW-18388326877/x4vXCMadmJodEN2znsBE',
+  value: 1.0,
+  currency: 'DKK',
+};
+
+interface Conversion {
+  send_to: string;
+  value?: number;
+  currency?: string;
+}
 
 export const analyticsEnabled = GOOGLE_ANALYTICS_ID !== '';
 export const adsEnabled = GOOGLE_ADS_ID !== '';
@@ -223,6 +248,7 @@ function revoke(withdrawn: Consent) {
 export function initGoogleTag() {
   const consent = readConsent();
   if (consent) applyConsent(consent);
+  listenForContactClicks();
 }
 
 /**
@@ -248,10 +274,43 @@ export function trackPageView() {
   });
 }
 
+function trackConversion(conversion: Conversion) {
+  if (!configured.marketing || !conversion.send_to) return;
+  gtag('event', 'conversion', conversion);
+}
+
 /** Melder en sendt kontaktformular som konvertering i Google Ads. */
 export function trackLead() {
-  if (!configured.marketing || !LEAD_CONVERSION.send_to) return;
-  gtag('event', 'conversion', LEAD_CONVERSION);
+  trackConversion(LEAD_CONVERSION);
+}
+
+let listeningForContactClicks = false;
+
+/**
+ * Melder klik på telefonnumre og mailadresser som konverteringer.
+ *
+ * Ét lyttende klik på hele dokumentet frem for kode på hvert link: numre og
+ * adresser står i footeren og på flere sider, og et link der tilføjes
+ * senere, tælles så med af sig selv. Lytteren er sat i capture-fasen, så
+ * den også fanger klik, som en komponent stopper undervejs.
+ *
+ * Et tel:- eller mailto:-link forlader ikke siden — det åbner telefonen
+ * eller mailprogrammet — så hændelsen når at blive sendt.
+ */
+function listenForContactClicks() {
+  if (listeningForContactClicks || typeof document === 'undefined') return;
+  listeningForContactClicks = true;
+
+  document.addEventListener(
+    'click',
+    (event) => {
+      const link = (event.target as Element | null)?.closest?.('a[href^="tel:"], a[href^="mailto:"]');
+      if (!link) return;
+      const isPhone = link.getAttribute('href')!.startsWith('tel:');
+      trackConversion(isPhone ? PHONE_CONVERSION : EMAIL_CONVERSION);
+    },
+    { capture: true },
+  );
 }
 
 /* ─── Cookie-indstillinger ──────────────────────────────────────── */
