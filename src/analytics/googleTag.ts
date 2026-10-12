@@ -55,7 +55,11 @@ export const PHONE_CONVERSION: Conversion = {
   value: 1.0,
   currency: 'DKK',
 };
-export const EMAIL_CONVERSION: Conversion = { send_to: '' };
+export const EMAIL_CONVERSION: Conversion = {
+  send_to: 'AW-18388326877/x4vXCMadmJodEN2znsBE',
+  value: 1.0,
+  currency: 'DKK',
+};
 
 interface Conversion {
   send_to: string;
