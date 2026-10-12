@@ -2,7 +2,7 @@ import React from 'react';
 import { Reveal } from '../components/Reveal';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useSEO } from '../hooks/useSEO';
-import { googleTagEnabled, openCookieSettings } from '../analytics/googleTag';
+import { adsEnabled, analyticsEnabled, googleTagEnabled, openCookieSettings } from '../analytics/googleTag';
 
 export const Privatlivspolitik = () => {
   useSEO('/privatlivspolitik');
@@ -17,7 +17,7 @@ export const Privatlivspolitik = () => {
               Privatlivs<em>politik</em>
             </h1>
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem', fontSize: '0.95rem' }}>
-              Senest opdateret: september 2026
+              Senest opdateret: oktober 2026
             </p>
           </Reveal>
 
@@ -82,7 +82,7 @@ export const Privatlivspolitik = () => {
                   <li><strong>Art. 6(1)(b)</strong> – behandlingen er nødvendig for at opfylde en aftale eller for at træffe foranstaltninger forud for indgåelse af en aftale (ved booking).</li>
                   <li><strong>Art. 6(1)(f)</strong> – legitim interesse i at besvare henvendelser vedrørende vores ydelser.</li>
                   {googleTagEnabled && (
-                    <li><strong>Art. 6(1)(a)</strong> – dit samtykke, når du accepterer cookies til markedsføring (se punkt 7).</li>
+                    <li><strong>Art. 6(1)(a)</strong> – dit samtykke, når du accepterer cookies til statistik eller markedsføring (se punkt 7).</li>
                   )}
                 </ul>
               </div>
@@ -110,8 +110,8 @@ export const Privatlivspolitik = () => {
                 </p>
                 {googleTagEnabled && (
                   <p style={{ marginTop: '0.75rem' }}>
-                    Accepterer du cookies til markedsføring, modtager Google oplysninger om dit besøg
-                    (se punkt 7).
+                    Accepterer du cookies til statistik eller markedsføring, modtager Google oplysninger
+                    om dit besøg (se punkt 7).
                   </p>
                 )}
               </div>
@@ -129,7 +129,7 @@ export const Privatlivspolitik = () => {
                   besøgt, så vi kan forbedre indholdet.
                 </p>
                 <p style={{ marginTop: '0.75rem' }}>
-                  Statistikken bruger ingen cookies. Registreringen af sidevisninger er anonym og
+                  Vercel-statistikken bruger ingen cookies. Registreringen af sidevisninger er anonym og
                   knyttes ikke til dig, din IP-adresse eller andre personlige kendetegn. Et besøg
                   genkendes i stedet ud fra en midlertidig kode, der beregnes ud fra din forespørgsel
                   og nulstilles automatisk hvert døgn. Du kan derfor ikke følges fra dag til dag eller
@@ -140,27 +140,42 @@ export const Privatlivspolitik = () => {
                   Hvis du skifter mellem lyst og mørkt tema, gemmes dit valg lokalt i din browser, så
                   siden husker det næste gang. Oplysningen sendes ikke til os og bruges ikke til andet.
                 </p>
-                {/* Afsnittet følger Google-tagget: det vises kun, når
-                    GOOGLE_TAG_ID i src/analytics/googleTag.ts er udfyldt. */}
+                {/* Afsnittene følger Googles tags: hvert vises kun, når dets ID
+                    i src/analytics/googleTag.ts er udfyldt. */}
+                {analyticsEnabled && (
+                  <p style={{ marginTop: '0.75rem' }}>
+                    <strong>Cookies til statistik (Google Analytics).</strong> Kun hvis du accepterer
+                    statistik i cookiebanneret, indlæser siden Google Analytics, som sætter cookies
+                    (<code>_ga</code> og <code>_ga_…</code>). Vi bruger det til at se, hvilke sider der
+                    bliver besøgt, hvordan besøgende finder siden — fx via vores annoncer på Google — og
+                    hvilken type enhed de bruger. Google Analytics gemmer ikke din IP-adresse, men bruger
+                    den til at beregne et omtrentligt geografisk område. Oplysningerne slettes
+                    automatisk efter højst 14 måneder.
+                  </p>
+                )}
+                {adsEnabled && (
+                  <p style={{ marginTop: '0.75rem' }}>
+                    <strong>Cookies til markedsføring (Google Ads).</strong> Vi annoncerer på Google.
+                    Kun hvis du accepterer markedsføring i cookiebanneret, indlæser siden Google Ads'
+                    tag, som sætter cookies (fx <code>_gcl_au</code>). De lader os måle, om en annonce
+                    fører til en henvendelse via kontaktformularen, og gør det muligt at vise vores
+                    annoncer igen til folk, der har besøgt siden. Google modtager i den forbindelse
+                    oplysninger om dit besøg, bl.a. hvilke sider du ser, din IP-adresse og oplysninger
+                    om din browser.
+                  </p>
+                )}
                 {googleTagEnabled ? (
                   <>
                     <p style={{ marginTop: '0.75rem' }}>
-                      <strong>Cookies til markedsføring (Google Ads).</strong> Vi annoncerer på Google.
-                      Kun hvis du accepterer det i cookiebanneret, indlæser siden Googles tag, som
-                      sætter cookies (fx <code>_gcl_au</code>). De lader os måle, om en annonce fører til
-                      en henvendelse via kontaktformularen, og gør det muligt at vise vores annoncer igen
-                      til folk, der har besøgt siden. Google modtager i den forbindelse oplysninger om dit
-                      besøg, bl.a. hvilke sider du ser, din IP-adresse og oplysninger om din browser.
+                      Statistik og markedsføring er to separate valg, og behandlingen sker på grundlag
+                      af dit samtykke (GDPR art. 6(1)(a) og cookiebekendtgørelsen). Google LLC er
+                      certificeret under EU-US Data Privacy Framework, som er grundlaget for
+                      overførslen af oplysninger til USA. Læs mere i{' '}
+                      <a href="https://policies.google.com/technologies/partner-sites?hl=da" style={{ color: 'var(--gold)' }} target="_blank" rel="noopener noreferrer">Googles
+                      forklaring om, hvordan Google bruger data fra websites</a>.
                     </p>
                     <p style={{ marginTop: '0.75rem' }}>
-                      Behandlingen sker på grundlag af dit samtykke (GDPR art. 6(1)(a) og
-                      cookiebekendtgørelsen). Google LLC er certificeret under EU-US Data Privacy
-                      Framework, som er grundlaget for overførslen af oplysninger til USA. Læs mere
-                      i <a href="https://policies.google.com/technologies/ads?hl=da" style={{ color: 'var(--gold)' }} target="_blank" rel="noopener noreferrer">Googles
-                      forklaring om annoncering</a>.
-                    </p>
-                    <p style={{ marginTop: '0.75rem' }}>
-                      Afviser du, eller tager du ikke stilling, indlæses Googles tag slet ikke, og der
+                      Afviser du, eller tager du ikke stilling, indlæses Googles tags slet ikke, og der
                       sendes intet til Google. Dit valg gemmes lokalt i din browser i 12 måneder, hvorefter
                       du bliver spurgt igen. Du kan til enhver tid ændre eller trække dit samtykke tilbage
                       under{' '}
@@ -176,7 +191,7 @@ export const Privatlivspolitik = () => {
                   </>
                 ) : (
                   <p style={{ marginTop: '0.75rem' }}>
-                    Vi bruger ingen cookies til markedsføring eller sporing.
+                    Vi bruger ingen cookies til statistik, markedsføring eller sporing.
                   </p>
                 )}
               </div>

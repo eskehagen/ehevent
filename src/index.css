@@ -2996,10 +2996,12 @@ button:focus-visible,
   bottom: 1rem;
   z-index: 200;
   max-width: 760px;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  gap: 1.6rem;
+  flex-direction: column;
+  gap: 1.1rem;
   padding: 1.4rem 1.6rem;
   background: var(--surface-raised);
   border: 1px solid var(--line);
@@ -3024,27 +3026,62 @@ button:focus-visible,
   color: var(--gold-ink);
   text-decoration: underline;
 }
-.cookie-consent-current {
-  margin-top: 0.5rem;
+.cookie-consent-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.cookie-consent-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--muted);
+  cursor: pointer;
+}
+.cookie-consent-option input {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+.cookie-consent-option strong {
+  display: block;
+  font-weight: 500;
+  color: var(--cream);
 }
 .cookie-consent-actions {
   display: flex;
+  justify-content: flex-end;
   gap: 0.75rem;
-  flex-shrink: 0;
 }
 .cookie-consent-actions .btn-ghost {
-  padding: 0.75rem 1.4rem;
+  padding: 0.75rem 1.2rem;
+  letter-spacing: 0.14em;
   background: none;
   cursor: pointer;
 }
+/* Mobil: "Afvis alle" og "Accepter alle" side om side i samme størrelse,
+   "Vælg selv"/"Gem valg" i fuld bredde over dem. */
 @media (max-width: 640px) {
   .cookie-consent {
-    flex-direction: column;
-    align-items: stretch;
     gap: 1rem;
     padding: 1.2rem;
   }
-  .cookie-consent-actions > * {
-    flex: 1;
+  .cookie-consent-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cookie-consent-actions > :first-child {
+    grid-column: 1 / -1;
+  }
+  .cookie-consent-actions .btn-ghost {
+    padding: 0.75rem 0.5rem;
   }
 }
