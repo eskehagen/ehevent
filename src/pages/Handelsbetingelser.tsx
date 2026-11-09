@@ -17,7 +17,7 @@ export const Handelsbetingelser = () => {
               Handels<em>betingelser</em>
             </h1>
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem', fontSize: '0.95rem' }}>
-              Senest opdateret: september 2026
+              Senest opdateret: november 2026
             </p>
           </Reveal>
 
@@ -48,12 +48,11 @@ export const Handelsbetingelser = () => {
                   2. Tilbud og booking
                 </h3>
                 <p>
-                  En aftale anses for indgået, når kunden skriftligt har accepteret et fremsendt tilbud, og et
-                  eventuelt depositum er modtaget. Tilbud er gyldige i 14 dage fra afsendelsesdatoen,
-                  medmindre andet er angivet.
+                  En aftale anses for indgået, og datoen er reserveret, når kunden skriftligt har accepteret
+                  et fremsendt tilbud. Der kræves ikke depositum for at reservere datoen.
                 </p>
                 <p style={{ marginTop: '0.75rem' }}>
-                  Datoen er kun reserveret, når der foreligger en skriftlig bekræftelse fra EH Events.
+                  Tilbud gælder i 14 dage fra afsendelsesdatoen, medmindre andet står i tilbuddet.
                 </p>
               </div>
 
@@ -62,13 +61,8 @@ export const Handelsbetingelser = () => {
                   3. Betaling
                 </h3>
                 <p>
-                  Betalingsbetingelserne aftales individuelt i forbindelse med tilbudsgivning, men vil typisk
-                  følge dette mønster:
+                  Betaling sker senest 7 dage efter eventet, medmindre andet er aftalt.
                 </p>
-                <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  <li><strong>Depositum:</strong> 25% af den samlede pris ved bookingbekræftelse.</li>
-                  <li><strong>Restbeløb:</strong> Betales senest 14 dage før eventdatoen, medmindre andet er aftalt.</li>
-                </ul>
                 <p style={{ marginTop: '0.75rem' }}>
                   Betaling sker via bankoverførsel til det kontonummer, der fremgår af fakturaen.
                   Ved sen betaling forbeholdes retten til at opkræve rykkergebyr i henhold til
@@ -84,9 +78,8 @@ export const Handelsbetingelser = () => {
                   Aflysning skal meddeles skriftligt. Følgende aflysningstakster gælder:
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  <li><strong>Mere end 90 dage før eventet:</strong> Depositum tilbageholdes.</li>
-                  <li><strong>31–90 dage før eventet:</strong> 50% af den samlede aftalte pris opkræves.</li>
-                  <li><strong>0–30 dage før eventet:</strong> 100% af den samlede aftalte pris opkræves.</li>
+                  <li><strong>Under 14 dage før eventet:</strong> 50% af den samlede aftalte pris opkræves.</li>
+                  <li><strong>Fra 7 dage før eventet:</strong> 100% af den samlede aftalte pris opkræves.</li>
                 </ul>
                 <p style={{ marginTop: '0.75rem' }}>
                   Ændringer i tid, sted eller varighed skal aftales skriftligt og kan medføre regulering af prisen.
@@ -100,7 +93,8 @@ export const Handelsbetingelser = () => {
                 <p>
                   I det ekstraordinære tilfælde, at EH Events er nødsaget til at aflyse en aftale
                   (fx ved sygdom eller force majeure), vil kunden hurtigst muligt blive orienteret, og alle
-                  indbetalte beløb vil blive refunderet fuldt ud. EH Events er ikke ansvarlig for
+                  indbetalte beløb vil blive refunderet fuldt ud. EH Events vil forsøge at finde en anden DJ,
+                  der kan dække eventet, men dette kan ikke garanteres. EH Events er ikke ansvarlig for
                   yderligere tab eller udgifter hos kunden som følge af aflysningen.
                 </p>
               </div>
@@ -129,7 +123,7 @@ export const Handelsbetingelser = () => {
                   <li>Tilstrækkelig plads og adgang til opstilling af udstyr.</li>
                   <li>Tilgængelighed af nødvendig strømforsyning (230V).</li>
                   <li>At eventlokalet har KODA/Gramex-tilladelse, hvis dette er et krav for det pågældende arrangement.</li>
-                  <li>At information om særlige ønsker, spillelister eller tekniske krav meddeles senest 14 dage inden eventet.</li>
+                  <li>At information om særlige ønsker, spillelister eller tekniske krav meddeles senest 7 dage inden eventet.</li>
                 </ul>
               </div>
 

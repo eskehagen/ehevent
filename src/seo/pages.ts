@@ -13,7 +13,7 @@ import { allFaqItems } from '../data/faq';
 import { REVIEWS } from '../data/reviews';
 
 /** Sidst redigeret indhold. Opdateres når siderne ændres væsentligt. */
-export const CONTENT_UPDATED = '2026-09-23';
+export const CONTENT_UPDATED = '2026-11-09';
 
 export interface ServiceMeta {
   /** schema.org serviceType — det folk faktisk søger på. */
@@ -162,7 +162,7 @@ export const PAGES: PageSeo[] = [
     path: '/handelsbetingelser',
     title: 'Handelsbetingelser | Eske Hagen Events',
     description:
-      'Handelsbetingelser for booking af DJ, lys og special effekter hos EH Events: tilbud, betaling, depositum, aflysning og kundens forpligtelser.',
+      'Handelsbetingelser for booking af DJ, lys og special effekter hos EH Events: tilbud, reservation, betaling, aflysning og kundens forpligtelser.',
     breadcrumb: 'Handelsbetingelser',
     sitemapPriority: 0.3,
     changefreq: 'yearly',
