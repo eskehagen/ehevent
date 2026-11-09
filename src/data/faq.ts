@@ -48,11 +48,11 @@ export const FAQ: FaqCategory[] = [
       },
       {
         q: 'Hvordan booker jeg?',
-        a: 'Skriv via kontaktformularen, send en mail eller ring med dato, lokation og type fest. Derefter tager vi en uforpligtende snak om jeres ønsker, og I får et tilbud. Datoen er først reserveret, når I har accepteret tilbuddet skriftligt.',
+        a: 'Skriv via kontaktformularen, send en mail eller ring med dato, lokation og type fest. Derefter tager vi en uforpligtende snak om jeres ønsker, og I får et tilbud. Datoen er først reserveret, når I har accepteret tilbuddet skriftligt. Der kræves ikke depositum, og tilbuddet gælder i 14 dage fra afsendelse, medmindre andet står i tilbuddet.',
       },
       {
         q: 'Hvordan foregår betalingen?',
-        a: 'Betalingsbetingelserne aftales individuelt, men sker normalt via bankoverførsel.',
+        a: 'Betaling sker via bankoverførsel senest 7 dage efter festen, medmindre andet er aftalt.',
       },
       {
         q: 'Kan vi få en faktura som virksomhed?',
@@ -60,7 +60,7 @@ export const FAQ: FaqCategory[] = [
       },
       {
         q: 'Hvad sker der, hvis vi bliver nødt til at aflyse?',
-        a: 'Aflysning skal ske skriftligt. Aflyses der med under 14 dage før eventet opkræves 50% af den aftalte pris, og fra 7 dage før opkræves 100%. Ændringer i tid, sted eller varighed aftales skriftligt og kan regulere prisen.',
+        a: 'Aflysning skal ske skriftligt. Aflyses der under 14 dage før festen, opkræves 50% af den aftalte pris, og fra 7 dage før opkræves 100%. Ændringer i tid, sted eller varighed aftales skriftligt og kan regulere prisen.',
       },
       {
         q: 'Hvad sker der, hvis DJ’en bliver syg?',
