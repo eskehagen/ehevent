@@ -19,17 +19,18 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const DIST = join(ROOT, 'dist');
 
-const { render } = await import(join(ROOT, 'dist-ssr', 'entry-server.js'));
-const { PAGES, buildJsonLd, canonicalFor, CONTENT_UPDATED } = await import(
-  join(ROOT, 'dist-ssr', 'seo.js')
-);
-const { SITE_URL } = await import(join(ROOT, 'dist-ssr', 'seo.js'));
+// import() needs a file:// URL. A plain path works on Linux but fails on
+// Windows, where "C:\..." is read as a URL with the scheme "c:".
+const importSsr = (file) => import(pathToFileURL(join(ROOT, 'dist-ssr', file)).href);
+
+const { render } = await importSsr('entry-server.js');
+const { PAGES, buildJsonLd, canonicalFor, CONTENT_UPDATED, SITE_URL } = await importSsr('seo.js');
 
 const template = readFileSync(join(DIST, 'index.html'), 'utf-8');
 
